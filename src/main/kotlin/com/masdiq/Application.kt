@@ -1,7 +1,9 @@
 package com.masdiq
 
+import com.masdiq.plugins.configureMonitoring
+import com.masdiq.plugins.configureRouting
+import com.masdiq.plugins.configureSerialization
 import io.ktor.server.application.*
-import com.masdiq.plugins.*
 
 fun main(args: Array<String>): Unit =
     io.ktor.server.netty.EngineMain.main(args)
@@ -10,6 +12,5 @@ fun main(args: Array<String>): Unit =
 fun Application.module() {
     configureSerialization()
     configureMonitoring()
-    configureHTTP()
     configureRouting()
 }

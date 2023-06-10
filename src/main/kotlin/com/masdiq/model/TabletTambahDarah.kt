@@ -1,18 +1,29 @@
 package com.masdiq.model
 
-import org.bson.codecs.pojo.annotations.BsonId
+import com.masdiq.database.TabletTambahDarah
 import org.bson.types.ObjectId
+import org.litote.kmongo.eq
 
-data class TabletTambahDarah(
-    val bulan1: Boolean? = false,
-    val bulan2: Boolean? = false,
-    val bulan3: Boolean? = false,
-    val bulan4: Boolean? = false,
-    val bulan5: Boolean? = false,
-    val bulan6: Boolean? = false,
-    val bulan7: Boolean? = false,
-    val bulan8: Boolean? = false,
-    val bulan9: Boolean? = false,
-    @BsonId
-    var id: String = ObjectId().toString()
-)
+val tabletTD = DATABASE.getCollection<TabletTambahDarah>()
+
+suspend fun getTablet(id: String): TabletTambahDarah? {
+    return tabletTD.findOneById(id)
+}
+
+suspend fun createOrUpdateTablet(t: TabletTambahDarah): Boolean {
+    val tabletExists = tabletTD.findOneById(t.id) != null
+
+    return if (tabletExists) {
+        tabletTD.updateOneById(t.id, t).wasAcknowledged()
+    } else {
+        t.id = ObjectId().toString()
+        tabletTD.insertOne(t).wasAcknowledged()
+    }
+}
+
+suspend fun deleteTablet(tId: String): Boolean {
+    val tabletDelete = tabletTD.findOne(TabletTambahDarah::id eq tId)
+    tabletDelete?.let { tablet ->
+        return tabletTD.deleteOneById(tablet.id).wasAcknowledged()
+    } ?: return false
+}
