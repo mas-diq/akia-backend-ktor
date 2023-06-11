@@ -1,6 +1,6 @@
 package com.masdiq.model
 
-import com.masdiq.database.TabletTambahDarah
+import com.masdiq.data.tabletTambahDarah.TabletTambahDarah
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
 

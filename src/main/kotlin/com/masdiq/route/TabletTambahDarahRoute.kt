@@ -1,6 +1,6 @@
 package com.masdiq.route
 
-import com.masdiq.database.TabletTambahDarah
+import com.masdiq.data.tabletTambahDarah.TabletTambahDarah
 import com.masdiq.model.BASE_URL
 import com.masdiq.model.createOrUpdateTablet
 import com.masdiq.model.deleteTablet
