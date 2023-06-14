@@ -1,7 +1,7 @@
 package com.masdiq.route.tabletTambahDarah
 
 import com.masdiq.model.tabletTambahDarah.TabletTambahDarah
-import com.masdiq.repository.TabletTambahDarahRepository
+import com.masdiq.repository.tabletTambahDarah.TabletTambahDarahRepository
 import com.masdiq.template.*
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -16,7 +16,7 @@ fun Route.tambahDarahRoute() {
 
     get("$URL_TABLET_TAMBAH_DARAH/get") { it ->
         val tabletId = call.receive<TabletTambahDarah>().id
-        val tablet = tabletTambahDarahRepository.getTablet(tabletId)
+        val tablet = tabletTambahDarahRepository.getTabletTambahDarah(tabletId)
 
         tablet?.let {
             call.respond(
@@ -46,7 +46,7 @@ fun Route.tambahDarahRoute() {
             return@post
         }
 
-        if (tabletTambahDarahRepository.createOrUpdateTablet(request)) {
+        if (tabletTambahDarahRepository.createOrUpdateTabletTambahDarah(request)) {
             call.respond(
                 DefaultResponse(
                     "${HttpStatusCode.OK}",
@@ -76,7 +76,7 @@ fun Route.tambahDarahRoute() {
             return@post
         }
 
-        if (tabletTambahDarahRepository.deleteTablet(request.id)) {
+        if (tabletTambahDarahRepository.deleteTabletTambahDarah(request.id)) {
             call.respond(
                 DefaultResponse(
                     "${HttpStatusCode.OK}",
