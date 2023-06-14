@@ -1,5 +1,6 @@
 package com.masdiq
 
+import com.masdiq.plugins.configureKoin
 import com.masdiq.plugins.configureMonitoring
 import com.masdiq.plugins.configureRouting
 import com.masdiq.plugins.configureSerialization
@@ -13,4 +14,5 @@ fun Application.module() {
     configureSerialization()
     configureMonitoring()
     configureRouting()
+    configureKoin()
 }

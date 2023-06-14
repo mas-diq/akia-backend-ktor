@@ -1,7 +1,7 @@
 val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
-val prometeus_version : String by project
+val koinVersion: String by project
 val kmongo_version: String by project
 
 plugins {
@@ -39,4 +39,9 @@ dependencies {
     implementation("org.litote.kmongo:kmongo:$kmongo_version")
     implementation("org.litote.kmongo:kmongo-coroutine:$kmongo_version")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
+
+    // Koin for Ktor
+    implementation("io.insert-koin:koin-ktor:$koinVersion")
+    // SLF4J Logger
+    implementation("io.insert-koin:koin-logger-slf4j:$koinVersion")
 }
