@@ -12,5 +12,5 @@ data class UsgTrimester1(
     val letakKantongKehamilan: String? = "Intauterin",
     val taksiranPersalinan: Int = 0,
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

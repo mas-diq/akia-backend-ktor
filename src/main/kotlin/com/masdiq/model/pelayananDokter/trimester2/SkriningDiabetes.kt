@@ -8,5 +8,5 @@ data class SkriningDiabetes(
     val gulaDarahPostPrandial: Int? = 0,
     val rencanaTindakLanjut: String? = "Kosong",
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

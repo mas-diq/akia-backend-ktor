@@ -11,5 +11,5 @@ data class PemeriksaanLaboratorium2(
     val urinReduksi: Int? = 0,
     val rencanaTindakLanjut: String? = "Kosong",
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

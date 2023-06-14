@@ -19,5 +19,5 @@ data class PemantauanHarianIbuNifas(
     val pendarahan: Boolean? = false,
     val keputihan: Boolean? = false,
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

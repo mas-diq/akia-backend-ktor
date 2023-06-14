@@ -9,5 +9,5 @@ data class KesimpulanAkhirNifas(
     val komplikasiNifas: Boolean? = false,
     val kesimpulan: String? = "Kosong",
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

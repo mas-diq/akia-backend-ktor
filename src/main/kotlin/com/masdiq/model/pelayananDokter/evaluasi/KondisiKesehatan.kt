@@ -11,5 +11,5 @@ data class KondisiKesehatan(
     val lingkarLengan: Int? = 0,
     val imt: Double? = 0.0,
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

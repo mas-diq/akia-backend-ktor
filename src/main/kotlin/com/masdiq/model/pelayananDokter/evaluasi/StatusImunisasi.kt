@@ -11,5 +11,5 @@ data class StatusImunisasi(
     val tt4: Boolean? = false,
     val tt5: Boolean? = false,
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

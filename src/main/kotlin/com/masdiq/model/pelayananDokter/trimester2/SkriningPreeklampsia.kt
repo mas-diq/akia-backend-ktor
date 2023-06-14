@@ -23,5 +23,5 @@ data class SkriningPreeklampsia(
     val meanArterialPreasure: Boolean? = false,
     val proteinuria: Boolean? = false,
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

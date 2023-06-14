@@ -9,5 +9,5 @@ data class PemantauanMingguanIbuNifas(
     val konsumsiTabletTambahDarah: Boolean? = false,
     val pemenuhanGiziSesuaiKebutuhan: Boolean? = false,
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

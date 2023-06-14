@@ -12,5 +12,5 @@ data class KunjunganNifas(
     val klarifikasi: String? = "Kosong",
     val tindakan: String? = "Kosong",
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

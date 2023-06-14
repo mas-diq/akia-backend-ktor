@@ -11,5 +11,5 @@ data class UsgTrimester3(
     val plasenta: Boolean? = true,
     val usiaKehamilan: Int? = 0,
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

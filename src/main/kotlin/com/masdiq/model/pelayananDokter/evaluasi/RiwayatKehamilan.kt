@@ -11,5 +11,5 @@ data class RiwayatKehamilan(
     val penolongPersalinan: String? = "Dokter",
     val komplikasi: Boolean? = false,
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

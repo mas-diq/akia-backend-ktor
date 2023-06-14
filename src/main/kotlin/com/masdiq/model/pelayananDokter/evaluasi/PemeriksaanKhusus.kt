@@ -13,5 +13,5 @@ data class PemeriksaanKhusus(
     val fluour: Boolean? = false,
     val posio: Boolean? = false,
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

@@ -13,5 +13,5 @@ data class BayiSaatLahir(
     val asuhanBayiBaruLahir: String? = "Kosong",
     val keteranganTambahan: String? = "Kosong",
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

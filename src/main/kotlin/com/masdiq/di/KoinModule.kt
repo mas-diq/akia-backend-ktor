@@ -18,7 +18,7 @@ import com.masdiq.repository.pemantauanIbu.ibuNifas.PemantauanHarianIbuNifasImpl
 import com.masdiq.repository.pemantauanIbu.ibuNifas.PemantauanHarianIbuNifasRepository
 import com.masdiq.repository.pemantauanIbu.ibuNifas.PemantauanMingguanIbuNifasImplement
 import com.masdiq.repository.pemantauanIbu.ibuNifas.PemantauanMingguanIbuNifasRepository
-import com.masdiq.repository.persalinanIbu.pelayananNifas.KesimpulanAkhiNifasImplement
+import com.masdiq.repository.persalinanIbu.pelayananNifas.KesimpulanAkhirNifasImplement
 import com.masdiq.repository.persalinanIbu.pelayananNifas.KesimpulanAkhirNifasRepository
 import com.masdiq.repository.persalinanIbu.pelayananNifas.KunjunganNifasImplement
 import com.masdiq.repository.persalinanIbu.pelayananNifas.KunjunganNifasRepository
@@ -63,7 +63,7 @@ val koinModule = module {
 
     // Persalinan Ibu
     // Persalinan Ibu / Pelayanan Nifas
-    single<KesimpulanAkhirNifasRepository> { KesimpulanAkhiNifasImplement() }
+    single<KesimpulanAkhirNifasRepository> { KesimpulanAkhirNifasImplement() }
     single<KunjunganNifasRepository> { KunjunganNifasImplement() }
     // Persalinan Ibu / Pelayanan Persalinan
     single<BayiSaatLahirRepository> { BayiSaatLahirImplement() }

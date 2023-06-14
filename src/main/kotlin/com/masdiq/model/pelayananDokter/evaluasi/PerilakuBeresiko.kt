@@ -11,5 +11,5 @@ data class PerilakuBeresiko(
     val obatTeratogenik: Boolean? = false,
     val kosmetikBerbahaya: Boolean? = false,
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

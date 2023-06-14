@@ -11,5 +11,5 @@ data class PemeriksaanLaboratorium1(
     val gulaDarahSewaktu: Int? = 0,
     val ppia: Boolean? = true,
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

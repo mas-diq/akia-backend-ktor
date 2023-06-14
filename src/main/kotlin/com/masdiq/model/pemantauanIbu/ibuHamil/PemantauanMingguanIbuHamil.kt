@@ -8,5 +8,5 @@ data class PemantauanMingguanIbuHamil(
     val trimester2: Int? = 0,
     val trimester3: Int? = 0,
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

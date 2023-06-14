@@ -14,5 +14,5 @@ data class IbuBersalinDanIbuNifas(
     val kBPascaPersalinan: Boolean? = true,
     val keteranganTambahan: String? = "Kosong",
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

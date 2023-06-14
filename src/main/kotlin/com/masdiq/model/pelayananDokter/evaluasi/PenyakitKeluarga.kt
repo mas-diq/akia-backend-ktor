@@ -16,5 +16,5 @@ data class PenyakitKeluarga(
     val sifilis: Boolean? = false,
     val diabetes: Boolean? = false,
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

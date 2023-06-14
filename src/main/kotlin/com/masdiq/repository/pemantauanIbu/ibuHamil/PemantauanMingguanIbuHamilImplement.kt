@@ -1,18 +1,34 @@
 package com.masdiq.repository.pemantauanIbu.ibuHamil
 
 import com.masdiq.model.pemantauanIbu.ibuHamil.PemantauanMingguanIbuHamil
+import com.masdiq.model.persalinanIbu.pelayananPersalinan.BayiSaatLahir
+import com.masdiq.repository.DATABASE
+import org.bson.types.ObjectId
+import org.litote.kmongo.eq
 
-class PemantauanMingguanIbuHamilImplement : PemantauanMingguanIbuHamilRepository{
+val colPemantauanMingguanIbuHamil = DATABASE.getCollection<PemantauanMingguanIbuHamil>()
+
+class PemantauanMingguanIbuHamilImplement : PemantauanMingguanIbuHamilRepository {
     override suspend fun getPemantauanMingguanIbuHamil(reqId: String): PemantauanMingguanIbuHamil? {
-        TODO("Not yet implemented")
+        return colPemantauanMingguanIbuHamil.findOneById(reqId)
     }
 
     override suspend fun createOrUpdatePemantauanMingguanIbuHamil(pemantauanMingguanIbuHamil: PemantauanMingguanIbuHamil): Boolean {
-        TODO("Not yet implemented")
+        val dataFound = colPemantauanMingguanIbuHamil.findOneById(pemantauanMingguanIbuHamil.id) != null
+
+        return if (dataFound) {
+            colPemantauanMingguanIbuHamil.updateOneById(pemantauanMingguanIbuHamil.id, pemantauanMingguanIbuHamil)
+                .wasAcknowledged()
+        } else {
+            pemantauanMingguanIbuHamil.id = ObjectId().toString()
+            colPemantauanMingguanIbuHamil.insertOne(pemantauanMingguanIbuHamil).wasAcknowledged()
+        }
     }
 
     override suspend fun deletePemantauanMingguanIbuHamil(reqId: String): Boolean {
-        TODO("Not yet implemented")
+        val dataDelete = colPemantauanMingguanIbuHamil.findOne(BayiSaatLahir::id eq reqId)
+        dataDelete?.let { tablet ->
+            return colPemantauanMingguanIbuHamil.deleteOneById(tablet.id).wasAcknowledged()
+        } ?: return false
     }
-
 }

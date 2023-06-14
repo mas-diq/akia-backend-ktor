@@ -16,5 +16,5 @@ data class PemantauanHarianIbuHamil(
     val sakitSaatKencing: Boolean? = false,
     val diareBerulang: Boolean? = false,
     @BsonId
-    val id: String = ObjectId().toString()
+    var id: String = ObjectId().toString()
 )

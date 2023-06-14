@@ -1,18 +1,33 @@
 package com.masdiq.repository.pelayananDokter.trimester3
 
 import com.masdiq.model.pelayananDokter.trimester3.RencanaPersalinanDanKb
+import com.masdiq.model.persalinanIbu.pelayananPersalinan.BayiSaatLahir
+import com.masdiq.repository.DATABASE
+import org.bson.types.ObjectId
+import org.litote.kmongo.eq
 
-class RencanaPersalinanDanKbImplement : RencanaPersalinanDanKbRepository{
+val colRencanaPersalinanDanKb = DATABASE.getCollection<RencanaPersalinanDanKb>()
+
+class RencanaPersalinanDanKbImplement : RencanaPersalinanDanKbRepository {
     override suspend fun getRencanaPersalinanDanKb(reqId: String): RencanaPersalinanDanKb? {
-        TODO("Not yet implemented")
+        return colRencanaPersalinanDanKb.findOneById(reqId)
     }
 
     override suspend fun createOrUpdateRencanaPersalinanDanKb(rencanaPersalinanDanKb: RencanaPersalinanDanKb): Boolean {
-        TODO("Not yet implemented")
+        val dataFound = colRencanaPersalinanDanKb.findOneById(rencanaPersalinanDanKb.id) != null
+
+        return if (dataFound) {
+            colRencanaPersalinanDanKb.updateOneById(rencanaPersalinanDanKb.id, rencanaPersalinanDanKb).wasAcknowledged()
+        } else {
+            rencanaPersalinanDanKb.id = ObjectId().toString()
+            colRencanaPersalinanDanKb.insertOne(rencanaPersalinanDanKb).wasAcknowledged()
+        }
     }
 
     override suspend fun deleteRencanaPersalinanDanKb(reqId: String): Boolean {
-        TODO("Not yet implemented")
+        val dataDelete = colRencanaPersalinanDanKb.findOne(BayiSaatLahir::id eq reqId)
+        dataDelete?.let { tablet ->
+            return colRencanaPersalinanDanKb.deleteOneById(tablet.id).wasAcknowledged()
+        } ?: return false
     }
-
 }

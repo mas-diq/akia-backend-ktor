@@ -1,18 +1,33 @@
 package com.masdiq.repository.pelayananDokter.evaluasi
 
 import com.masdiq.model.pelayananDokter.evaluasi.RiwayatKehamilan
+import com.masdiq.model.persalinanIbu.pelayananPersalinan.BayiSaatLahir
+import com.masdiq.repository.DATABASE
+import org.bson.types.ObjectId
+import org.litote.kmongo.eq
 
-class RiwayatKehamilanImplement: RiwayatKehamilanRepository {
+val colRiwayatKehamilan = DATABASE.getCollection<RiwayatKehamilan>()
+
+class RiwayatKehamilanImplement : RiwayatKehamilanRepository {
     override suspend fun getRiwayatKehamilan(reqId: String): RiwayatKehamilan? {
-        TODO("Not yet implemented")
+        return colRiwayatKehamilan.findOneById(reqId)
     }
 
     override suspend fun createOrUpdateRiwayatKehamilan(riwayatKehamilan: RiwayatKehamilan): Boolean {
-        TODO("Not yet implemented")
+        val dataFound = colRiwayatKehamilan.findOneById(riwayatKehamilan.id) != null
+
+        return if (dataFound) {
+            colRiwayatKehamilan.updateOneById(riwayatKehamilan.id, riwayatKehamilan).wasAcknowledged()
+        } else {
+            riwayatKehamilan.id = ObjectId().toString()
+            colRiwayatKehamilan.insertOne(riwayatKehamilan).wasAcknowledged()
+        }
     }
 
     override suspend fun deleteRiwayatKehamilan(reqId: String): Boolean {
-        TODO("Not yet implemented")
+        val dataDelete = colRiwayatKehamilan.findOne(BayiSaatLahir::id eq reqId)
+        dataDelete?.let { tablet ->
+            return colRiwayatKehamilan.deleteOneById(tablet.id).wasAcknowledged()
+        } ?: return false
     }
-
 }
