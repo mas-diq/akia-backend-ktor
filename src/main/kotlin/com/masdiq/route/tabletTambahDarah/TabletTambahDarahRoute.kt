@@ -15,10 +15,10 @@ fun Route.tambahDarahRoute() {
     val tabletTambahDarahRepository: TabletTambahDarahRepository by inject()
 
     get("$URL_TABLET_TAMBAH_DARAH/get") { it ->
-        val tabletId = call.receive<TabletTambahDarah>().id
-        val tablet = tabletTambahDarahRepository.getTabletTambahDarah(tabletId)
+        val reqId = call.receive<TabletTambahDarah>().id
+        val obj = tabletTambahDarahRepository.getTabletTambahDarah(reqId)
 
-        tablet?.let {
+        obj?.let {
             call.respond(
                 DefaultResponse(
                     "${HttpStatusCode.OK}",
