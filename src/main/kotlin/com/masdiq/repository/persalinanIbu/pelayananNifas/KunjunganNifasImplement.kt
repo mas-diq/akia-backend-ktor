@@ -6,9 +6,13 @@ import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
 
-val colKunjunganNifas = DATABASE.getCollection<KunjunganNifas>()
+private val colKunjunganNifas = DATABASE.getCollection<KunjunganNifas>()
 
 class KunjunganNifasImplement : KunjunganNifasRepository {
+    override suspend fun getAllKunjunganNifas(): List<KunjunganNifas> {
+        return colKunjunganNifas.find().toList()
+    }
+
     override suspend fun getKunjunganNifas(reqId: String): KunjunganNifas? {
         return colKunjunganNifas.findOneById(reqId)
     }

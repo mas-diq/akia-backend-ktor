@@ -14,6 +14,16 @@ import org.koin.ktor.ext.inject
 fun Route.rencanaKonsultasiLanjutRoute() {
     val rencanaKonsultasiLanjutRepository: RencanaKonsultasiLanjutRepository by inject()
 
+    get("$URL_RENCANA_KONSULTASI_LANJUT/get-all") {
+        val tabletList = rencanaKonsultasiLanjutRepository.getAllRencanaKonsultasiLanjut()
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+            )
+        )
+    }
+
     get("$URL_RENCANA_KONSULTASI_LANJUT/get") { it ->
         val reqId = call.receive<RencanaKonsultasiLanjut>().id
         val obj = rencanaKonsultasiLanjutRepository.getRencanaKonsultasiLanjut(reqId)
@@ -63,7 +73,7 @@ fun Route.rencanaKonsultasiLanjutRoute() {
         }
     }
 
-    post("$URL_RENCANA_KONSULTASI_LANJUT/delete") {
+    delete("$URL_RENCANA_KONSULTASI_LANJUT/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

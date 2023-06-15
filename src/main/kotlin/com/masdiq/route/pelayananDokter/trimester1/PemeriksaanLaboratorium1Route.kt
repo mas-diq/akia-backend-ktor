@@ -1,7 +1,7 @@
 package com.masdiq.route.pelayananDokter.trimester1
 
-import com.masdiq.model.tabletTambahDarah.TabletTambahDarah
-import com.masdiq.repository.tabletTambahDarah.TabletTambahDarahRepository
+import com.masdiq.model.pelayananDokter.trimester1.PemeriksaanLaboratorium1
+import com.masdiq.repository.pelayananDokter.trimester1.PemeriksaanLaboratorium1Repository
 import com.masdiq.template.*
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -12,11 +12,21 @@ import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
 
 fun Route.pemeriksaanLaboratorium1Route() {
-    val tabletTambahDarahRepository: TabletTambahDarahRepository by inject()
+    val pemeriksaanLaboratorium1Repository: PemeriksaanLaboratorium1Repository by inject()
 
-    get("$URL_TABLET_TAMBAH_DARAH/get") { it ->
-        val reqId = call.receive<TabletTambahDarah>().id
-        val obj = tabletTambahDarahRepository.getTabletTambahDarah(reqId)
+    get("$URL_PEMERIKSAAN_LABORATORIUM_1/get-all") {
+        val tabletList = pemeriksaanLaboratorium1Repository.getAllPemeriksaanLaboratorium1()
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+            )
+        )
+    }
+
+    get("$URL_PEMERIKSAAN_LABORATORIUM_1/get") { it ->
+        val reqId = call.receive<PemeriksaanLaboratorium1>().id
+        val obj = pemeriksaanLaboratorium1Repository.getPemeriksaanLaboratorium1(reqId)
 
         obj?.let {
             call.respond(
@@ -33,9 +43,9 @@ fun Route.pemeriksaanLaboratorium1Route() {
         )
     }
 
-    post("$URL_TABLET_TAMBAH_DARAH/create-update") {
+    post("$URL_PEMERIKSAAN_LABORATORIUM_1/create-update") {
         val request = try {
-            call.receive<TabletTambahDarah>()
+            call.receive<PemeriksaanLaboratorium1>()
         } catch (e: ContentTransformationException) {
             call.respond(
                 DefaultResponse(
@@ -46,7 +56,7 @@ fun Route.pemeriksaanLaboratorium1Route() {
             return@post
         }
 
-        if (tabletTambahDarahRepository.createOrUpdateTabletTambahDarah(request)) {
+        if (pemeriksaanLaboratorium1Repository.createOrUpdatePemeriksaanLaboratorium1(request)) {
             call.respond(
                 DefaultResponse(
                     "${HttpStatusCode.OK}",
@@ -63,7 +73,7 @@ fun Route.pemeriksaanLaboratorium1Route() {
         }
     }
 
-    post("$URL_TABLET_TAMBAH_DARAH/delete") {
+    delete("$URL_PEMERIKSAAN_LABORATORIUM_1/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {
@@ -76,7 +86,7 @@ fun Route.pemeriksaanLaboratorium1Route() {
             return@post
         }
 
-        if (tabletTambahDarahRepository.deleteTabletTambahDarah(request.id)) {
+        if (pemeriksaanLaboratorium1Repository.deletePemeriksaanLaboratorium1(request.id)) {
             call.respond(
                 DefaultResponse(
                     "${HttpStatusCode.OK}",

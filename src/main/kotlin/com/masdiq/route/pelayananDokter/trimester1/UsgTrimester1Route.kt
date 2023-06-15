@@ -14,6 +14,16 @@ import org.koin.ktor.ext.inject
 fun Route.usgTrimester1Route() {
     val usgTrimester1Repository: UsgTrimester1Repository by inject()
 
+    get("$URL_USG_TRIMESTER_1/get-all") {
+        val tabletList = usgTrimester1Repository.getAllUsgTrimester1()
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+            )
+        )
+    }
+
     get("$URL_USG_TRIMESTER_1/get") { it ->
         val reqId = call.receive<UsgTrimester1>().id
         val obj = usgTrimester1Repository.getUsgTrimester1(reqId)
@@ -63,7 +73,7 @@ fun Route.usgTrimester1Route() {
         }
     }
 
-    post("$URL_USG_TRIMESTER_1/delete") {
+    delete("$URL_USG_TRIMESTER_1/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

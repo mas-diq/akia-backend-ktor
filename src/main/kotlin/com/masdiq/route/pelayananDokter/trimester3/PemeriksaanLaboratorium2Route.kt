@@ -14,6 +14,16 @@ import org.koin.ktor.ext.inject
 fun Route.pemeriksaanLaboratorium2Route() {
     val pemeriksaanLaboratorium2Repository: PemeriksaanLaboratorium2Repository by inject()
 
+    get("$URL_PEMERIKSAAN_LABORATORIUM_2/get-all") {
+        val tabletList = pemeriksaanLaboratorium2Repository.getAllPemeriksaanLaboratorium2()
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+            )
+        )
+    }
+
     get("$URL_PEMERIKSAAN_LABORATORIUM_2/get") { it ->
         val reqId = call.receive<PemeriksaanLaboratorium2>().id
         val obj = pemeriksaanLaboratorium2Repository.getPemeriksaanLaboratorium2(reqId)
@@ -63,7 +73,7 @@ fun Route.pemeriksaanLaboratorium2Route() {
         }
     }
 
-    post("$URL_PEMERIKSAAN_LABORATORIUM_2/delete") {
+    delete("$URL_PEMERIKSAAN_LABORATORIUM_2/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

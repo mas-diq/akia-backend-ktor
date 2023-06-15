@@ -6,9 +6,13 @@ import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
 
-val colKesimpulanAkhirNifas = DATABASE.getCollection<KesimpulanAkhirNifas>()
+private val colKesimpulanAkhirNifas = DATABASE.getCollection<KesimpulanAkhirNifas>()
 
 class KesimpulanAkhirNifasImplement : KesimpulanAkhirNifasRepository {
+    override suspend fun getAllKesimpulanAkhirNifas(): List<KesimpulanAkhirNifas> {
+        return colKesimpulanAkhirNifas.find().toList()
+    }
+
     override suspend fun getKesimpulanAkhirNifas(reqId: String): KesimpulanAkhirNifas? {
         return colKesimpulanAkhirNifas.findOneById(reqId)
     }

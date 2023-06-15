@@ -14,6 +14,16 @@ import org.koin.ktor.ext.inject
 fun Route.skriningPreeklampsiaRoute() {
     val skriningPreeklampsiaRepository: SkriningPreeklampsiaRepository by inject()
 
+    get("$URL_SKRINING_PREEKLAMPSIA/get-all") {
+        val tabletList = skriningPreeklampsiaRepository.getAllSkriningPreeklampsia()
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+            )
+        )
+    }
+
     get("$URL_SKRINING_PREEKLAMPSIA/get") { it ->
         val reqId = call.receive<SkriningPreeklampsia>().id
         val obj = skriningPreeklampsiaRepository.getSkriningPreeklampsia(reqId)
@@ -63,7 +73,7 @@ fun Route.skriningPreeklampsiaRoute() {
         }
     }
 
-    post("$URL_SKRINING_PREEKLAMPSIA/delete") {
+    delete("$URL_SKRINING_PREEKLAMPSIA/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

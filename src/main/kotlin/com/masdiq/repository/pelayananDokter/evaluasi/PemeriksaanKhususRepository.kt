@@ -3,9 +3,11 @@ package com.masdiq.repository.pelayananDokter.evaluasi
 import com.masdiq.model.pelayananDokter.evaluasi.PemeriksaanKhusus
 
 interface PemeriksaanKhususRepository {
-    suspend fun getPemeriksaanKhususRepository(reqId: String): PemeriksaanKhusus?
+    suspend fun getAllPemeriksaanKhusus(): List<PemeriksaanKhusus>
 
-    suspend fun createOrUpdatePemeriksaanKhususRepository(pemeriksaanKhusus: PemeriksaanKhusus): Boolean
+    suspend fun getPemeriksaanKhusus(reqId: String): PemeriksaanKhusus?
 
-    suspend fun deletePemeriksaanKhususRepository(reqId: String): Boolean
+    suspend fun createOrUpdatePemeriksaanKhusus(pemeriksaanKhusus: PemeriksaanKhusus): Boolean
+
+    suspend fun deletePemeriksaanKhusus(reqId: String): Boolean
 }

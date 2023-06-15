@@ -3,6 +3,8 @@ package com.masdiq.repository.pelayananDokter.evaluasi
 import com.masdiq.model.pelayananDokter.evaluasi.KondisiKesehatan
 
 interface KondisiKesehatanRepository {
+    suspend fun getAllKondisiKesehatan(): List<KondisiKesehatan>
+
     suspend fun getKondisiKesehatan(reqId: String): KondisiKesehatan?
 
     suspend fun createOrUpdateKondisiKesehatan(kondisiKesehatan: KondisiKesehatan): Boolean

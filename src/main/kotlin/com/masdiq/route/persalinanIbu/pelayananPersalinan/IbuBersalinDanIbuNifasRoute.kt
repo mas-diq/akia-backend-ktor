@@ -1,7 +1,6 @@
 package com.masdiq.route.persalinanIbu.pelayananPersalinan
 
 import com.masdiq.model.persalinanIbu.pelayananPersalinan.IbuBersalinDanIbuNifas
-import com.masdiq.model.tabletTambahDarah.TabletTambahDarah
 import com.masdiq.repository.persalinanIbu.pelayananPersalinan.IbuBersalinDanIbuNifasRepository
 import com.masdiq.template.*
 import io.ktor.http.*
@@ -14,6 +13,16 @@ import org.koin.ktor.ext.inject
 
 fun Route.ibuBersalinDanIbuNifasRoute() {
     val ibuBersalinDanIbuNifasRepository: IbuBersalinDanIbuNifasRepository by inject()
+
+    get("$URL_IBU_BERSALIN_DAN_IBU_NIFAS/get-all") {
+        val tabletList = ibuBersalinDanIbuNifasRepository.getAllIbuBersalinDanIbuNifas()
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+            )
+        )
+    }
 
     get("$URL_IBU_BERSALIN_DAN_IBU_NIFAS/get") { it ->
         val reqId = call.receive<IbuBersalinDanIbuNifas>().id
@@ -64,7 +73,7 @@ fun Route.ibuBersalinDanIbuNifasRoute() {
         }
     }
 
-    post("$URL_IBU_BERSALIN_DAN_IBU_NIFAS/delete") {
+    delete("$URL_IBU_BERSALIN_DAN_IBU_NIFAS/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

@@ -6,9 +6,13 @@ import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
 
-val colSkriningPreeklampsia = DATABASE.getCollection<SkriningPreeklampsia>()
+private val colSkriningPreeklampsia = DATABASE.getCollection<SkriningPreeklampsia>()
 
 class SkriningPreeklampsiaImplement : SkriningPreeklampsiaRepository {
+    override suspend fun getAllSkriningPreeklampsia(): List<SkriningPreeklampsia> {
+        return colSkriningPreeklampsia.find().toList()
+    }
+
     override suspend fun getSkriningPreeklampsia(reqId: String): SkriningPreeklampsia? {
         return colSkriningPreeklampsia.findOneById(reqId)
     }

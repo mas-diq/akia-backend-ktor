@@ -6,9 +6,13 @@ import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
 
-val colPemantauanHarianIbuNifas = DATABASE.getCollection<PemantauanHarianIbuNifas>()
+private val colPemantauanHarianIbuNifas = DATABASE.getCollection<PemantauanHarianIbuNifas>()
 
 class PemantauanHarianIbuNifasImplement : PemantauanHarianIbuNifasRepository {
+    override suspend fun getAllPemantauanHarianIbuNifas(): List<PemantauanHarianIbuNifas> {
+        return colPemantauanHarianIbuNifas.find().toList()
+    }
+
     override suspend fun getPemantauanHarianIbuNifas(reqId: String): PemantauanHarianIbuNifas? {
         return colPemantauanHarianIbuNifas.findOneById(reqId)
     }

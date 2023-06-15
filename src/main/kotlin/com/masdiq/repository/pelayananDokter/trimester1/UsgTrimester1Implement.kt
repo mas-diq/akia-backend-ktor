@@ -6,9 +6,13 @@ import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
 
-val colUsgTrimester1 = DATABASE.getCollection<UsgTrimester1>()
+private val colUsgTrimester1 = DATABASE.getCollection<UsgTrimester1>()
 
 class UsgTrimester1Implement : UsgTrimester1Repository {
+    override suspend fun getAllUsgTrimester1(): List<UsgTrimester1> {
+        return colUsgTrimester1.find().toList()
+    }
+
     override suspend fun getUsgTrimester1(reqId: String): UsgTrimester1? {
         return colUsgTrimester1.findOneById(reqId)
     }

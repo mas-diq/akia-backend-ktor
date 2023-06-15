@@ -6,9 +6,13 @@ import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
 
-val colPemeriksaanLaboratorium2 = DATABASE.getCollection<PemeriksaanLaboratorium2>()
+private val colPemeriksaanLaboratorium2 = DATABASE.getCollection<PemeriksaanLaboratorium2>()
 
 class PemeriksaanLaboratorium2Implement : PemeriksaanLaboratorium2Repository {
+    override suspend fun getAllPemeriksaanLaboratorium2(): List<PemeriksaanLaboratorium2> {
+        return colPemeriksaanLaboratorium2.find().toList()
+    }
+
     override suspend fun getPemeriksaanLaboratorium2(reqId: String): PemeriksaanLaboratorium2? {
         return colPemeriksaanLaboratorium2.findOneById(reqId)
     }

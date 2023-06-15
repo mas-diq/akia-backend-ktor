@@ -1,7 +1,6 @@
 package com.masdiq.route.pelayananDokter.evaluasi
 
 import com.masdiq.model.pelayananDokter.evaluasi.PenyakitKeluarga
-import com.masdiq.model.tabletTambahDarah.TabletTambahDarah
 import com.masdiq.repository.pelayananDokter.evaluasi.PenyakitKeluargaRepository
 import com.masdiq.template.*
 import io.ktor.http.*
@@ -14,6 +13,16 @@ import org.koin.ktor.ext.inject
 
 fun Route.penyakitKeluargaRoute() {
     val penyakitKeluargaRepository: PenyakitKeluargaRepository by inject()
+
+    get("$URL_PENYAKIT_KELUARGA/get-all") {
+        val tabletList = penyakitKeluargaRepository.getAllPenyakitKeluarga()
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+            )
+        )
+    }
 
     get("$URL_PENYAKIT_KELUARGA/get") { it ->
         val reqId = call.receive<PenyakitKeluarga>().id
@@ -64,7 +73,7 @@ fun Route.penyakitKeluargaRoute() {
         }
     }
 
-    post("$URL_PENYAKIT_KELUARGA/delete") {
+    delete("$URL_PENYAKIT_KELUARGA/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

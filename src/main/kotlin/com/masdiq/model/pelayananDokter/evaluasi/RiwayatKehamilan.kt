@@ -6,7 +6,7 @@ import org.bson.types.ObjectId
 data class RiwayatKehamilan(
     val nomor: Int? = 0,
     val tahun: Int? = 0,
-    val beratLahir: Int? = 0,
+    val beratLahir: Double? = 0.0,
     val persalinan: String? = "Normal",
     val penolongPersalinan: String? = "Dokter",
     val komplikasi: Boolean? = false,

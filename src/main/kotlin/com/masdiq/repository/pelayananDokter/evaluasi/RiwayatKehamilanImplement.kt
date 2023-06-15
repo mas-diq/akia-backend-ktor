@@ -6,9 +6,13 @@ import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
 
-val colRiwayatKehamilan = DATABASE.getCollection<RiwayatKehamilan>()
+private val colRiwayatKehamilan = DATABASE.getCollection<RiwayatKehamilan>()
 
 class RiwayatKehamilanImplement : RiwayatKehamilanRepository {
+    override suspend fun getAllRiwayatKehamilan(): List<RiwayatKehamilan> {
+        return colRiwayatKehamilan.find().toList()
+    }
+
     override suspend fun getRiwayatKehamilan(reqId: String): RiwayatKehamilan? {
         return colRiwayatKehamilan.findOneById(reqId)
     }

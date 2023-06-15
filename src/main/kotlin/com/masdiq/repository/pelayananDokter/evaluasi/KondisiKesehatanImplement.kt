@@ -6,9 +6,13 @@ import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
 
-val colKondisiKesehatan = DATABASE.getCollection<KondisiKesehatan>()
+private val colKondisiKesehatan = DATABASE.getCollection<KondisiKesehatan>()
 
 class KondisiKesehatanImplement : KondisiKesehatanRepository {
+    override suspend fun getAllKondisiKesehatan(): List<KondisiKesehatan> {
+        return colKondisiKesehatan.find().toList()
+    }
+
     override suspend fun getKondisiKesehatan(reqId: String): KondisiKesehatan? {
         return colKondisiKesehatan.findOneById(reqId)
     }

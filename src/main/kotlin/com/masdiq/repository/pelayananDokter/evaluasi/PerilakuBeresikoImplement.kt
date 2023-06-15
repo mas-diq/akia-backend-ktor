@@ -6,9 +6,13 @@ import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
 
-val colPerilakuBeresiko = DATABASE.getCollection<PerilakuBeresiko>()
+private val colPerilakuBeresiko = DATABASE.getCollection<PerilakuBeresiko>()
 
 class PerilakuBeresikoImplement : PerilakuBeresikoRepository {
+    override suspend fun getAllPerilakuBeresiko(): List<PerilakuBeresiko> {
+        return colPerilakuBeresiko.find().toList()
+    }
+
     override suspend fun getPerilakuBeresiko(reqId: String): PerilakuBeresiko? {
         return colPerilakuBeresiko.findOneById(reqId)
     }

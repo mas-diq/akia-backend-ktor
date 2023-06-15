@@ -6,9 +6,13 @@ import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
 
-val colRencanaPersalinanDanKb = DATABASE.getCollection<RencanaPersalinanDanKb>()
+private val colRencanaPersalinanDanKb = DATABASE.getCollection<RencanaPersalinanDanKb>()
 
 class RencanaPersalinanDanKbImplement : RencanaPersalinanDanKbRepository {
+    override suspend fun getAllRencanaPersalinanDanKb(): List<RencanaPersalinanDanKb> {
+        return colRencanaPersalinanDanKb.find().toList()
+    }
+
     override suspend fun getRencanaPersalinanDanKb(reqId: String): RencanaPersalinanDanKb? {
         return colRencanaPersalinanDanKb.findOneById(reqId)
     }

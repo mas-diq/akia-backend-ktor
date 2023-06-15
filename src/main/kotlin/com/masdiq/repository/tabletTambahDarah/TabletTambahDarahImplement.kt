@@ -2,12 +2,16 @@ package com.masdiq.repository.tabletTambahDarah
 
 import com.masdiq.model.tabletTambahDarah.TabletTambahDarah
 import com.masdiq.repository.DATABASE
+import io.ktor.http.cio.*
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
 
-val colTabletTambahDarah = DATABASE.getCollection<TabletTambahDarah>()
+private val colTabletTambahDarah = DATABASE.getCollection<TabletTambahDarah>()
 
 class TabletTambahDarahImplement : TabletTambahDarahRepository {
+    override suspend fun getAllTabletTambahDarah(): List<TabletTambahDarah> {
+        return colTabletTambahDarah.find().toList()
+    }
 
     override suspend fun getTabletTambahDarah(reqId: String): TabletTambahDarah? {
         return colTabletTambahDarah.findOneById(reqId)

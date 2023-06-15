@@ -14,6 +14,16 @@ import org.koin.ktor.ext.inject
 fun Route.perilakuBeresikoRoute() {
     val perilakuBeresikoRepository: PerilakuBeresikoRepository by inject()
 
+    get("$URL_PERILAKU_BERESIKO/get-all") {
+        val tabletList = perilakuBeresikoRepository.getAllPerilakuBeresiko()
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+            )
+        )
+    }
+
     get("$URL_PERILAKU_BERESIKO/get") { it ->
         val reqId = call.receive<PerilakuBeresiko>().id
         val obj = perilakuBeresikoRepository.getPerilakuBeresiko(reqId)
@@ -63,7 +73,7 @@ fun Route.perilakuBeresikoRoute() {
         }
     }
 
-    post("$URL_PERILAKU_BERESIKO/delete") {
+    delete("$URL_PERILAKU_BERESIKO/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

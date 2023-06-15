@@ -14,9 +14,19 @@ import org.koin.ktor.ext.inject
 fun Route.pemeriksaanKhususRoute() {
     val pemeriksaanKhususRepository: PemeriksaanKhususRepository by inject()
 
+    get("$URL_PEMERIKSAAN_KHUSUS/get-all") {
+        val tabletList = pemeriksaanKhususRepository.getAllPemeriksaanKhusus()
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+            )
+        )
+    }
+
     get("$URL_PEMERIKSAAN_KHUSUS/get") { it ->
         val reqId = call.receive<PemeriksaanKhusus>().id
-        val obj = pemeriksaanKhususRepository.getPemeriksaanKhususRepository(reqId)
+        val obj = pemeriksaanKhususRepository.getPemeriksaanKhusus(reqId)
 
         obj?.let {
             call.respond(
@@ -46,7 +56,7 @@ fun Route.pemeriksaanKhususRoute() {
             return@post
         }
 
-        if (pemeriksaanKhususRepository.createOrUpdatePemeriksaanKhususRepository(request)) {
+        if (pemeriksaanKhususRepository.createOrUpdatePemeriksaanKhusus(request)) {
             call.respond(
                 DefaultResponse(
                     "${HttpStatusCode.OK}",
@@ -63,7 +73,7 @@ fun Route.pemeriksaanKhususRoute() {
         }
     }
 
-    post("$URL_PEMERIKSAAN_KHUSUS/delete") {
+    delete("$URL_PEMERIKSAAN_KHUSUS/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {
@@ -76,7 +86,7 @@ fun Route.pemeriksaanKhususRoute() {
             return@post
         }
 
-        if (pemeriksaanKhususRepository.deletePemeriksaanKhususRepository(request.id)) {
+        if (pemeriksaanKhususRepository.deletePemeriksaanKhusus(request.id)) {
             call.respond(
                 DefaultResponse(
                     "${HttpStatusCode.OK}",

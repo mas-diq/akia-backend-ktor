@@ -6,14 +6,18 @@ import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
 
-val colPemeriksaanKhusus = DATABASE.getCollection<PemeriksaanKhusus>()
+private val colPemeriksaanKhusus = DATABASE.getCollection<PemeriksaanKhusus>()
 
 class PemeriksaanKhususImplement : PemeriksaanKhususRepository {
-    override suspend fun getPemeriksaanKhususRepository(reqId: String): PemeriksaanKhusus? {
+    override suspend fun getAllPemeriksaanKhusus(): List<PemeriksaanKhusus> {
+        return colPemeriksaanKhusus.find().toList()
+    }
+
+    override suspend fun getPemeriksaanKhusus(reqId: String): PemeriksaanKhusus? {
         return colPemeriksaanKhusus.findOneById(reqId)
     }
 
-    override suspend fun createOrUpdatePemeriksaanKhususRepository(pemeriksaanKhusus: PemeriksaanKhusus): Boolean {
+    override suspend fun createOrUpdatePemeriksaanKhusus(pemeriksaanKhusus: PemeriksaanKhusus): Boolean {
         val dataFound = colPemeriksaanKhusus.findOneById(pemeriksaanKhusus.id) != null
 
         return if (dataFound) {
@@ -24,7 +28,7 @@ class PemeriksaanKhususImplement : PemeriksaanKhususRepository {
         }
     }
 
-    override suspend fun deletePemeriksaanKhususRepository(reqId: String): Boolean {
+    override suspend fun deletePemeriksaanKhusus(reqId: String): Boolean {
         val dataDelete = colPemeriksaanKhusus.findOne(BayiSaatLahir::id eq reqId)
         dataDelete?.let { tablet ->
             return colPemeriksaanKhusus.deleteOneById(tablet.id).wasAcknowledged()

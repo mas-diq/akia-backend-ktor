@@ -6,9 +6,13 @@ import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
 
-val colIbuBersalinDanIbuNifas = DATABASE.getCollection<IbuBersalinDanIbuNifas>()
+private val colIbuBersalinDanIbuNifas = DATABASE.getCollection<IbuBersalinDanIbuNifas>()
 
 class IbuBersalinDanIbuNifasImplement : IbuBersalinDanIbuNifasRepository {
+    override suspend fun getAllIbuBersalinDanIbuNifas(): List<IbuBersalinDanIbuNifas> {
+        return colIbuBersalinDanIbuNifas.find().toList()
+    }
+
     override suspend fun getIbuBersalinDanIbuNifas(reqId: String): IbuBersalinDanIbuNifas? {
         return colIbuBersalinDanIbuNifas.findOneById(reqId)
     }

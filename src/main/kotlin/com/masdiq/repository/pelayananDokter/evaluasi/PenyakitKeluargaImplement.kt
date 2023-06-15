@@ -6,9 +6,13 @@ import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
 
-val colPenyakitKeluarga = DATABASE.getCollection<PenyakitKeluarga>()
+private val colPenyakitKeluarga = DATABASE.getCollection<PenyakitKeluarga>()
 
 class PenyakitKeluargaImplement : PenyakitKeluargaRepository {
+    override suspend fun getAllPenyakitKeluarga(): List<PenyakitKeluarga> {
+        return colPenyakitKeluarga.find().toList()
+    }
+
     override suspend fun getPenyakitKeluarga(reqId: String): PenyakitKeluarga? {
         return colPenyakitKeluarga.findOneById(reqId)
     }

@@ -5,9 +5,13 @@ import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
 
-val colBayiSaatLahir = DATABASE.getCollection<BayiSaatLahir>()
+private val colBayiSaatLahir = DATABASE.getCollection<BayiSaatLahir>()
 
 class BayiSaatLahirImplement : BayiSaatLahirRepository {
+    override suspend fun getAllBayiSaatLahir(): List<BayiSaatLahir> {
+        return colBayiSaatLahir.find().toList()
+    }
+
     override suspend fun getBayiSaatLahir(reqId: String): BayiSaatLahir? {
         return colBayiSaatLahir.findOneById(reqId)
     }

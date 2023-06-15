@@ -14,6 +14,16 @@ import org.koin.ktor.ext.inject
 fun Route.kunjunganNifasRoute() {
     val kunjunganNifasRepository: KunjunganNifasRepository by inject()
 
+    get("$URL_KUNJUNGAN_NIFAS/get-all") {
+        val tabletList = kunjunganNifasRepository.getAllKunjunganNifas()
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+            )
+        )
+    }
+
     get("$URL_KUNJUNGAN_NIFAS/get") { it ->
         val reqId = call.receive<KunjunganNifas>().id
         val obj = kunjunganNifasRepository.getKunjunganNifas(reqId)
@@ -63,7 +73,7 @@ fun Route.kunjunganNifasRoute() {
         }
     }
 
-    post("$URL_KUNJUNGAN_NIFAS/delete") {
+    delete("$URL_KUNJUNGAN_NIFAS/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

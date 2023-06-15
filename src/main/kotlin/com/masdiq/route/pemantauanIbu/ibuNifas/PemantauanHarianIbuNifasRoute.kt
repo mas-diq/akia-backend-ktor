@@ -14,6 +14,16 @@ import org.koin.ktor.ext.inject
 fun Route.pemantauanHarianIbuNifasRoute() {
     val pemantauanHarianIbuNifasRepository: PemantauanHarianIbuNifasRepository by inject()
 
+    get("$URL_PEMANTAUAN_HARIAN_IBU_NIFAS/get-all") {
+        val tabletList = pemantauanHarianIbuNifasRepository.getAllPemantauanHarianIbuNifas()
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+            )
+        )
+    }
+
     get("$URL_PEMANTAUAN_HARIAN_IBU_NIFAS/get") { it ->
         val reqId = call.receive<PemantauanHarianIbuNifas>().id
         val obj = pemantauanHarianIbuNifasRepository.getPemantauanHarianIbuNifas(reqId)
@@ -63,7 +73,7 @@ fun Route.pemantauanHarianIbuNifasRoute() {
         }
     }
 
-    post("$URL_PEMANTAUAN_HARIAN_IBU_NIFAS/delete") {
+    delete("$URL_PEMANTAUAN_HARIAN_IBU_NIFAS/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {
