@@ -2,6 +2,7 @@ package com.masdiq.model.persalinanIbu.pelayananPersalinan
 
 import com.masdiq.model.CatatanPelayanan
 import com.masdiq.model.KesimpulanDanRekomendasi
+import com.masdiq.model.pelayananDokter.PelayananDokter
 import org.bson.codecs.pojo.annotations.BsonId
 import org.bson.types.ObjectId
 import java.time.LocalDate
@@ -11,11 +12,12 @@ import java.time.format.DateTimeFormatter
 data class IbuBersalinDanIbuNifas(
     @BsonId
     var id: String = ObjectId().toString(),
-    var userId: String? = "iu0001",
-    val tanggal: String? = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE).toString().trim(),
-    val jam: String? = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm")).toString().trim(),
-    val tanggalPersalinan: String? = LocalDate.now().toString(),
-    val waktuPersalinan: String? = LocalDateTime.now().toString(),
+    val userId: String? = "iu0001",
+    val tanggal: String? = "2000-00-00",
+    val jam: String? = "00:00",
+    val pelayananDokter: PelayananDokter? = null,
+    val tanggalPersalinan: String? = "2000-00-00",
+    val waktuPersalinan: String? = "00:00",
     val umurKehamilan: Int? = 0,
     val penolongPersalinan: String? = "Kosong",
     val caraPersalinan: String? = "Kosong",

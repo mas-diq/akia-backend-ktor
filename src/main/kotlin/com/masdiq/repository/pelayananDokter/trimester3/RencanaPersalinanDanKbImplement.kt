@@ -29,7 +29,7 @@ class RencanaPersalinanDanKbImplement : RencanaPersalinanDanKbRepository {
     }
 
     override suspend fun deleteRencanaPersalinanDanKb(reqId: String): Boolean {
-        val dataDelete = colRencanaPersalinanDanKb.findOne(BayiSaatLahir::id eq reqId)
+        val dataDelete = colRencanaPersalinanDanKb.findOne(RencanaPersalinanDanKb::id eq reqId)
         dataDelete?.let { tablet ->
             return colRencanaPersalinanDanKb.deleteOneById(tablet.id).wasAcknowledged()
         } ?: return false

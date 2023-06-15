@@ -30,7 +30,7 @@ class PemantauanMingguanIbuNifasImplement : PemantauanMingguanIbuNifasRepository
     }
 
     override suspend fun deletePemantauanMingguanIbuNifas(reqId: String): Boolean {
-        val dataDelete = colPemantauanMingguanIbuNifas.findOne(BayiSaatLahir::id eq reqId)
+        val dataDelete = colPemantauanMingguanIbuNifas.findOne(PemantauanMingguanIbuNifas::id eq reqId)
         dataDelete?.let { tablet ->
             return colPemantauanMingguanIbuNifas.deleteOneById(tablet.id).wasAcknowledged()
         } ?: return false

@@ -1,6 +1,7 @@
 package com.masdiq.plugins
 
 import com.masdiq.route.pelayananDokter.evaluasi.*
+import com.masdiq.route.pelayananDokter.pemeriksaanFisikRoute
 import com.masdiq.route.pelayananDokter.trimester1.pemeriksaanLaboratorium1Route
 import com.masdiq.route.pelayananDokter.trimester1.usgTrimester1Route
 import com.masdiq.route.pelayananDokter.trimester2.skriningDiabetesRoute
@@ -25,6 +26,7 @@ fun Application.configureRouting() {
 
     routing {
         // Pelayanan Dokter
+        pemeriksaanFisikRoute()
         // Pelayanan Dokter / Evaluasi
         kondisiKesehatanRoute()
         pemeriksaanKhususRoute()

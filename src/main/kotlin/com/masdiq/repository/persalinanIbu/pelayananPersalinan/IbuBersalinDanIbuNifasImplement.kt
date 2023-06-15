@@ -1,6 +1,5 @@
 package com.masdiq.repository.persalinanIbu.pelayananPersalinan
 
-import com.masdiq.model.persalinanIbu.pelayananPersalinan.BayiSaatLahir
 import com.masdiq.model.persalinanIbu.pelayananPersalinan.IbuBersalinDanIbuNifas
 import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
@@ -29,7 +28,7 @@ class IbuBersalinDanIbuNifasImplement : IbuBersalinDanIbuNifasRepository {
     }
 
     override suspend fun deleteIbuBersalinDanIbuNifas(reqId: String): Boolean {
-        val dataDelete = colIbuBersalinDanIbuNifas.findOne(BayiSaatLahir::id eq reqId)
+        val dataDelete = colIbuBersalinDanIbuNifas.findOne(IbuBersalinDanIbuNifas::id eq reqId)
         dataDelete?.let { tablet ->
             return colIbuBersalinDanIbuNifas.deleteOneById(tablet.id).wasAcknowledged()
         } ?: return false

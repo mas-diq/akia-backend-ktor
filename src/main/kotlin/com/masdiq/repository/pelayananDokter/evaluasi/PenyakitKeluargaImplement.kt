@@ -1,7 +1,6 @@
 package com.masdiq.repository.pelayananDokter.evaluasi
 
 import com.masdiq.model.pelayananDokter.evaluasi.PenyakitKeluarga
-import com.masdiq.model.persalinanIbu.pelayananPersalinan.BayiSaatLahir
 import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
@@ -29,7 +28,7 @@ class PenyakitKeluargaImplement : PenyakitKeluargaRepository {
     }
 
     override suspend fun deleteTabletPenyakitKeluarga(reqId: String): Boolean {
-        val dataDelete = colPenyakitKeluarga.findOne(BayiSaatLahir::id eq reqId)
+        val dataDelete = colPenyakitKeluarga.findOne(PenyakitKeluarga::id eq reqId)
         dataDelete?.let { tablet ->
             return colPenyakitKeluarga.deleteOneById(tablet.id).wasAcknowledged()
         } ?: return false

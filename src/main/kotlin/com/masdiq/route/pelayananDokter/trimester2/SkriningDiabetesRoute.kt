@@ -43,7 +43,7 @@ fun Route.skriningDiabetesRoute() {
         )
     }
 
-    post("$URL_TABLET_TAMBAH_DARAH/create-update") {
+    post("$URL_SKRINING_DIABETES/create-update") {
         val request = try {
             call.receive<SkriningDiabetes>()
         } catch (e: ContentTransformationException) {
@@ -73,7 +73,7 @@ fun Route.skriningDiabetesRoute() {
         }
     }
 
-    delete("$URL_TABLET_TAMBAH_DARAH/delete") post@{
+    delete("$URL_SKRINING_DIABETES/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

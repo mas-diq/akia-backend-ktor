@@ -30,7 +30,7 @@ class PemeriksaanLaboratorium1Implement : PemeriksaanLaboratorium1Repository {
     }
 
     override suspend fun deletePemeriksaanLaboratorium1(reqId: String): Boolean {
-        val dataDelete = colPemeriksaanLaboratorium1.findOne(BayiSaatLahir::id eq reqId)
+        val dataDelete = colPemeriksaanLaboratorium1.findOne(PemeriksaanLaboratorium1::id eq reqId)
         dataDelete?.let { tablet ->
             return colPemeriksaanLaboratorium1.deleteOneById(tablet.id).wasAcknowledged()
         } ?: return false

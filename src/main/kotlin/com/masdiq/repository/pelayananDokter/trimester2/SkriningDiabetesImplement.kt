@@ -1,7 +1,6 @@
 package com.masdiq.repository.pelayananDokter.trimester2
 
 import com.masdiq.model.pelayananDokter.trimester2.SkriningDiabetes
-import com.masdiq.model.persalinanIbu.pelayananPersalinan.BayiSaatLahir
 import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
@@ -29,7 +28,7 @@ class SkriningDiabetesImplement : SkriningDiabetesRepository {
     }
 
     override suspend fun deleteSkriningDiabetes(reqId: String): Boolean {
-        val dataDelete = colSkriningDiabetes.findOne(BayiSaatLahir::id eq reqId)
+        val dataDelete = colSkriningDiabetes.findOne(SkriningDiabetes::id eq reqId)
         dataDelete?.let { tablet ->
             return colSkriningDiabetes.deleteOneById(tablet.id).wasAcknowledged()
         } ?: return false

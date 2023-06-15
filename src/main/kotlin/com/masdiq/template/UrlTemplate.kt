@@ -45,8 +45,8 @@ const val URL_PEMANTAUAN_MINGGUAN_IBU_HAMIL = "$BASE_IBU_HAMIL/pemantauan-minggu
 
 // Pemantauan Ibu / Ibu Nifas
 const val BASE_IBU_NIFAS = "$BASE_PEMANTAUAN_IBU/ibu-nifas"
-const val URL_PEMANTAUAN_HARIAN_IBU_NIFAS = "$BASE_PEMANTAUAN_IBU/pemantauan-harian-ibu-nifas"
-const val URL_PEMANTAUAN_MINGGUAN_IBU_NIFAS = "$BASE_PEMANTAUAN_IBU/pemantauan-mingguan-ibu-nifas"
+const val URL_PEMANTAUAN_HARIAN_IBU_NIFAS = "$BASE_IBU_NIFAS/pemantauan-harian-ibu-nifas"
+const val URL_PEMANTAUAN_MINGGUAN_IBU_NIFAS = "$BASE_IBU_NIFAS/pemantauan-mingguan-ibu-nifas"
 
 // --------------
 // Persalinan Ibu

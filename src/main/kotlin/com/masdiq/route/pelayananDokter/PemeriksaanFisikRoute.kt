@@ -12,7 +12,7 @@ import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
 
 
-fun Route.riwayatKesehatanRoute() {
+fun Route.pemeriksaanFisikRoute() {
     val pemeriksaanFisikRepository: PemeriksaanFisikRepository by inject()
 
     get("$URL_PEMERIKSAAN_FISIK/get-all") {

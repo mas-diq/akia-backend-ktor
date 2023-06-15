@@ -1,7 +1,6 @@
 package com.masdiq.repository.pelayananDokter.trimester2
 
 import com.masdiq.model.pelayananDokter.trimester2.SkriningPreeklampsia
-import com.masdiq.model.persalinanIbu.pelayananPersalinan.BayiSaatLahir
 import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
@@ -29,7 +28,7 @@ class SkriningPreeklampsiaImplement : SkriningPreeklampsiaRepository {
     }
 
     override suspend fun deleteSkriningPreeklampsia(reqId: String): Boolean {
-        val dataDelete = colSkriningPreeklampsia.findOne(BayiSaatLahir::id eq reqId)
+        val dataDelete = colSkriningPreeklampsia.findOne(SkriningPreeklampsia::id eq reqId)
         dataDelete?.let { tablet ->
             return colSkriningPreeklampsia.deleteOneById(tablet.id).wasAcknowledged()
         } ?: return false

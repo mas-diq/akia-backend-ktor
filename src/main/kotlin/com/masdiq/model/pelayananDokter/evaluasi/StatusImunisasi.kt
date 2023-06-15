@@ -12,9 +12,9 @@ data class StatusImunisasi(
     // toksoid tetanus
     @BsonId
     var id: String = ObjectId().toString(),
-    var userId: String? = "iu0001",
-    val tanggal: String? = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE).toString().trim(),
-    val jam: String? = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm")).toString().trim(),
+    val userId: String? = "iu0001",
+    val tanggal: String? = "2000-00-00",
+    val jam: String? = "00:00",
     val pelayananDokter: PelayananDokter? = null,
     val tt1: Boolean? = false,
     val tt2: Boolean? = false,

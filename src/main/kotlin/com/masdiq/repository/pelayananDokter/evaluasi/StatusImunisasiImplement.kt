@@ -1,7 +1,6 @@
 package com.masdiq.repository.pelayananDokter.evaluasi
 
 import com.masdiq.model.pelayananDokter.evaluasi.StatusImunisasi
-import com.masdiq.model.persalinanIbu.pelayananPersalinan.BayiSaatLahir
 import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
@@ -29,7 +28,7 @@ class StatusImunisasiImplement : StatusImunisasiRepository {
     }
 
     override suspend fun deleteStatusImunisasi(reqId: String): Boolean {
-        val dataDelete = colStatusImunisasi.findOne(BayiSaatLahir::id eq reqId)
+        val dataDelete = colStatusImunisasi.findOne(StatusImunisasi::id eq reqId)
         dataDelete?.let { tablet ->
             return colStatusImunisasi.deleteOneById(tablet.id).wasAcknowledged()
         } ?: return false
