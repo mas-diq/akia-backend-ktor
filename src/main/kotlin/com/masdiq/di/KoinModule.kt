@@ -1,5 +1,7 @@
 package com.masdiq.di
 
+import com.masdiq.repository.pelayananDokter.PemeriksaanFisikImplement
+import com.masdiq.repository.pelayananDokter.PemeriksaanFisikRepository
 import com.masdiq.repository.pelayananDokter.evaluasi.*
 import com.masdiq.repository.pelayananDokter.trimester1.PemeriksaanLaboratorium1Implement
 import com.masdiq.repository.pelayananDokter.trimester1.PemeriksaanLaboratorium1Repository
@@ -33,6 +35,7 @@ import org.koin.dsl.module
 val koinModule = module {
 
     // Pelayanan Dokter
+    single<PemeriksaanFisikRepository> { PemeriksaanFisikImplement() }
     // Pelayanan Dokter / Evaluasi
     single<KondisiKesehatanRepository> { KondisiKesehatanImplement() }
     single<PemeriksaanKhususRepository> { PemeriksaanKhususImplement() }
