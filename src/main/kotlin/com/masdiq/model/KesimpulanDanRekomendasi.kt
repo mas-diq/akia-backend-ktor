@@ -7,6 +7,4 @@ data class KesimpulanDanRekomendasi(
     val kesimpulan: String? = "Kosong",
     val rekomendasi: String? = "Kosong",
     val rujukan: Boolean? = false,
-    @BsonId
-    val id: String = ObjectId().toString()
 )

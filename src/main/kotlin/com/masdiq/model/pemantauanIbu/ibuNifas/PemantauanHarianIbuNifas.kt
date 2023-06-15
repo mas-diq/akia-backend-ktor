@@ -2,8 +2,15 @@ package com.masdiq.model.pemantauanIbu.ibuNifas
 
 import org.bson.codecs.pojo.annotations.BsonId
 import org.bson.types.ObjectId
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 data class PemantauanHarianIbuNifas(
+    @BsonId
+    var id: String = ObjectId().toString(),
+    var userId: String? = "iu0001",
+    val tanggal: String? = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE).toString().trim(),
+    val jam: String? = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm")).toString().trim(),
     val kesehatanJiwa: Boolean? = false,
     val demam: Boolean? = false,
     val sakitKepala: Boolean? = false,
@@ -18,6 +25,4 @@ data class PemantauanHarianIbuNifas(
     val darahNifas: Boolean? = false,
     val pendarahan: Boolean? = false,
     val keputihan: Boolean? = false,
-    @BsonId
-    var id: String = ObjectId().toString()
 )
