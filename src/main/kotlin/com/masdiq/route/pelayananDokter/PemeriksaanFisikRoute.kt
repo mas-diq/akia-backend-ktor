@@ -15,7 +15,7 @@ import org.koin.ktor.ext.inject
 fun Route.riwayatKesehatanRoute() {
     val pemeriksaanFisikRepository: PemeriksaanFisikRepository by inject()
 
-    get("$URL_RIWAYAT_KESEHATAN/get-all") {
+    get("$URL_PEMERIKSAAN_FISIK/get-all") {
         val tabletList = pemeriksaanFisikRepository.getAllPemeriksaanFisik()
         call.respond(
             DefaultResponse(
@@ -25,7 +25,7 @@ fun Route.riwayatKesehatanRoute() {
         )
     }
 
-    get("$URL_RIWAYAT_KESEHATAN/get") { it ->
+    get("$URL_PEMERIKSAAN_FISIK/get") { it ->
         val reqId = call.receive<PemeriksaanFisik>().id
         val obj = pemeriksaanFisikRepository.getPemeriksaanFisik(reqId)
 
@@ -44,7 +44,7 @@ fun Route.riwayatKesehatanRoute() {
         )
     }
 
-    post("$URL_RIWAYAT_KESEHATAN/create-update") {
+    post("$URL_PEMERIKSAAN_FISIK/create-update") {
         val request = try {
             call.receive<PemeriksaanFisik>()
         } catch (e: ContentTransformationException) {
@@ -74,7 +74,7 @@ fun Route.riwayatKesehatanRoute() {
         }
     }
 
-    delete("$URL_RIWAYAT_KESEHATAN/delete") post@{
+    delete("$URL_PEMERIKSAAN_FISIK/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

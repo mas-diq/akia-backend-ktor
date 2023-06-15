@@ -5,6 +5,7 @@ const val BASE_URL = "/akia"
 // --------------
 // Pelayanan Dokter
 const val BASE_PELAYANAN_DOKTER = "$BASE_URL/pelayanan-dokter"
+const val URL_PEMERIKSAAN_FISIK = "$BASE_PELAYANAN_DOKTER/pemeriksaan-fisik"
 
 // Pelayanan Dokter / Evaluasi
 const val BASE_EVALUASI = "$BASE_PELAYANAN_DOKTER/evaluasi"
