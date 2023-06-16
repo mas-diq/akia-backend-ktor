@@ -31,8 +31,8 @@ class PemantauanHarianIbuHamilImplement : PemantauanHarianIbuHamilRepository {
 
     override suspend fun deletePemantauanHarianIbuHamil(reqId: String): Boolean {
         val dataDelete = colPemantauanHarianIbuHamil.findOne(PemantauanHarianIbuHamil::id eq reqId)
-        dataDelete?.let { tablet ->
-            return colPemantauanHarianIbuHamil.deleteOneById(tablet.id).wasAcknowledged()
+        dataDelete?.let { data ->
+            return colPemantauanHarianIbuHamil.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
 }

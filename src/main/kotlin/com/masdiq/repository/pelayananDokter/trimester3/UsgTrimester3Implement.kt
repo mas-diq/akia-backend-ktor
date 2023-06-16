@@ -30,8 +30,8 @@ class UsgTrimester3Implement : UsgTrimester3Repository {
 
     override suspend fun deleteUsgTrimester3(reqId: String): Boolean {
         val dataDelete = colUsgTrimester3.findOne(UsgTrimester3::id eq reqId)
-        dataDelete?.let { tablet ->
-            return colUsgTrimester3.deleteOneById(tablet.id).wasAcknowledged()
+        dataDelete?.let { data ->
+            return colUsgTrimester3.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
 }

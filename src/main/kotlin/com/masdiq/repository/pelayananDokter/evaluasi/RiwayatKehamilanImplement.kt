@@ -29,8 +29,8 @@ class RiwayatKehamilanImplement : RiwayatKehamilanRepository {
 
     override suspend fun deleteRiwayatKehamilan(reqId: String): Boolean {
         val dataDelete = colRiwayatKehamilan.findOne(RiwayatKehamilan::id eq reqId)
-        dataDelete?.let { tablet ->
-            return colRiwayatKehamilan.deleteOneById(tablet.id).wasAcknowledged()
+        dataDelete?.let { data ->
+            return colRiwayatKehamilan.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
 }

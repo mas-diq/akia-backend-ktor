@@ -15,11 +15,11 @@ fun Route.rencanaKonsultasiLanjutRoute() {
     val rencanaKonsultasiLanjutRepository: RencanaKonsultasiLanjutRepository by inject()
 
     get("$URL_RENCANA_KONSULTASI_LANJUT/get-all") {
-        val tabletList = rencanaKonsultasiLanjutRepository.getAllRencanaKonsultasiLanjut()
+        val dataList = rencanaKonsultasiLanjutRepository.getAllRencanaKonsultasiLanjut()
         call.respond(
             DefaultResponse(
                 "${HttpStatusCode.OK}",
-                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
             )
         )
     }

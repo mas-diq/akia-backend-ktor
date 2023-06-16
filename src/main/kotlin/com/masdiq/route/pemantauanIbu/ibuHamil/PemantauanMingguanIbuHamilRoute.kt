@@ -15,11 +15,11 @@ fun Route.pemantauanMingguanIbuHamilRoute() {
     val pemantauanMingguanIbuHamilRepository: PemantauanMingguanIbuHamilRepository by inject()
 
     get("$URL_PEMANTAUAN_MINGGUAN_IBU_HAMIL/get-all") {
-        val tabletList = pemantauanMingguanIbuHamilRepository.getAllPemantauanMingguanIbuHamil()
+        val dataList = pemantauanMingguanIbuHamilRepository.getAllPemantauanMingguanIbuHamil()
         call.respond(
             DefaultResponse(
                 "${HttpStatusCode.OK}",
-                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
             )
         )
     }

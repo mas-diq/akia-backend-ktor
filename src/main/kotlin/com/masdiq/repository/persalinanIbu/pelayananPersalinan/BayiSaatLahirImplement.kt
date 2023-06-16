@@ -29,8 +29,8 @@ class BayiSaatLahirImplement : BayiSaatLahirRepository {
 
     override suspend fun deleteBayiSaatLahir(reqId: String): Boolean {
         val dataDelete = colBayiSaatLahir.findOne(BayiSaatLahir::id eq reqId)
-        dataDelete?.let { tablet ->
-            return colBayiSaatLahir.deleteOneById(tablet.id).wasAcknowledged()
+        dataDelete?.let { data ->
+            return colBayiSaatLahir.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
 }

@@ -15,11 +15,11 @@ fun Route.pemeriksaanLaboratorium2Route() {
     val pemeriksaanLaboratorium2Repository: PemeriksaanLaboratorium2Repository by inject()
 
     get("$URL_PEMERIKSAAN_LABORATORIUM_2/get-all") {
-        val tabletList = pemeriksaanLaboratorium2Repository.getAllPemeriksaanLaboratorium2()
+        val dataList = pemeriksaanLaboratorium2Repository.getAllPemeriksaanLaboratorium2()
         call.respond(
             DefaultResponse(
                 "${HttpStatusCode.OK}",
-                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
             )
         )
     }

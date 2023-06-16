@@ -16,11 +16,11 @@ fun Route.pemeriksaanFisikRoute() {
     val pemeriksaanFisikRepository: PemeriksaanFisikRepository by inject()
 
     get("$URL_PEMERIKSAAN_FISIK/get-all") {
-        val tabletList = pemeriksaanFisikRepository.getAllPemeriksaanFisik()
+        val dataList = pemeriksaanFisikRepository.getAllPemeriksaanFisik()
         call.respond(
             DefaultResponse(
                 "${HttpStatusCode.OK}",
-                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
             )
         )
     }

@@ -15,11 +15,11 @@ fun Route.skriningDiabetesRoute() {
     val skriningDiabetesRepository: SkriningDiabetesRepository by inject()
 
     get("$URL_SKRINING_DIABETES/get-all") {
-        val tabletList = skriningDiabetesRepository.getAllSkriningDiabetes()
+        val dataList = skriningDiabetesRepository.getAllSkriningDiabetes()
         call.respond(
             DefaultResponse(
                 "${HttpStatusCode.OK}",
-                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
             )
         )
     }

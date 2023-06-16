@@ -29,8 +29,8 @@ class StatusImunisasiImplement : StatusImunisasiRepository {
 
     override suspend fun deleteStatusImunisasi(reqId: String): Boolean {
         val dataDelete = colStatusImunisasi.findOne(StatusImunisasi::id eq reqId)
-        dataDelete?.let { tablet ->
-            return colStatusImunisasi.deleteOneById(tablet.id).wasAcknowledged()
+        dataDelete?.let { data ->
+            return colStatusImunisasi.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
 }

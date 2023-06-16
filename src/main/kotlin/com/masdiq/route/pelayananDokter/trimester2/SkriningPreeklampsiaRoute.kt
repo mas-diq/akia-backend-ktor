@@ -15,11 +15,11 @@ fun Route.skriningPreeklampsiaRoute() {
     val skriningPreeklampsiaRepository: SkriningPreeklampsiaRepository by inject()
 
     get("$URL_SKRINING_PREEKLAMPSIA/get-all") {
-        val tabletList = skriningPreeklampsiaRepository.getAllSkriningPreeklampsia()
+        val dataList = skriningPreeklampsiaRepository.getAllSkriningPreeklampsia()
         call.respond(
             DefaultResponse(
                 "${HttpStatusCode.OK}",
-                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
             )
         )
     }

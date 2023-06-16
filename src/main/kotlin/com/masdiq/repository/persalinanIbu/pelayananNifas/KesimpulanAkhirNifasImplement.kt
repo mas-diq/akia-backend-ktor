@@ -30,8 +30,8 @@ class KesimpulanAkhirNifasImplement : KesimpulanAkhirNifasRepository {
 
     override suspend fun deleteKesimpulanAkhirNifas(reqId: String): Boolean {
         val dataDelete = colKesimpulanAkhirNifas.findOne(BayiSaatLahir::id eq reqId)
-        dataDelete?.let { tablet ->
-            return colKesimpulanAkhirNifas.deleteOneById(tablet.id).wasAcknowledged()
+        dataDelete?.let { data ->
+            return colKesimpulanAkhirNifas.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
 }

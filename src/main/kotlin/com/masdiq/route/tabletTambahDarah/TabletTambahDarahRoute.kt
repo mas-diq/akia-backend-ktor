@@ -15,11 +15,11 @@ fun Route.tambahDarahRoute() {
     val tabletTambahDarahRepository: TabletTambahDarahRepository by inject()
 
     get("$URL_TABLET_TAMBAH_DARAH/get-all") {
-        val tabletList = tabletTambahDarahRepository.getAllTabletTambahDarah()
+        val dataList = tabletTambahDarahRepository.getAllTabletTambahDarah()
         call.respond(
             DefaultResponse(
                 "${HttpStatusCode.OK}",
-                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
             )
         )
     }

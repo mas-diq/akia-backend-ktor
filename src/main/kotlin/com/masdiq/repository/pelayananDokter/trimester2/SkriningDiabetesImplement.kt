@@ -29,8 +29,8 @@ class SkriningDiabetesImplement : SkriningDiabetesRepository {
 
     override suspend fun deleteSkriningDiabetes(reqId: String): Boolean {
         val dataDelete = colSkriningDiabetes.findOne(SkriningDiabetes::id eq reqId)
-        dataDelete?.let { tablet ->
-            return colSkriningDiabetes.deleteOneById(tablet.id).wasAcknowledged()
+        dataDelete?.let { data ->
+            return colSkriningDiabetes.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
 }

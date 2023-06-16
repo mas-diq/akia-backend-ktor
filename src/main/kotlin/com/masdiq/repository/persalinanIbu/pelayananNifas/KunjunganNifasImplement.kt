@@ -30,8 +30,8 @@ class KunjunganNifasImplement : KunjunganNifasRepository {
 
     override suspend fun deleteKunjunganNifas(reqId: String): Boolean {
         val dataDelete = colKunjunganNifas.findOne(BayiSaatLahir::id eq reqId)
-        dataDelete?.let { tablet ->
-            return colKunjunganNifas.deleteOneById(tablet.id).wasAcknowledged()
+        dataDelete?.let { data ->
+            return colKunjunganNifas.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
 }

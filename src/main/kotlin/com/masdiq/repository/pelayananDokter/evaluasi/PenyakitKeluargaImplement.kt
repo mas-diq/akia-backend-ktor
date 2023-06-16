@@ -29,8 +29,8 @@ class PenyakitKeluargaImplement : PenyakitKeluargaRepository {
 
     override suspend fun deleteTabletPenyakitKeluarga(reqId: String): Boolean {
         val dataDelete = colPenyakitKeluarga.findOne(PenyakitKeluarga::id eq reqId)
-        dataDelete?.let { tablet ->
-            return colPenyakitKeluarga.deleteOneById(tablet.id).wasAcknowledged()
+        dataDelete?.let { data ->
+            return colPenyakitKeluarga.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
 }

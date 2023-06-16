@@ -30,8 +30,8 @@ class KondisiKesehatanImplement : KondisiKesehatanRepository {
 
     override suspend fun deleteKondisiKesehatan(reqId: String): Boolean {
         val dataDelete = colKondisiKesehatan.findOne(KondisiKesehatan::id eq reqId)
-        dataDelete?.let { tablet ->
-            return colKondisiKesehatan.deleteOneById(tablet.id).wasAcknowledged()
+        dataDelete?.let { data ->
+            return colKondisiKesehatan.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
 }

@@ -15,11 +15,11 @@ fun Route.statusImunisasiRoute() {
     val statusImunisasiRepository: StatusImunisasiRepository by inject()
 
     get("$URL_STATUS_IMUNISASI/get-all") {
-        val tabletList = statusImunisasiRepository.getAllStatusImunisasi()
+        val dataList = statusImunisasiRepository.getAllStatusImunisasi()
         call.respond(
             DefaultResponse(
                 "${HttpStatusCode.OK}",
-                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
             )
         )
     }

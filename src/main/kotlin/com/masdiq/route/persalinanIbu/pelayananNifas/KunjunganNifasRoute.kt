@@ -15,11 +15,11 @@ fun Route.kunjunganNifasRoute() {
     val kunjunganNifasRepository: KunjunganNifasRepository by inject()
 
     get("$URL_KUNJUNGAN_NIFAS/get-all") {
-        val tabletList = kunjunganNifasRepository.getAllKunjunganNifas()
+        val dataList = kunjunganNifasRepository.getAllKunjunganNifas()
         call.respond(
             DefaultResponse(
                 "${HttpStatusCode.OK}",
-                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
             )
         )
     }

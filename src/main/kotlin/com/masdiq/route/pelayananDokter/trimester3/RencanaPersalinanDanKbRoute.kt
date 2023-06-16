@@ -15,11 +15,11 @@ fun Route.rencanaPersalinanDanKbRoute() {
     val rencanaPersalinanDanKbRepository: RencanaPersalinanDanKbRepository by inject()
 
     get("$URL_RENCANA_PERSALINAN_DAN_KB/get-all") {
-        val tabletList = rencanaPersalinanDanKbRepository.getAllRencanaPersalinanDanKb()
+        val dataList = rencanaPersalinanDanKbRepository.getAllRencanaPersalinanDanKb()
         call.respond(
             DefaultResponse(
                 "${HttpStatusCode.OK}",
-                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
             )
         )
     }

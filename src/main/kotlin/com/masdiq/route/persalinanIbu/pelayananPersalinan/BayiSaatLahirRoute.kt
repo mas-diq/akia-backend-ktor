@@ -15,11 +15,11 @@ fun Route.bayiSaatLahirRoute() {
     val bayiSaatLahirRepository: BayiSaatLahirRepository by inject()
 
     get("$URL_BAYI_SAAT_LAHIR/get-all") {
-        val tabletList = bayiSaatLahirRepository.getAllBayiSaatLahir()
+        val dataList = bayiSaatLahirRepository.getAllBayiSaatLahir()
         call.respond(
             DefaultResponse(
                 "${HttpStatusCode.OK}",
-                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
             )
         )
     }

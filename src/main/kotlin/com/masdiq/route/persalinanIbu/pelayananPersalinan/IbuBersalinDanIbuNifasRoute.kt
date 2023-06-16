@@ -15,11 +15,11 @@ fun Route.ibuBersalinDanIbuNifasRoute() {
     val ibuBersalinDanIbuNifasRepository: IbuBersalinDanIbuNifasRepository by inject()
 
     get("$URL_IBU_BERSALIN_DAN_IBU_NIFAS/get-all") {
-        val tabletList = ibuBersalinDanIbuNifasRepository.getAllIbuBersalinDanIbuNifas()
+        val dataList = ibuBersalinDanIbuNifasRepository.getAllIbuBersalinDanIbuNifas()
         call.respond(
             DefaultResponse(
                 "${HttpStatusCode.OK}",
-                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
             )
         )
     }

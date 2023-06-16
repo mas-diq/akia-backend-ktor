@@ -29,8 +29,8 @@ class IbuBersalinDanIbuNifasImplement : IbuBersalinDanIbuNifasRepository {
 
     override suspend fun deleteIbuBersalinDanIbuNifas(reqId: String): Boolean {
         val dataDelete = colIbuBersalinDanIbuNifas.findOne(IbuBersalinDanIbuNifas::id eq reqId)
-        dataDelete?.let { tablet ->
-            return colIbuBersalinDanIbuNifas.deleteOneById(tablet.id).wasAcknowledged()
+        dataDelete?.let { data ->
+            return colIbuBersalinDanIbuNifas.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
 }

@@ -31,8 +31,8 @@ class RencanaKonsultasiLanjutImplement : RencanaKonsultasiLanjutRepository {
 
     override suspend fun deleteRencanaKonsultasiLanjut(reqId: String): Boolean {
         val dataDelete = colRencanaKonsultasiLanjut.findOne(RencanaKonsultasiLanjut::id eq reqId)
-        dataDelete?.let { tablet ->
-            return colRencanaKonsultasiLanjut.deleteOneById(tablet.id).wasAcknowledged()
+        dataDelete?.let { data ->
+            return colRencanaKonsultasiLanjut.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
 }

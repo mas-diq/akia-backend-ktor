@@ -30,8 +30,8 @@ class PemeriksaanFisikImplement : PemeriksaanFisikRepository {
 
     override suspend fun deletePemeriksaanFisik(reqId: String): Boolean {
         val dataDelete = colPemeriksaanFisik.findOne(PemeriksaanFisik::id eq reqId)
-        dataDelete?.let { tablet ->
-            return colPemeriksaanFisik.deleteOneById(tablet.id).wasAcknowledged()
+        dataDelete?.let { data ->
+            return colPemeriksaanFisik.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
 }

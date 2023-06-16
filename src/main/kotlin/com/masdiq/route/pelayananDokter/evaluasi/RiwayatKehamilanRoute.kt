@@ -15,11 +15,11 @@ fun Route.riwayatKehamilanRoute() {
     val riwayatKehamilanRepository: RiwayatKehamilanRepository by inject()
 
     get("$URL_RIWAYAT_KEHAMILAN/get-all") {
-        val tabletList = riwayatKehamilanRepository.getAllRiwayatKehamilan()
+        val dataList = riwayatKehamilanRepository.getAllRiwayatKehamilan()
         call.respond(
             DefaultResponse(
                 "${HttpStatusCode.OK}",
-                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
             )
         )
     }

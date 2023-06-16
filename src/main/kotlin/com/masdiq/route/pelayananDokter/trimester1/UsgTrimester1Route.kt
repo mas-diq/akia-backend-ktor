@@ -15,11 +15,11 @@ fun Route.usgTrimester1Route() {
     val usgTrimester1Repository: UsgTrimester1Repository by inject()
 
     get("$URL_USG_TRIMESTER_1/get-all") {
-        val tabletList = usgTrimester1Repository.getAllUsgTrimester1()
+        val dataList = usgTrimester1Repository.getAllUsgTrimester1()
         call.respond(
             DefaultResponse(
                 "${HttpStatusCode.OK}",
-                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
             )
         )
     }

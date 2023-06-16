@@ -29,8 +29,8 @@ class SkriningPreeklampsiaImplement : SkriningPreeklampsiaRepository {
 
     override suspend fun deleteSkriningPreeklampsia(reqId: String): Boolean {
         val dataDelete = colSkriningPreeklampsia.findOne(SkriningPreeklampsia::id eq reqId)
-        dataDelete?.let { tablet ->
-            return colSkriningPreeklampsia.deleteOneById(tablet.id).wasAcknowledged()
+        dataDelete?.let { data ->
+            return colSkriningPreeklampsia.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
 }

@@ -29,8 +29,8 @@ class PerilakuBeresikoImplement : PerilakuBeresikoRepository {
 
     override suspend fun deletePerilakuBeresiko(reqId: String): Boolean {
         val dataDelete = colPerilakuBeresiko.findOne(PerilakuBeresiko::id eq reqId)
-        dataDelete?.let { tablet ->
-            return colPerilakuBeresiko.deleteOneById(tablet.id).wasAcknowledged()
+        dataDelete?.let { data ->
+            return colPerilakuBeresiko.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
 }

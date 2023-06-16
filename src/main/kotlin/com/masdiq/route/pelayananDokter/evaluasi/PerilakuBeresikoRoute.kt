@@ -15,11 +15,11 @@ fun Route.perilakuBeresikoRoute() {
     val perilakuBeresikoRepository: PerilakuBeresikoRepository by inject()
 
     get("$URL_PERILAKU_BERESIKO/get-all") {
-        val tabletList = perilakuBeresikoRepository.getAllPerilakuBeresiko()
+        val dataList = perilakuBeresikoRepository.getAllPerilakuBeresiko()
         call.respond(
             DefaultResponse(
                 "${HttpStatusCode.OK}",
-                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
             )
         )
     }

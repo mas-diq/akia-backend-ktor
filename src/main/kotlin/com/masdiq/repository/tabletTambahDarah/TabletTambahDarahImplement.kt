@@ -30,8 +30,8 @@ class TabletTambahDarahImplement : TabletTambahDarahRepository {
 
     override suspend fun deleteTabletTambahDarah(reqId: String): Boolean {
         val dataDelete = colTabletTambahDarah.findOne(TabletTambahDarah::id eq reqId)
-        dataDelete?.let { tablet ->
-            return colTabletTambahDarah.deleteOneById(tablet.id).wasAcknowledged()
+        dataDelete?.let { data ->
+            return colTabletTambahDarah.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
 }

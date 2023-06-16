@@ -15,11 +15,11 @@ fun Route.kesimpulanAkhirNifasRoute() {
     val kesimpulanAkhirNifasRepository: KesimpulanAkhirNifasRepository by inject()
 
     get("$URL_KESIMPULAN_AKHIR_NIFAS/get-all") {
-        val tabletList = kesimpulanAkhirNifasRepository.getAllKesimpulanAkhirNifas()
+        val dataList = kesimpulanAkhirNifasRepository.getAllKesimpulanAkhirNifas()
         call.respond(
             DefaultResponse(
                 "${HttpStatusCode.OK}",
-                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", tabletList
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
             )
         )
     }
