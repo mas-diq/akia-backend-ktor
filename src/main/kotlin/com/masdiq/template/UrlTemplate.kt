@@ -59,8 +59,8 @@ const val URL_KESIMPULAN_AKHIR_NIFAS = "$BASE_PELAYANAN_NIFAS/kesimpulan-akhir-n
 
 // Persalinan Ibu / Pelayanan Persalinan
 const val BASE_PELAYANAN_PERSALINAN = "$BASE_PERSALINAN_IBU/pelayanan-persalinan"
+const val URL_BAYI_SAAT_LAHIR = "$BASE_PELAYANAN_PERSALINAN/bayi-saat-lahir"
 const val URL_IBU_BERSALIN_DAN_IBU_NIFAS = "$BASE_PELAYANAN_PERSALINAN/ibu-bersalin-dan-ibu-nifas"
-const val URL_BAYI_SAAT_LAHIR = "$BASE_PERSALINAN_IBU/bayi-saat-lahir"
 
 // --------------
 // Tablet Tambah Darah
