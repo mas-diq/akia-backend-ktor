@@ -1,7 +1,6 @@
 package com.masdiq.repository.pelayananDokter.evaluasi
 
 import com.masdiq.model.pelayananDokter.evaluasi.PemeriksaanKhusus
-import com.masdiq.model.persalinanIbu.pelayananPersalinan.BayiSaatLahir
 import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
@@ -33,5 +32,13 @@ class PemeriksaanKhususImplement : PemeriksaanKhususRepository {
         dataDelete?.let { data ->
             return colPemeriksaanKhusus.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
+    }
+
+    override suspend fun searchPemeriksaanKhusus(reqId: String): List<PemeriksaanKhusus> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colPemeriksaanKhusus.find(PemeriksaanKhusus::userId eq reqId).toList()
+        }
     }
 }

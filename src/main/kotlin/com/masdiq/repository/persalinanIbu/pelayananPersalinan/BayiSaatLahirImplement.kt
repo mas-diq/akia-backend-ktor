@@ -33,4 +33,12 @@ class BayiSaatLahirImplement : BayiSaatLahirRepository {
             return colBayiSaatLahir.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
+
+    override suspend fun searchBayiSaatLahir(reqId: String): List<BayiSaatLahir> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colBayiSaatLahir.find(BayiSaatLahir::userId eq reqId).toList()
+        }
+    }
 }

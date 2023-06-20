@@ -1,7 +1,6 @@
 package com.masdiq.repository.pelayananDokter.trimester3
 
 import com.masdiq.model.pelayananDokter.trimester3.RencanaPersalinanDanKb
-import com.masdiq.model.persalinanIbu.pelayananPersalinan.BayiSaatLahir
 import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
@@ -33,5 +32,13 @@ class RencanaPersalinanDanKbImplement : RencanaPersalinanDanKbRepository {
         dataDelete?.let { data ->
             return colRencanaPersalinanDanKb.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
+    }
+
+    override suspend fun searchRencanaPersalinanDanKb(reqId: String): List<RencanaPersalinanDanKb> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colRencanaPersalinanDanKb.find(RencanaPersalinanDanKb::userId eq reqId).toList()
+        }
     }
 }

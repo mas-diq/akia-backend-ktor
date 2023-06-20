@@ -10,4 +10,5 @@ interface KondisiKesehatanRepository {
     suspend fun createOrUpdateKondisiKesehatan(kondisiKesehatan: KondisiKesehatan): Boolean
 
     suspend fun deleteKondisiKesehatan(reqId: String): Boolean
+    suspend fun searchKondisiKesehatan(reqId: String): List<KondisiKesehatan>
 }

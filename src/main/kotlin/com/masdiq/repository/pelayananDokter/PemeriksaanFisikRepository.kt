@@ -10,4 +10,5 @@ interface PemeriksaanFisikRepository {
     suspend fun createOrUpdatePemeriksaanFisik(riwayatKesehatan: PemeriksaanFisik): Boolean
 
     suspend fun deletePemeriksaanFisik(reqId: String): Boolean
+    suspend fun searchPemeriksaanFisik(reqId: String): List<PemeriksaanFisik>
 }

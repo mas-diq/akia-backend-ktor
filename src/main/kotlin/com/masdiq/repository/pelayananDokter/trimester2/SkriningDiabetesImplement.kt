@@ -33,4 +33,12 @@ class SkriningDiabetesImplement : SkriningDiabetesRepository {
             return colSkriningDiabetes.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
+
+    override suspend fun searchSkriningDiabetes(reqId: String): List<SkriningDiabetes> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colSkriningDiabetes.find(SkriningDiabetes::userId eq reqId).toList()
+        }
+    }
 }

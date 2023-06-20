@@ -2,6 +2,7 @@ package com.masdiq.route.persalinanIbu.pelayananNifas
 
 import com.masdiq.model.EndPoint
 import com.masdiq.model.persalinanIbu.pelayananNifas.KesimpulanAkhirNifas
+import com.masdiq.model.tabletTambahDarah.TabletTambahDarah
 import com.masdiq.repository.persalinanIbu.pelayananNifas.KesimpulanAkhirNifasRepository
 import com.masdiq.template.*
 import io.ktor.http.*
@@ -14,6 +15,17 @@ import org.koin.ktor.ext.inject
 
 fun Route.kesimpulanAkhirNifasRoute() {
     val kesimpulanAkhirNifasRepository: KesimpulanAkhirNifasRepository by inject()
+
+    get("${EndPoint.URL_TABLET_TAMBAH_DARAH.path}/get-user") {
+        val userId = call.receive<TabletTambahDarah>().userId.toString()
+        val dataSearch = kesimpulanAkhirNifasRepository.searchKesimpulanAkhirNifas(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
 
     get("${EndPoint.URL_KESIMPULAN_AKHIR_NIFAS.path}/get-all") {
         val dataList = kesimpulanAkhirNifasRepository.getAllKesimpulanAkhirNifas()

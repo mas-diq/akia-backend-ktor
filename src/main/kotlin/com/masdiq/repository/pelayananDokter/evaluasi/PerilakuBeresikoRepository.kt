@@ -10,4 +10,5 @@ interface PerilakuBeresikoRepository {
     suspend fun createOrUpdatePerilakuBeresiko(perilakuBeresiko: PerilakuBeresiko): Boolean
 
     suspend fun deletePerilakuBeresiko(reqId: String): Boolean
+    suspend fun searchPerilakuBeresiko(reqId: String): List<PerilakuBeresiko>
 }

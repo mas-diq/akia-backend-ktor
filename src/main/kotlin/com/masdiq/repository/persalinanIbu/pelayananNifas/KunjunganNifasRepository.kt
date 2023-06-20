@@ -10,4 +10,5 @@ interface KunjunganNifasRepository {
     suspend fun createOrUpdateKunjunganNifas(kunjunganNifas: KunjunganNifas): Boolean
 
     suspend fun deleteKunjunganNifas(reqId: String): Boolean
+    suspend fun searchKunjunganNifas(reqId: String): List<KunjunganNifas>
 }

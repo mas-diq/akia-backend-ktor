@@ -33,4 +33,12 @@ class RiwayatKesehatanImplement : RiwayatKesehatanRepository {
             return colRiwayatKesehatan.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
+
+    override suspend fun searchRiwayatKesehatan(reqId: String): List<RiwayatKesehatan> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colRiwayatKesehatan.find(RiwayatKesehatan::userId eq reqId).toList()
+        }
+    }
 }

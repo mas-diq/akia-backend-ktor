@@ -10,4 +10,5 @@ interface PemeriksaanKhususRepository {
     suspend fun createOrUpdatePemeriksaanKhusus(pemeriksaanKhusus: PemeriksaanKhusus): Boolean
 
     suspend fun deletePemeriksaanKhusus(reqId: String): Boolean
+    suspend fun searchPemeriksaanKhusus(reqId: String): List<PemeriksaanKhusus>
 }

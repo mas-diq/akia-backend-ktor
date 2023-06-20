@@ -15,6 +15,17 @@ import org.koin.ktor.ext.inject
 fun Route.tambahDarahRoute() {
     val tabletTambahDarahRepository: TabletTambahDarahRepository by inject()
 
+    get("${EndPoint.URL_TABLET_TAMBAH_DARAH.path}/get-user") {
+        val userId = call.receive<TabletTambahDarah>().userId.toString()
+        val dataSearch = tabletTambahDarahRepository.searchTabletTambahDarah(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
+
     get("${EndPoint.URL_TABLET_TAMBAH_DARAH.path}/get-all") {
         val dataList = tabletTambahDarahRepository.getAllTabletTambahDarah()
         call.respond(

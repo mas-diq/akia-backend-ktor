@@ -2,6 +2,7 @@ package com.masdiq.route.pelayananDokter.trimester3
 
 import com.masdiq.model.EndPoint
 import com.masdiq.model.pelayananDokter.trimester3.UsgTrimester3
+import com.masdiq.model.tabletTambahDarah.TabletTambahDarah
 import com.masdiq.repository.pelayananDokter.trimester3.UsgTrimester3Repository
 import com.masdiq.template.*
 import io.ktor.http.*
@@ -14,6 +15,17 @@ import org.koin.ktor.ext.inject
 
 fun Route.usgTrimester3Route() {
     val usgTrimester3Repository: UsgTrimester3Repository by inject()
+
+    get("${EndPoint.URL_TABLET_TAMBAH_DARAH.path}/get-user") {
+        val userId = call.receive<TabletTambahDarah>().userId.toString()
+        val dataSearch = usgTrimester3Repository.searchUsgTrimester3(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
 
     get("${EndPoint.URL_USG_TRIMESTER_3.path}/get-all") {
         val dataList = usgTrimester3Repository.getAllUsgTrimester3()

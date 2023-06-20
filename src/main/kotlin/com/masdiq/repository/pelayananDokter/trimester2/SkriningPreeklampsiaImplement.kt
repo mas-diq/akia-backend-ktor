@@ -33,4 +33,12 @@ class SkriningPreeklampsiaImplement : SkriningPreeklampsiaRepository {
             return colSkriningPreeklampsia.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
+
+    override suspend fun searchSkriningPreeklampsia(reqId: String): List<SkriningPreeklampsia> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colSkriningPreeklampsia.find(SkriningPreeklampsia::userId eq reqId).toList()
+        }
+    }
 }

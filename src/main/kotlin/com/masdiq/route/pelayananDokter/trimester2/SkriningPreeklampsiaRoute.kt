@@ -2,6 +2,7 @@ package com.masdiq.route.pelayananDokter.trimester2
 
 import com.masdiq.model.EndPoint
 import com.masdiq.model.pelayananDokter.trimester2.SkriningPreeklampsia
+import com.masdiq.model.tabletTambahDarah.TabletTambahDarah
 import com.masdiq.repository.pelayananDokter.trimester2.SkriningPreeklampsiaRepository
 import com.masdiq.template.*
 import io.ktor.http.*
@@ -14,6 +15,17 @@ import org.koin.ktor.ext.inject
 
 fun Route.skriningPreeklampsiaRoute() {
     val skriningPreeklampsiaRepository: SkriningPreeklampsiaRepository by inject()
+
+    get("${EndPoint.URL_TABLET_TAMBAH_DARAH.path}/get-user") {
+        val userId = call.receive<TabletTambahDarah>().userId.toString()
+        val dataSearch = skriningPreeklampsiaRepository.searchSkriningPreeklampsia(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
 
     get("${EndPoint.URL_SKRINING_PREEKLAMPSIA.path}/get-all") {
         val dataList = skriningPreeklampsiaRepository.getAllSkriningPreeklampsia()

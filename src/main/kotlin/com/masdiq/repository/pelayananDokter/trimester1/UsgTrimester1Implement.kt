@@ -1,7 +1,6 @@
 package com.masdiq.repository.pelayananDokter.trimester1
 
 import com.masdiq.model.pelayananDokter.trimester1.UsgTrimester1
-import com.masdiq.model.persalinanIbu.pelayananPersalinan.BayiSaatLahir
 import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
@@ -33,5 +32,13 @@ class UsgTrimester1Implement : UsgTrimester1Repository {
         dataDelete?.let { data ->
             return colUsgTrimester1.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
+    }
+
+    override suspend fun searchUsgTrimester1(reqId: String): List<UsgTrimester1> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colUsgTrimester1.find(UsgTrimester1::userId eq reqId).toList()
+        }
     }
 }

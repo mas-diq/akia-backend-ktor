@@ -10,4 +10,5 @@ interface RiwayatKehamilanRepository {
     suspend fun createOrUpdateRiwayatKehamilan(riwayatKehamilan: RiwayatKehamilan): Boolean
 
     suspend fun deleteRiwayatKehamilan(reqId: String): Boolean
+    suspend fun searchRiwayatKehamilan(reqId: String): List<RiwayatKehamilan>
 }

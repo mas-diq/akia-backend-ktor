@@ -2,6 +2,7 @@ package com.masdiq.route.persalinanIbu.pelayananPersalinan
 
 import com.masdiq.model.EndPoint
 import com.masdiq.model.persalinanIbu.pelayananPersalinan.IbuBersalinDanIbuNifas
+import com.masdiq.model.tabletTambahDarah.TabletTambahDarah
 import com.masdiq.repository.persalinanIbu.pelayananPersalinan.IbuBersalinDanIbuNifasRepository
 import com.masdiq.template.*
 import io.ktor.http.*
@@ -15,6 +16,16 @@ import org.koin.ktor.ext.inject
 fun Route.ibuBersalinDanIbuNifasRoute() {
     val ibuBersalinDanIbuNifasRepository: IbuBersalinDanIbuNifasRepository by inject()
 
+    get("${EndPoint.URL_TABLET_TAMBAH_DARAH.path}/get-user") {
+        val userId = call.receive<TabletTambahDarah>().userId.toString()
+        val dataSearch = ibuBersalinDanIbuNifasRepository.searchIbuBersalinDanIbuNifas(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
     get("${EndPoint.URL_IBU_BERSALIN_DAN_IBU_NIFAS.path}/get-all") {
         val dataList = ibuBersalinDanIbuNifasRepository.getAllIbuBersalinDanIbuNifas()
         call.respond(

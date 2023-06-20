@@ -34,4 +34,12 @@ class KunjunganNifasImplement : KunjunganNifasRepository {
             return colKunjunganNifas.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
+
+    override suspend fun searchKunjunganNifas(reqId: String): List<KunjunganNifas> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colKunjunganNifas.find(KunjunganNifas::userId eq reqId).toList()
+        }
+    }
 }

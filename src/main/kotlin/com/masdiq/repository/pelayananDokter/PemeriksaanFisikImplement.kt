@@ -1,7 +1,6 @@
 package com.masdiq.repository.pelayananDokter
 
 import com.masdiq.model.pelayananDokter.PemeriksaanFisik
-import com.masdiq.model.persalinanIbu.pelayananPersalinan.BayiSaatLahir
 import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
@@ -33,5 +32,13 @@ class PemeriksaanFisikImplement : PemeriksaanFisikRepository {
         dataDelete?.let { data ->
             return colPemeriksaanFisik.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
+    }
+
+    override suspend fun searchPemeriksaanFisik(reqId: String): List<PemeriksaanFisik> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colPemeriksaanFisik.find(PemeriksaanFisik::userId eq reqId).toList()
+        }
     }
 }

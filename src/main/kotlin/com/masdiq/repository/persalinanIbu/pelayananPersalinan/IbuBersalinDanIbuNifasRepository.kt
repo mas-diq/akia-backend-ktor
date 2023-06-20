@@ -10,4 +10,5 @@ interface IbuBersalinDanIbuNifasRepository {
     suspend fun createOrUpdateIbuBersalinDanIbuNifas(ibuBersalinDanIbuNifas: IbuBersalinDanIbuNifas): Boolean
 
     suspend fun deleteIbuBersalinDanIbuNifas(reqId: String): Boolean
+    suspend fun searchIbuBersalinDanIbuNifas(reqId: String): List<IbuBersalinDanIbuNifas>
 }

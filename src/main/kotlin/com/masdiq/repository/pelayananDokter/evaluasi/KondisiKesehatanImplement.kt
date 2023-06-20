@@ -1,7 +1,6 @@
 package com.masdiq.repository.pelayananDokter.evaluasi
 
 import com.masdiq.model.pelayananDokter.evaluasi.KondisiKesehatan
-import com.masdiq.model.persalinanIbu.pelayananPersalinan.BayiSaatLahir
 import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
@@ -33,5 +32,13 @@ class KondisiKesehatanImplement : KondisiKesehatanRepository {
         dataDelete?.let { data ->
             return colKondisiKesehatan.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
+    }
+
+    override suspend fun searchKondisiKesehatan(reqId: String): List<KondisiKesehatan> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colKondisiKesehatan.find(KondisiKesehatan::userId eq reqId).toList()
+        }
     }
 }

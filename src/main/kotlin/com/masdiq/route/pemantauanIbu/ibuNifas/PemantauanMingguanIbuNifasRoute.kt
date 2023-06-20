@@ -2,6 +2,7 @@ package com.masdiq.route.pemantauanIbu.ibuNifas
 
 import com.masdiq.model.EndPoint
 import com.masdiq.model.pemantauanIbu.ibuNifas.PemantauanMingguanIbuNifas
+import com.masdiq.model.tabletTambahDarah.TabletTambahDarah
 import com.masdiq.repository.pemantauanIbu.ibuNifas.PemantauanMingguanIbuNifasRepository
 import com.masdiq.template.*
 import io.ktor.http.*
@@ -14,6 +15,17 @@ import org.koin.ktor.ext.inject
 
 fun Route.pemantauanMingguanIbuNifasRoute() {
     val pemantauanMingguanIbuNifasRepository: PemantauanMingguanIbuNifasRepository by inject()
+
+    get("${EndPoint.URL_TABLET_TAMBAH_DARAH.path}/get-user") {
+        val userId = call.receive<TabletTambahDarah>().userId.toString()
+        val dataSearch = pemantauanMingguanIbuNifasRepository.searchPemantauanMingguanIbuNifas(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
 
     get("${EndPoint.URL_PEMANTAUAN_MINGGUAN_IBU_NIFAS.path}/get-all") {
         val dataList = pemantauanMingguanIbuNifasRepository.getAllPemantauanMingguanIbuNifas()

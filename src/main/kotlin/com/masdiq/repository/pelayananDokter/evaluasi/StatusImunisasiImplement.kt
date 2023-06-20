@@ -33,4 +33,12 @@ class StatusImunisasiImplement : StatusImunisasiRepository {
             return colStatusImunisasi.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
+
+    override suspend fun searchStatusImunisasi(reqId: String): List<StatusImunisasi> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colStatusImunisasi.find(StatusImunisasi::userId eq reqId).toList()
+        }
+    }
 }

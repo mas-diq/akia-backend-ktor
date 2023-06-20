@@ -33,4 +33,12 @@ class PerilakuBeresikoImplement : PerilakuBeresikoRepository {
             return colPerilakuBeresiko.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
+
+    override suspend fun searchPerilakuBeresiko(reqId: String): List<PerilakuBeresiko> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colPerilakuBeresiko.find(PerilakuBeresiko::userId eq reqId).toList()
+        }
+    }
 }

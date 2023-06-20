@@ -2,6 +2,7 @@ package com.masdiq.route.pelayananDokter.trimester3
 
 import com.masdiq.model.EndPoint
 import com.masdiq.model.pelayananDokter.trimester3.RencanaKonsultasiLanjut
+import com.masdiq.model.tabletTambahDarah.TabletTambahDarah
 import com.masdiq.repository.pelayananDokter.trimester3.RencanaKonsultasiLanjutRepository
 import com.masdiq.template.*
 import io.ktor.http.*
@@ -14,6 +15,17 @@ import org.koin.ktor.ext.inject
 
 fun Route.rencanaKonsultasiLanjutRoute() {
     val rencanaKonsultasiLanjutRepository: RencanaKonsultasiLanjutRepository by inject()
+
+    get("${EndPoint.URL_TABLET_TAMBAH_DARAH.path}/get-user") {
+        val userId = call.receive<TabletTambahDarah>().userId.toString()
+        val dataSearch = rencanaKonsultasiLanjutRepository.searchRencanaKonsultasiLanjut(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
 
     get("${EndPoint.URL_RENCANA_KONSULTASI_LANJUT.path}/get-all") {
         val dataList = rencanaKonsultasiLanjutRepository.getAllRencanaKonsultasiLanjut()

@@ -10,4 +10,5 @@ interface SkriningPreeklampsiaRepository {
     suspend fun createOrUpdateSkriningPreeklampsia(skriningPreeklampsia: SkriningPreeklampsia): Boolean
 
     suspend fun deleteSkriningPreeklampsia(reqId: String): Boolean
+    suspend fun searchSkriningPreeklampsia(reqId: String): List<SkriningPreeklampsia>
 }
