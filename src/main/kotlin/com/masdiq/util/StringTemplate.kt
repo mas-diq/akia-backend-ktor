@@ -1,4 +1,4 @@
-package com.masdiq.template
+package com.masdiq.util
 
 const val dataSuccessCreated = "Data successfully created!"
 const val dataConflict = "There is conflict in the data!"

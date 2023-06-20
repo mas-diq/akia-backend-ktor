@@ -3,7 +3,7 @@ package com.masdiq.route.pelayananDokter.trimester2
 import com.masdiq.model.EndPoint
 import com.masdiq.model.pelayananDokter.trimester2.SkriningPreeklampsia
 import com.masdiq.repository.pelayananDokter.trimester2.SkriningPreeklampsiaRepository
-import com.masdiq.template.*
+import com.masdiq.util.*
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.callloging.*
