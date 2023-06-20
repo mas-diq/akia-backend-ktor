@@ -2,7 +2,6 @@ package com.masdiq.route.pelayananDokter.trimester3
 
 import com.masdiq.model.EndPoint
 import com.masdiq.model.pelayananDokter.trimester3.RencanaPersalinanDanKb
-import com.masdiq.model.tabletTambahDarah.TabletTambahDarah
 import com.masdiq.repository.pelayananDokter.trimester3.RencanaPersalinanDanKbRepository
 import com.masdiq.template.*
 import io.ktor.http.*
@@ -16,8 +15,8 @@ import org.koin.ktor.ext.inject
 fun Route.rencanaPersalinanDanKbRoute() {
     val rencanaPersalinanDanKbRepository: RencanaPersalinanDanKbRepository by inject()
 
-    get("${EndPoint.URL_TABLET_TAMBAH_DARAH.path}/get-user") {
-        val userId = call.receive<TabletTambahDarah>().userId.toString()
+    get("${EndPoint.URL_RENCANA_PERSALINAN_DAN_KB.path}/get-user") {
+        val userId = call.receive<RencanaPersalinanDanKb>().userId.toString()
         val dataSearch = rencanaPersalinanDanKbRepository.searchRencanaPersalinanDanKb(reqId = userId)
         call.respond(
             DefaultResponse(

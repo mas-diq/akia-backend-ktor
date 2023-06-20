@@ -2,7 +2,6 @@ package com.masdiq.route.persalinanIbu.pelayananPersalinan
 
 import com.masdiq.model.EndPoint
 import com.masdiq.model.persalinanIbu.pelayananPersalinan.BayiSaatLahir
-import com.masdiq.model.tabletTambahDarah.TabletTambahDarah
 import com.masdiq.repository.persalinanIbu.pelayananPersalinan.BayiSaatLahirRepository
 import com.masdiq.template.*
 import io.ktor.http.*
@@ -16,8 +15,8 @@ import org.koin.ktor.ext.inject
 fun Route.bayiSaatLahirRoute() {
     val bayiSaatLahirRepository: BayiSaatLahirRepository by inject()
 
-    get("${EndPoint.URL_TABLET_TAMBAH_DARAH.path}/get-user") {
-        val userId = call.receive<TabletTambahDarah>().userId.toString()
+    get("${EndPoint.URL_BAYI_SAAT_LAHIR.path}/get-user") {
+        val userId = call.receive<BayiSaatLahir>().userId.toString()
         val dataSearch = bayiSaatLahirRepository.searchBayiSaatLahir(reqId = userId)
         call.respond(
             DefaultResponse(

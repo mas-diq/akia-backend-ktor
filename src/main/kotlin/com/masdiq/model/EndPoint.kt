@@ -1,16 +1,17 @@
 package com.masdiq.model
 
-const val BASE_URL = "/akia"
-const val BASE_PELAYANAN_DOKTER = "$BASE_URL/pelayanan-dokter"
-const val BASE_EVALUASI = "$BASE_PELAYANAN_DOKTER/evaluasi"
-const val BASE_TRIMESTER_1 = "$BASE_PELAYANAN_DOKTER/trimester-1"
-const val BASE_TRIMESTER_2 = "$BASE_PELAYANAN_DOKTER/trimester-2"
-const val BASE_PEMANTAUAN_IBU = "$BASE_URL/pemantauan-ibu"
-const val BASE_IBU_NIFAS = "$BASE_PEMANTAUAN_IBU/ibu-nifas"
-const val BASE_IBU_HAMIL = "$BASE_PEMANTAUAN_IBU/ibu-hamil"
-const val BASE_PERSALINAN_IBU = "$BASE_URL/persalinan-ibu"
-const val BASE_PELAYANAN_NIFAS = "$BASE_PERSALINAN_IBU/pelayanan-nifas"
-const val BASE_PELAYANAN_PERSALINAN = "$BASE_PERSALINAN_IBU/pelayanan-persalinan"
+private const val BASE_URL = "/akia"
+private const val BASE_PELAYANAN_DOKTER = "$BASE_URL/pelayanan-dokter"
+private const val BASE_EVALUASI = "$BASE_PELAYANAN_DOKTER/evaluasi"
+private const val BASE_TRIMESTER_1 = "$BASE_PELAYANAN_DOKTER/trimester-1"
+private const val BASE_TRIMESTER_2 = "$BASE_PELAYANAN_DOKTER/trimester-2"
+private const val BASE_TRIMESTER_3 = "$BASE_PELAYANAN_DOKTER/trimester-3"
+private const val BASE_PEMANTAUAN_IBU = "$BASE_URL/pemantauan-ibu"
+private const val BASE_IBU_NIFAS = "$BASE_PEMANTAUAN_IBU/ibu-nifas"
+private const val BASE_IBU_HAMIL = "$BASE_PEMANTAUAN_IBU/ibu-hamil"
+private const val BASE_PERSALINAN_IBU = "$BASE_URL/persalinan-ibu"
+private const val BASE_PELAYANAN_NIFAS = "$BASE_PERSALINAN_IBU/pelayanan-nifas"
+private const val BASE_PELAYANAN_PERSALINAN = "$BASE_PERSALINAN_IBU/pelayanan-persalinan"
 
 sealed class EndPoint(val path: String) {
     // --------------
@@ -35,7 +36,6 @@ sealed class EndPoint(val path: String) {
     object URL_SKRINING_PREEKLAMPSIA : EndPoint(path = "$BASE_TRIMESTER_2/skiring-preeklampsia")
 
     // Pelayanan Dokter } Trimester 3
-    object BASE_TRIMESTER_3 : EndPoint(path = "$BASE_PELAYANAN_DOKTER/trimester-3")
     object URL_PEMERIKSAAN_LABORATORIUM_2 : EndPoint(path = "$BASE_TRIMESTER_3/pemeriksaan-laboraatorium-2")
     object URL_RENCANA_KONSULTASI_LANJUT : EndPoint(path = "$BASE_TRIMESTER_3/rencana-konsultasi-lanjut")
     object URL_RENCANA_PERSALINAN_DAN_KB : EndPoint(path = "$BASE_TRIMESTER_3/rencana-persailnan-dan-kb")

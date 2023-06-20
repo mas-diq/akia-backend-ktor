@@ -2,7 +2,6 @@ package com.masdiq.route.pelayananDokter.evaluasi
 
 import com.masdiq.model.EndPoint
 import com.masdiq.model.pelayananDokter.evaluasi.PemeriksaanKhusus
-import com.masdiq.model.tabletTambahDarah.TabletTambahDarah
 import com.masdiq.repository.pelayananDokter.evaluasi.PemeriksaanKhususRepository
 import com.masdiq.template.*
 import io.ktor.http.*
@@ -16,8 +15,8 @@ import org.koin.ktor.ext.inject
 fun Route.pemeriksaanKhususRoute() {
     val pemeriksaanKhususRepository: PemeriksaanKhususRepository by inject()
 
-    get("${EndPoint.URL_TABLET_TAMBAH_DARAH.path}/get-user") {
-        val userId = call.receive<TabletTambahDarah>().userId.toString()
+    get("${EndPoint.URL_PEMERIKSAAN_KHUSUS.path}/get-user") {
+        val userId = call.receive<PemeriksaanKhusus>().userId.toString()
         val dataSearch = pemeriksaanKhususRepository.searchPemeriksaanKhusus(reqId = userId)
         call.respond(
             DefaultResponse(

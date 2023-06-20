@@ -2,7 +2,6 @@ package com.masdiq.route.pelayananDokter.trimester1
 
 import com.masdiq.model.EndPoint
 import com.masdiq.model.pelayananDokter.trimester1.UsgTrimester1
-import com.masdiq.model.tabletTambahDarah.TabletTambahDarah
 import com.masdiq.repository.pelayananDokter.trimester1.UsgTrimester1Repository
 import com.masdiq.template.*
 import io.ktor.http.*
@@ -16,8 +15,8 @@ import org.koin.ktor.ext.inject
 fun Route.usgTrimester1Route() {
     val usgTrimester1Repository: UsgTrimester1Repository by inject()
 
-    get("${EndPoint.URL_TABLET_TAMBAH_DARAH.path}/get-user") {
-        val userId = call.receive<TabletTambahDarah>().userId.toString()
+    get("${EndPoint.URL_USG_TRIMESTER_1.path}/get-user") {
+        val userId = call.receive<UsgTrimester1>().userId.toString()
         val dataSearch = usgTrimester1Repository.searchUsgTrimester1(reqId = userId)
         call.respond(
             DefaultResponse(
