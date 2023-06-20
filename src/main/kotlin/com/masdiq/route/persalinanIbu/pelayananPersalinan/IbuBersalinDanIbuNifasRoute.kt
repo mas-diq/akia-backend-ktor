@@ -15,6 +15,16 @@ import org.koin.ktor.ext.inject
 fun Route.ibuBersalinDanIbuNifasRoute() {
     val ibuBersalinDanIbuNifasRepository: IbuBersalinDanIbuNifasRepository by inject()
 
+    get("${EndPoint.URL_IBU_BERSALIN_DAN_IBU_NIFAS.path}/get-user") {
+        val userId = call.receive<IbuBersalinDanIbuNifas>().userId.toString()
+        val dataSearch = ibuBersalinDanIbuNifasRepository.searchIbuBersalinDanIbuNifas(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
     get("${EndPoint.URL_IBU_BERSALIN_DAN_IBU_NIFAS.path}/get-all") {
         val dataList = ibuBersalinDanIbuNifasRepository.getAllIbuBersalinDanIbuNifas()
         call.respond(

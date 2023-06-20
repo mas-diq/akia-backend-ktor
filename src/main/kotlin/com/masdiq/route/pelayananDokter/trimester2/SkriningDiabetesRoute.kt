@@ -15,6 +15,17 @@ import org.koin.ktor.ext.inject
 fun Route.skriningDiabetesRoute() {
     val skriningDiabetesRepository: SkriningDiabetesRepository by inject()
 
+    get("${EndPoint.URL_SKRINING_DIABETES.path}/get-user") {
+        val userId = call.receive<SkriningDiabetes>().userId.toString()
+        val dataSearch = skriningDiabetesRepository.searchSkriningDiabetes(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
+
     get("${EndPoint.URL_SKRINING_DIABETES.path}/get-all") {
         val dataList = skriningDiabetesRepository.getAllSkriningDiabetes()
         call.respond(

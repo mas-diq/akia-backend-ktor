@@ -10,4 +10,5 @@ interface KesimpulanAkhirNifasRepository {
     suspend fun createOrUpdateKesimpulanAkhirNifas(kesimpulanAkhirNifas: KesimpulanAkhirNifas): Boolean
 
     suspend fun deleteKesimpulanAkhirNifas(reqId: String): Boolean
+    suspend fun searchKesimpulanAkhirNifas(reqId: String): List<KesimpulanAkhirNifas>
 }

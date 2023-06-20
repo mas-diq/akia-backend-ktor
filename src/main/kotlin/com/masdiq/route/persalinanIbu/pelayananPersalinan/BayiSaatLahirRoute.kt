@@ -15,6 +15,17 @@ import org.koin.ktor.ext.inject
 fun Route.bayiSaatLahirRoute() {
     val bayiSaatLahirRepository: BayiSaatLahirRepository by inject()
 
+    get("${EndPoint.URL_BAYI_SAAT_LAHIR.path}/get-user") {
+        val userId = call.receive<BayiSaatLahir>().userId.toString()
+        val dataSearch = bayiSaatLahirRepository.searchBayiSaatLahir(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
+
     get("${EndPoint.URL_BAYI_SAAT_LAHIR.path}/get-all") {
         val dataList = bayiSaatLahirRepository.getAllBayiSaatLahir()
         call.respond(

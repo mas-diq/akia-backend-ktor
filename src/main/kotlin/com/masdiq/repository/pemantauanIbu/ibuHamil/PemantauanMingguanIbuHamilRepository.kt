@@ -10,4 +10,5 @@ interface PemantauanMingguanIbuHamilRepository {
     suspend fun createOrUpdatePemantauanMingguanIbuHamil(pemantauanMingguanIbuHamil: PemantauanMingguanIbuHamil): Boolean
 
     suspend fun deletePemantauanMingguanIbuHamil(reqId: String): Boolean
+    suspend fun searchPemantauanMingguanIbuHamil(reqId: String): List<PemantauanMingguanIbuHamil>
 }

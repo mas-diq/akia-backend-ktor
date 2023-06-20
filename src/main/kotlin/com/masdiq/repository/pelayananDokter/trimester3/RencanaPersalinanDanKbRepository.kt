@@ -10,4 +10,5 @@ interface RencanaPersalinanDanKbRepository {
     suspend fun createOrUpdateRencanaPersalinanDanKb(rencanaPersalinanDanKb: RencanaPersalinanDanKb): Boolean
 
     suspend fun deleteRencanaPersalinanDanKb(reqId: String): Boolean
+    suspend fun searchRencanaPersalinanDanKb(reqId: String): List<RencanaPersalinanDanKb>
 }

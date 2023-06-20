@@ -2,7 +2,6 @@ package com.masdiq.repository.tabletTambahDarah
 
 import com.masdiq.model.tabletTambahDarah.TabletTambahDarah
 import com.masdiq.repository.DATABASE
-import io.ktor.http.cio.*
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
 
@@ -33,5 +32,13 @@ class TabletTambahDarahImplement : TabletTambahDarahRepository {
         dataDelete?.let { data ->
             return colTabletTambahDarah.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
+    }
+
+    override suspend fun searchTabletTambahDarah(reqId: String): List<TabletTambahDarah> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colTabletTambahDarah.find(TabletTambahDarah::userId eq reqId).toList()
+        }
     }
 }

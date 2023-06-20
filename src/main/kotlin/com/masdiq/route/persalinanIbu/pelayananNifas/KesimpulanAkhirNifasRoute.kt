@@ -15,6 +15,17 @@ import org.koin.ktor.ext.inject
 fun Route.kesimpulanAkhirNifasRoute() {
     val kesimpulanAkhirNifasRepository: KesimpulanAkhirNifasRepository by inject()
 
+    get("${EndPoint.URL_KESIMPULAN_AKHIR_NIFAS.path}/get-user") {
+        val userId = call.receive<KesimpulanAkhirNifas>().userId.toString()
+        val dataSearch = kesimpulanAkhirNifasRepository.searchKesimpulanAkhirNifas(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
+
     get("${EndPoint.URL_KESIMPULAN_AKHIR_NIFAS.path}/get-all") {
         val dataList = kesimpulanAkhirNifasRepository.getAllKesimpulanAkhirNifas()
         call.respond(

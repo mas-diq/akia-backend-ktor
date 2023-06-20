@@ -15,6 +15,17 @@ import org.koin.ktor.ext.inject
 fun Route.rencanaKonsultasiLanjutRoute() {
     val rencanaKonsultasiLanjutRepository: RencanaKonsultasiLanjutRepository by inject()
 
+    get("${EndPoint.URL_RENCANA_KONSULTASI_LANJUT.path}/get-user") {
+        val userId = call.receive<RencanaKonsultasiLanjut>().userId.toString()
+        val dataSearch = rencanaKonsultasiLanjutRepository.searchRencanaKonsultasiLanjut(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
+
     get("${EndPoint.URL_RENCANA_KONSULTASI_LANJUT.path}/get-all") {
         val dataList = rencanaKonsultasiLanjutRepository.getAllRencanaKonsultasiLanjut()
         call.respond(

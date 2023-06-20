@@ -33,4 +33,12 @@ class RiwayatKehamilanImplement : RiwayatKehamilanRepository {
             return colRiwayatKehamilan.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
+
+    override suspend fun searchRiwayatKehamilan(reqId: String): List<RiwayatKehamilan> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colRiwayatKehamilan.find(RiwayatKehamilan::userId eq reqId).toList()
+        }
+    }
 }

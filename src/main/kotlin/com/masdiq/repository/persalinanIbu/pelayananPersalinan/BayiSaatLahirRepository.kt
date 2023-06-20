@@ -10,4 +10,5 @@ interface BayiSaatLahirRepository {
     suspend fun createOrUpdateBayiSaatLahir(bayiSaatLahir: BayiSaatLahir): Boolean
 
     suspend fun deleteBayiSaatLahir(reqId: String): Boolean
+    suspend fun searchBayiSaatLahir(reqId: String): List<BayiSaatLahir>
 }

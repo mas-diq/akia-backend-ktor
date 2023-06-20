@@ -1,7 +1,6 @@
 package com.masdiq.repository.pelayananDokter.trimester3
 
 import com.masdiq.model.pelayananDokter.trimester3.PemeriksaanLaboratorium2
-import com.masdiq.model.persalinanIbu.pelayananPersalinan.BayiSaatLahir
 import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
@@ -34,5 +33,13 @@ class PemeriksaanLaboratorium2Implement : PemeriksaanLaboratorium2Repository {
         dataDelete?.let { data ->
             return colPemeriksaanLaboratorium2.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
+    }
+
+    override suspend fun searchPemeriksaanLaboratorium2(reqId: String): List<PemeriksaanLaboratorium2> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colPemeriksaanLaboratorium2.find(PemeriksaanLaboratorium2::userId eq reqId).toList()
+        }
     }
 }

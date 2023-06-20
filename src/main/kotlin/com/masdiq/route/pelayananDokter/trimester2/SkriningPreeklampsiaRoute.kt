@@ -15,6 +15,17 @@ import org.koin.ktor.ext.inject
 fun Route.skriningPreeklampsiaRoute() {
     val skriningPreeklampsiaRepository: SkriningPreeklampsiaRepository by inject()
 
+    get("${EndPoint.URL_SKRINING_PREEKLAMPSIA.path}/get-user") {
+        val userId = call.receive<SkriningPreeklampsia>().userId.toString()
+        val dataSearch = skriningPreeklampsiaRepository.searchSkriningPreeklampsia(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
+
     get("${EndPoint.URL_SKRINING_PREEKLAMPSIA.path}/get-all") {
         val dataList = skriningPreeklampsiaRepository.getAllSkriningPreeklampsia()
         call.respond(

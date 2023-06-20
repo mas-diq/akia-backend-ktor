@@ -33,4 +33,12 @@ class IbuBersalinDanIbuNifasImplement : IbuBersalinDanIbuNifasRepository {
             return colIbuBersalinDanIbuNifas.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
+
+    override suspend fun searchIbuBersalinDanIbuNifas(reqId: String): List<IbuBersalinDanIbuNifas> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colIbuBersalinDanIbuNifas.find(IbuBersalinDanIbuNifas::userId eq reqId).toList()
+        }
+    }
 }

@@ -15,6 +15,17 @@ import org.koin.ktor.ext.inject
 fun Route.riwayatKehamilanRoute() {
     val riwayatKehamilanRepository: RiwayatKehamilanRepository by inject()
 
+    get("${EndPoint.URL_RIWAYAT_KEHAMILAN.path}/get-user") {
+        val userId = call.receive<RiwayatKehamilan>().userId.toString()
+        val dataSearch = riwayatKehamilanRepository.searchRiwayatKehamilan(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
+
     get("${EndPoint.URL_RIWAYAT_KEHAMILAN.path}/get-all") {
         val dataList = riwayatKehamilanRepository.getAllRiwayatKehamilan()
         call.respond(

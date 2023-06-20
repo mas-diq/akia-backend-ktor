@@ -1,7 +1,6 @@
 package com.masdiq.repository.pemantauanIbu.ibuHamil
 
 import com.masdiq.model.pemantauanIbu.ibuHamil.PemantauanMingguanIbuHamil
-import com.masdiq.model.persalinanIbu.pelayananPersalinan.BayiSaatLahir
 import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
@@ -34,5 +33,13 @@ class PemantauanMingguanIbuHamilImplement : PemantauanMingguanIbuHamilRepository
         dataDelete?.let { data ->
             return colPemantauanMingguanIbuHamil.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
+    }
+
+    override suspend fun searchPemantauanMingguanIbuHamil(reqId: String): List<PemantauanMingguanIbuHamil> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colPemantauanMingguanIbuHamil.find(PemantauanMingguanIbuHamil::userId eq reqId).toList()
+        }
     }
 }

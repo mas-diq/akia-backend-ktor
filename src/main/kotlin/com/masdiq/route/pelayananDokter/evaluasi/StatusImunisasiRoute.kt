@@ -15,6 +15,17 @@ import org.koin.ktor.ext.inject
 fun Route.statusImunisasiRoute() {
     val statusImunisasiRepository: StatusImunisasiRepository by inject()
 
+    get("${EndPoint.URL_STATUS_IMUNISASI.path}/get-user") {
+        val userId = call.receive<StatusImunisasi>().userId.toString()
+        val dataSearch = statusImunisasiRepository.searchStatusImunisasi(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
+
     get("${EndPoint.URL_STATUS_IMUNISASI.path}/get-all") {
         val dataList = statusImunisasiRepository.getAllStatusImunisasi()
         call.respond(

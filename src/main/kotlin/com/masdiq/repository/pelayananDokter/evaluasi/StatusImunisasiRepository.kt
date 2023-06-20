@@ -10,4 +10,5 @@ interface StatusImunisasiRepository {
     suspend fun createOrUpdateStatusImunisasi(statusImunisasi: StatusImunisasi): Boolean
 
     suspend fun deleteStatusImunisasi(reqId: String): Boolean
+    suspend fun searchStatusImunisasi(reqId: String): List<StatusImunisasi>
 }

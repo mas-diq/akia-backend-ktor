@@ -10,4 +10,5 @@ interface RencanaKonsultasiLanjutRepository {
     suspend fun createOrUpdateRencanaKonsultasiLanjut(rencanaKonsultasiLanjut: RencanaKonsultasiLanjut): Boolean
 
     suspend fun deleteRencanaKonsultasiLanjut(reqId: String): Boolean
+    suspend fun searchRencanaKonsultasiLanjut(reqId: String): List<RencanaKonsultasiLanjut>
 }

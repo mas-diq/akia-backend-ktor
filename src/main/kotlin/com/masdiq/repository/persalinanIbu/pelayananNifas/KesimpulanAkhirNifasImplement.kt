@@ -34,4 +34,12 @@ class KesimpulanAkhirNifasImplement : KesimpulanAkhirNifasRepository {
             return colKesimpulanAkhirNifas.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
+
+    override suspend fun searchKesimpulanAkhirNifas(reqId: String): List<KesimpulanAkhirNifas> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colKesimpulanAkhirNifas.find(KesimpulanAkhirNifas::userId eq reqId).toList()
+        }
+    }
 }

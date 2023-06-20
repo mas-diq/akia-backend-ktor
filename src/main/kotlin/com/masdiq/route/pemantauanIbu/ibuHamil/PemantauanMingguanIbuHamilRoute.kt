@@ -15,6 +15,17 @@ import org.koin.ktor.ext.inject
 fun Route.pemantauanMingguanIbuHamilRoute() {
     val pemantauanMingguanIbuHamilRepository: PemantauanMingguanIbuHamilRepository by inject()
 
+    get("${EndPoint.URL_PEMANTAUAN_MINGGUAN_IBU_HAMIL.path}/get-user") {
+        val userId = call.receive<PemantauanMingguanIbuHamil>().userId.toString()
+        val dataSearch = pemantauanMingguanIbuHamilRepository.searchPemantauanMingguanIbuHamil(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
+
     get("${EndPoint.URL_PEMANTAUAN_MINGGUAN_IBU_HAMIL.path}/get-all") {
         val dataList = pemantauanMingguanIbuHamilRepository.getAllPemantauanMingguanIbuHamil()
         call.respond(

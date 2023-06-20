@@ -10,4 +10,5 @@ interface PenyakitKeluargaRepository {
     suspend fun createOrUpdatePenyakitKeluarga(penyakitKeluarga: PenyakitKeluarga): Boolean
 
     suspend fun deleteTabletPenyakitKeluarga(reqId: String): Boolean
+    suspend fun searchPenyakitKeluarga(reqId: String): List<PenyakitKeluarga>
 }

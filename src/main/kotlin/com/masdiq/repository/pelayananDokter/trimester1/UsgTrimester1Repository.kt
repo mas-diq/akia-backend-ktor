@@ -10,4 +10,5 @@ interface UsgTrimester1Repository {
     suspend fun createOrUpdateUsgTrimester1(usgTrimester1: UsgTrimester1): Boolean
 
     suspend fun deleteUsgTrimester1(reqId: String): Boolean
+    suspend fun searchUsgTrimester1(reqId: String): List<UsgTrimester1>
 }

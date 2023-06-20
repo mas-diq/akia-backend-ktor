@@ -15,6 +15,17 @@ import org.koin.ktor.ext.inject
 fun Route.pemeriksaanLaboratorium1Route() {
     val pemeriksaanLaboratorium1Repository: PemeriksaanLaboratorium1Repository by inject()
 
+    get("${EndPoint.URL_PEMERIKSAAN_LABORATORIUM_1.path}/get-user") {
+        val userId = call.receive<PemeriksaanLaboratorium1>().userId.toString()
+        val dataSearch = pemeriksaanLaboratorium1Repository.searchPemeriksaanLaboratorium1(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
+
     get("${EndPoint.URL_PEMERIKSAAN_LABORATORIUM_1.path}/get-all") {
         val dataList = pemeriksaanLaboratorium1Repository.getAllPemeriksaanLaboratorium1()
         call.respond(

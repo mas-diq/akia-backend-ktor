@@ -10,4 +10,5 @@ interface SkriningDiabetesRepository {
     suspend fun createOrUpdateSkriningDiabetes(skriningDiabetes: SkriningDiabetes): Boolean
 
     suspend fun deleteSkriningDiabetes(reqId: String): Boolean
+    suspend fun searchSkriningDiabetes(reqId: String): List<SkriningDiabetes>
 }

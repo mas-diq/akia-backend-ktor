@@ -15,6 +15,17 @@ import org.koin.ktor.ext.inject
 fun Route.usgTrimester3Route() {
     val usgTrimester3Repository: UsgTrimester3Repository by inject()
 
+    get("${EndPoint.URL_USG_TRIMESTER_3.path}/get-user") {
+        val userId = call.receive<UsgTrimester3>().userId.toString()
+        val dataSearch = usgTrimester3Repository.searchUsgTrimester3(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
+
     get("${EndPoint.URL_USG_TRIMESTER_3.path}/get-all") {
         val dataList = usgTrimester3Repository.getAllUsgTrimester3()
         call.respond(

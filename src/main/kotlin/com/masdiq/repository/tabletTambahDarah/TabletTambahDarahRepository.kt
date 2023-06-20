@@ -10,4 +10,5 @@ interface TabletTambahDarahRepository {
     suspend fun createOrUpdateTabletTambahDarah(tabletTambahDarah: TabletTambahDarah): Boolean
 
     suspend fun deleteTabletTambahDarah(reqId: String): Boolean
+    suspend fun searchTabletTambahDarah(reqId: String): List<TabletTambahDarah>
 }

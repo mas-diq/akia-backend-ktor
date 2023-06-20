@@ -15,6 +15,17 @@ import org.koin.ktor.ext.inject
 fun Route.perilakuBeresikoRoute() {
     val perilakuBeresikoRepository: PerilakuBeresikoRepository by inject()
 
+    get("${EndPoint.URL_PERILAKU_BERESIKO.path}/get-user") {
+        val userId = call.receive<PerilakuBeresiko>().userId.toString()
+        val dataSearch = perilakuBeresikoRepository.searchPerilakuBeresiko(reqId = userId)
+        call.respond(
+            DefaultResponse(
+                "${HttpStatusCode.OK}",
+                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+            )
+        )
+    }
+
     get("${EndPoint.URL_PERILAKU_BERESIKO.path}/get-all") {
         val dataList = perilakuBeresikoRepository.getAllPerilakuBeresiko()
         call.respond(

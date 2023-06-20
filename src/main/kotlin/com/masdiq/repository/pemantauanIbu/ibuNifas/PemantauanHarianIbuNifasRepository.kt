@@ -10,4 +10,5 @@ interface PemantauanHarianIbuNifasRepository {
     suspend fun createOrUpdatePemantauanHarianIbuNifas(pemantauanHarianIbuNifas: PemantauanHarianIbuNifas): Boolean
 
     suspend fun deletePemantauanHarianIbuNifas(reqId: String): Boolean
+    suspend fun searchPemantauanHarianIbuNifas(reqId: String): List<PemantauanHarianIbuNifas>
 }

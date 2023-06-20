@@ -33,4 +33,12 @@ class PenyakitKeluargaImplement : PenyakitKeluargaRepository {
             return colPenyakitKeluarga.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
+
+    override suspend fun searchPenyakitKeluarga(reqId: String): List<PenyakitKeluarga> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colPenyakitKeluarga.find(PenyakitKeluarga::userId eq reqId).toList()
+        }
+    }
 }

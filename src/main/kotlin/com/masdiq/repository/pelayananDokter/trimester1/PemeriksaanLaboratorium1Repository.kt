@@ -10,4 +10,5 @@ interface PemeriksaanLaboratorium1Repository {
     suspend fun createOrUpdatePemeriksaanLaboratorium1(pemeriksaanLaboratorium1: PemeriksaanLaboratorium1): Boolean
 
     suspend fun deletePemeriksaanLaboratorium1(reqId: String): Boolean
+    suspend fun searchPemeriksaanLaboratorium1(reqId: String): List<PemeriksaanLaboratorium1>
 }
