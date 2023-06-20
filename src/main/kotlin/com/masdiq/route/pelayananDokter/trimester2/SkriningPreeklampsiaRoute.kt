@@ -1,5 +1,6 @@
 package com.masdiq.route.pelayananDokter.trimester2
 
+import com.masdiq.model.EndPoint
 import com.masdiq.model.pelayananDokter.trimester2.SkriningPreeklampsia
 import com.masdiq.repository.pelayananDokter.trimester2.SkriningPreeklampsiaRepository
 import com.masdiq.template.*
@@ -14,7 +15,7 @@ import org.koin.ktor.ext.inject
 fun Route.skriningPreeklampsiaRoute() {
     val skriningPreeklampsiaRepository: SkriningPreeklampsiaRepository by inject()
 
-    get("$URL_SKRINING_PREEKLAMPSIA/get-all") {
+    get("${EndPoint.URL_SKRINING_PREEKLAMPSIA.path}/get-all") {
         val dataList = skriningPreeklampsiaRepository.getAllSkriningPreeklampsia()
         call.respond(
             DefaultResponse(
@@ -24,7 +25,7 @@ fun Route.skriningPreeklampsiaRoute() {
         )
     }
 
-    get("$URL_SKRINING_PREEKLAMPSIA/get") { it ->
+    get("${EndPoint.URL_SKRINING_PREEKLAMPSIA.path}/get") { it ->
         val reqId = call.receive<SkriningPreeklampsia>().id
         val obj = skriningPreeklampsiaRepository.getSkriningPreeklampsia(reqId)
 
@@ -43,7 +44,7 @@ fun Route.skriningPreeklampsiaRoute() {
         )
     }
 
-    post("$URL_SKRINING_PREEKLAMPSIA/create-update") {
+    post("${EndPoint.URL_SKRINING_PREEKLAMPSIA.path}/create-update") {
         val request = try {
             call.receive<SkriningPreeklampsia>()
         } catch (e: ContentTransformationException) {
@@ -73,7 +74,7 @@ fun Route.skriningPreeklampsiaRoute() {
         }
     }
 
-    delete("$URL_SKRINING_PREEKLAMPSIA/delete") post@{
+    delete("${EndPoint.URL_SKRINING_PREEKLAMPSIA.path}/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

@@ -1,5 +1,6 @@
 package com.masdiq.route.persalinanIbu.pelayananNifas
 
+import com.masdiq.model.EndPoint
 import com.masdiq.model.persalinanIbu.pelayananNifas.KunjunganNifas
 import com.masdiq.repository.persalinanIbu.pelayananNifas.KunjunganNifasRepository
 import com.masdiq.template.*
@@ -14,7 +15,7 @@ import org.koin.ktor.ext.inject
 fun Route.kunjunganNifasRoute() {
     val kunjunganNifasRepository: KunjunganNifasRepository by inject()
 
-    get("$URL_KUNJUNGAN_NIFAS/get-all") {
+    get("${EndPoint.URL_KUNJUNGAN_NIFAS.path}/get-all") {
         val dataList = kunjunganNifasRepository.getAllKunjunganNifas()
         call.respond(
             DefaultResponse(
@@ -24,7 +25,7 @@ fun Route.kunjunganNifasRoute() {
         )
     }
 
-    get("$URL_KUNJUNGAN_NIFAS/get") { it ->
+    get("${EndPoint.URL_KUNJUNGAN_NIFAS.path}/get") { it ->
         val reqId = call.receive<KunjunganNifas>().id
         val obj = kunjunganNifasRepository.getKunjunganNifas(reqId)
 
@@ -43,7 +44,7 @@ fun Route.kunjunganNifasRoute() {
         )
     }
 
-    post("$URL_KUNJUNGAN_NIFAS/create-update") {
+    post("${EndPoint.URL_KUNJUNGAN_NIFAS.path}/create-update") {
         val request = try {
             call.receive<KunjunganNifas>()
         } catch (e: ContentTransformationException) {
@@ -73,7 +74,7 @@ fun Route.kunjunganNifasRoute() {
         }
     }
 
-    delete("$URL_KUNJUNGAN_NIFAS/delete") post@{
+    delete("${EndPoint.URL_KUNJUNGAN_NIFAS.path}/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

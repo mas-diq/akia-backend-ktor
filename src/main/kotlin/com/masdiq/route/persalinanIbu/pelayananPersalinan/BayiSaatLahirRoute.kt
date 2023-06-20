@@ -1,5 +1,6 @@
 package com.masdiq.route.persalinanIbu.pelayananPersalinan
 
+import com.masdiq.model.EndPoint
 import com.masdiq.model.persalinanIbu.pelayananPersalinan.BayiSaatLahir
 import com.masdiq.repository.persalinanIbu.pelayananPersalinan.BayiSaatLahirRepository
 import com.masdiq.template.*
@@ -14,7 +15,7 @@ import org.koin.ktor.ext.inject
 fun Route.bayiSaatLahirRoute() {
     val bayiSaatLahirRepository: BayiSaatLahirRepository by inject()
 
-    get("$URL_BAYI_SAAT_LAHIR/get-all") {
+    get("${EndPoint.URL_BAYI_SAAT_LAHIR.path}/get-all") {
         val dataList = bayiSaatLahirRepository.getAllBayiSaatLahir()
         call.respond(
             DefaultResponse(
@@ -24,7 +25,7 @@ fun Route.bayiSaatLahirRoute() {
         )
     }
 
-    get("$URL_BAYI_SAAT_LAHIR/get") { it ->
+    get("${EndPoint.URL_BAYI_SAAT_LAHIR.path}/get") { it ->
         val reqId = call.receive<BayiSaatLahir>().id
         val obj = bayiSaatLahirRepository.getBayiSaatLahir(reqId)
 
@@ -43,7 +44,7 @@ fun Route.bayiSaatLahirRoute() {
         )
     }
 
-    post("$URL_BAYI_SAAT_LAHIR/create-update") {
+    post("${EndPoint.URL_BAYI_SAAT_LAHIR.path}/create-update") {
         val request = try {
             call.receive<BayiSaatLahir>()
         } catch (e: ContentTransformationException) {
@@ -73,7 +74,7 @@ fun Route.bayiSaatLahirRoute() {
         }
     }
 
-    delete("$URL_BAYI_SAAT_LAHIR/delete") post@{
+    delete("${EndPoint.URL_BAYI_SAAT_LAHIR.path}/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

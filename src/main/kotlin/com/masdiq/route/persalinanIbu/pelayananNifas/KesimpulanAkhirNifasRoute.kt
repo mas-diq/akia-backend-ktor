@@ -1,5 +1,6 @@
 package com.masdiq.route.persalinanIbu.pelayananNifas
 
+import com.masdiq.model.EndPoint
 import com.masdiq.model.persalinanIbu.pelayananNifas.KesimpulanAkhirNifas
 import com.masdiq.repository.persalinanIbu.pelayananNifas.KesimpulanAkhirNifasRepository
 import com.masdiq.template.*
@@ -14,7 +15,7 @@ import org.koin.ktor.ext.inject
 fun Route.kesimpulanAkhirNifasRoute() {
     val kesimpulanAkhirNifasRepository: KesimpulanAkhirNifasRepository by inject()
 
-    get("$URL_KESIMPULAN_AKHIR_NIFAS/get-all") {
+    get("${EndPoint.URL_KESIMPULAN_AKHIR_NIFAS.path}/get-all") {
         val dataList = kesimpulanAkhirNifasRepository.getAllKesimpulanAkhirNifas()
         call.respond(
             DefaultResponse(
@@ -24,7 +25,7 @@ fun Route.kesimpulanAkhirNifasRoute() {
         )
     }
 
-    get("$URL_KESIMPULAN_AKHIR_NIFAS/get") { it ->
+    get("${EndPoint.URL_KESIMPULAN_AKHIR_NIFAS.path}/get") { it ->
         val reqId = call.receive<KesimpulanAkhirNifas>().id
         val obj = kesimpulanAkhirNifasRepository.getKesimpulanAkhirNifas(reqId)
 
@@ -43,7 +44,7 @@ fun Route.kesimpulanAkhirNifasRoute() {
         )
     }
 
-    post("$URL_KESIMPULAN_AKHIR_NIFAS/create-update") {
+    post("${EndPoint.URL_KESIMPULAN_AKHIR_NIFAS.path}/create-update") {
         val request = try {
             call.receive<KesimpulanAkhirNifas>()
         } catch (e: ContentTransformationException) {
@@ -73,7 +74,7 @@ fun Route.kesimpulanAkhirNifasRoute() {
         }
     }
 
-    delete("$URL_KESIMPULAN_AKHIR_NIFAS/delete") post@{
+    delete("${EndPoint.URL_KESIMPULAN_AKHIR_NIFAS.path}/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

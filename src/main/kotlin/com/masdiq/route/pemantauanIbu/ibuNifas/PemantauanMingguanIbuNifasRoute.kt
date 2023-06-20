@@ -1,5 +1,6 @@
 package com.masdiq.route.pemantauanIbu.ibuNifas
 
+import com.masdiq.model.EndPoint
 import com.masdiq.model.pemantauanIbu.ibuNifas.PemantauanMingguanIbuNifas
 import com.masdiq.repository.pemantauanIbu.ibuNifas.PemantauanMingguanIbuNifasRepository
 import com.masdiq.template.*
@@ -14,7 +15,7 @@ import org.koin.ktor.ext.inject
 fun Route.pemantauanMingguanIbuNifasRoute() {
     val pemantauanMingguanIbuNifasRepository: PemantauanMingguanIbuNifasRepository by inject()
 
-    get("$URL_PEMANTAUAN_MINGGUAN_IBU_NIFAS/get-all") {
+    get("${EndPoint.URL_PEMANTAUAN_MINGGUAN_IBU_NIFAS.path}/get-all") {
         val dataList = pemantauanMingguanIbuNifasRepository.getAllPemantauanMingguanIbuNifas()
         call.respond(
             DefaultResponse(
@@ -24,7 +25,7 @@ fun Route.pemantauanMingguanIbuNifasRoute() {
         )
     }
 
-    get("$URL_PEMANTAUAN_MINGGUAN_IBU_NIFAS/get") { it ->
+    get("${EndPoint.URL_PEMANTAUAN_MINGGUAN_IBU_NIFAS.path}/get") { it ->
         val reqId = call.receive<PemantauanMingguanIbuNifas>().id
         val obj = pemantauanMingguanIbuNifasRepository.getPemantauanMingguanIbuNifas(reqId)
 
@@ -43,7 +44,7 @@ fun Route.pemantauanMingguanIbuNifasRoute() {
         )
     }
 
-    post("$URL_PEMANTAUAN_MINGGUAN_IBU_NIFAS/create-update") {
+    post("${EndPoint.URL_PEMANTAUAN_MINGGUAN_IBU_NIFAS.path}/create-update") {
         val request = try {
             call.receive<PemantauanMingguanIbuNifas>()
         } catch (e: ContentTransformationException) {
@@ -73,7 +74,7 @@ fun Route.pemantauanMingguanIbuNifasRoute() {
         }
     }
 
-    delete("$URL_PEMANTAUAN_MINGGUAN_IBU_NIFAS/delete") post@{
+    delete("${EndPoint.URL_PEMANTAUAN_MINGGUAN_IBU_NIFAS.path}/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

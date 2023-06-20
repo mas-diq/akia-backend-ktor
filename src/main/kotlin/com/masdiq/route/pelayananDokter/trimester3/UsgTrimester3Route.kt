@@ -1,5 +1,6 @@
 package com.masdiq.route.pelayananDokter.trimester3
 
+import com.masdiq.model.EndPoint
 import com.masdiq.model.pelayananDokter.trimester3.UsgTrimester3
 import com.masdiq.repository.pelayananDokter.trimester3.UsgTrimester3Repository
 import com.masdiq.template.*
@@ -14,7 +15,7 @@ import org.koin.ktor.ext.inject
 fun Route.usgTrimester3Route() {
     val usgTrimester3Repository: UsgTrimester3Repository by inject()
 
-    get("$URL_USG_TRIMESTER_3/get-all") {
+    get("${EndPoint.URL_USG_TRIMESTER_3.path}/get-all") {
         val dataList = usgTrimester3Repository.getAllUsgTrimester3()
         call.respond(
             DefaultResponse(
@@ -24,7 +25,7 @@ fun Route.usgTrimester3Route() {
         )
     }
 
-    get("$URL_USG_TRIMESTER_3/get") { it ->
+    get("${EndPoint.URL_USG_TRIMESTER_3.path}/get") { it ->
         val reqId = call.receive<UsgTrimester3>().id
         val obj = usgTrimester3Repository.getUsgTrimester3(reqId)
 
@@ -43,7 +44,7 @@ fun Route.usgTrimester3Route() {
         )
     }
 
-    post("$URL_USG_TRIMESTER_3/create-update") {
+    post("${EndPoint.URL_USG_TRIMESTER_3.path}/create-update") {
         val request = try {
             call.receive<UsgTrimester3>()
         } catch (e: ContentTransformationException) {
@@ -73,7 +74,7 @@ fun Route.usgTrimester3Route() {
         }
     }
 
-    delete("$URL_USG_TRIMESTER_3/delete") post@{
+    delete("${EndPoint.URL_USG_TRIMESTER_3.path}/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

@@ -1,5 +1,6 @@
 package com.masdiq.route.pemantauanIbu.ibuHamil
 
+import com.masdiq.model.EndPoint
 import com.masdiq.model.pemantauanIbu.ibuHamil.PemantauanHarianIbuHamil
 import com.masdiq.repository.pemantauanIbu.ibuHamil.PemantauanHarianIbuHamilRepository
 import com.masdiq.template.*
@@ -14,7 +15,7 @@ import org.koin.ktor.ext.inject
 fun Route.pemantauanHarianIbuHamilRoute() {
     val pemantauanHarianIbuHamilRepository: PemantauanHarianIbuHamilRepository by inject()
 
-    get("$URL_PEMANTAUAN_HARIAN_IBU_HAMIL/get-all") {
+    get("${EndPoint.URL_PEMANTAUAN_HARIAN_IBU_HAMIL.path}/get-all") {
         val dataList = pemantauanHarianIbuHamilRepository.getAllPemantauanHarianIbuHamil()
         call.respond(
             DefaultResponse(
@@ -24,7 +25,7 @@ fun Route.pemantauanHarianIbuHamilRoute() {
         )
     }
 
-    get("$URL_PEMANTAUAN_HARIAN_IBU_HAMIL/get") { it ->
+    get("${EndPoint.URL_PEMANTAUAN_HARIAN_IBU_HAMIL.path}/get") { it ->
         val reqId = call.receive<PemantauanHarianIbuHamil>().id
         val obj = pemantauanHarianIbuHamilRepository.getPemantauanHarianIbuHamil(reqId)
 
@@ -43,7 +44,7 @@ fun Route.pemantauanHarianIbuHamilRoute() {
         )
     }
 
-    post("$URL_PEMANTAUAN_HARIAN_IBU_HAMIL/create-update") {
+    post("${EndPoint.URL_PEMANTAUAN_HARIAN_IBU_HAMIL.path}/create-update") {
         val request = try {
             call.receive<PemantauanHarianIbuHamil>()
         } catch (e: ContentTransformationException) {
@@ -73,7 +74,7 @@ fun Route.pemantauanHarianIbuHamilRoute() {
         }
     }
 
-    delete("$URL_PEMANTAUAN_HARIAN_IBU_HAMIL/delete") post@{
+    delete("${EndPoint.URL_PEMANTAUAN_HARIAN_IBU_HAMIL.path}/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

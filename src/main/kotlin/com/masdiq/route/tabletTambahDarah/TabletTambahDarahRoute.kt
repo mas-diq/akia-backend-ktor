@@ -1,5 +1,6 @@
 package com.masdiq.route.tabletTambahDarah
 
+import com.masdiq.model.EndPoint
 import com.masdiq.model.tabletTambahDarah.TabletTambahDarah
 import com.masdiq.repository.tabletTambahDarah.TabletTambahDarahRepository
 import com.masdiq.template.*
@@ -14,7 +15,7 @@ import org.koin.ktor.ext.inject
 fun Route.tambahDarahRoute() {
     val tabletTambahDarahRepository: TabletTambahDarahRepository by inject()
 
-    get("$URL_TABLET_TAMBAH_DARAH/get-all") {
+    get("${EndPoint.URL_TABLET_TAMBAH_DARAH.path}/get-all") {
         val dataList = tabletTambahDarahRepository.getAllTabletTambahDarah()
         call.respond(
             DefaultResponse(
@@ -24,7 +25,7 @@ fun Route.tambahDarahRoute() {
         )
     }
 
-    get("$URL_TABLET_TAMBAH_DARAH/get") { it ->
+    get("${EndPoint.URL_TABLET_TAMBAH_DARAH.path}/get") { it ->
         val reqId = call.receive<TabletTambahDarah>().id
         val obj = tabletTambahDarahRepository.getTabletTambahDarah(reqId)
 
@@ -43,7 +44,7 @@ fun Route.tambahDarahRoute() {
         )
     }
 
-    post("$URL_TABLET_TAMBAH_DARAH/create-update") {
+    post("${EndPoint.URL_TABLET_TAMBAH_DARAH.path}/create-update") {
         val request = try {
             call.receive<TabletTambahDarah>()
         } catch (e: ContentTransformationException) {
@@ -73,7 +74,7 @@ fun Route.tambahDarahRoute() {
         }
     }
 
-    delete("$URL_TABLET_TAMBAH_DARAH/delete") post@{
+    delete("${EndPoint.URL_TABLET_TAMBAH_DARAH.path}/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

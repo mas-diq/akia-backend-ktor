@@ -1,5 +1,6 @@
 package com.masdiq.route.pelayananDokter.evaluasi
 
+import com.masdiq.model.EndPoint
 import com.masdiq.model.pelayananDokter.evaluasi.RiwayatKesehatan
 import com.masdiq.repository.pelayananDokter.evaluasi.RiwayatKesehatanRepository
 import com.masdiq.template.*
@@ -14,7 +15,7 @@ import org.koin.ktor.ext.inject
 fun Route.riwayatKesehatanRoute() {
     val riwayatKesehatanRepository: RiwayatKesehatanRepository by inject()
 
-    get("$URL_RIWAYAT_KESEHATAN/get-all") {
+    get("${EndPoint.URL_RIWAYAT_KESEHATAN.path}/get-all") {
         val dataList = riwayatKesehatanRepository.getAllRiwayatKesehatan()
         call.respond(
             DefaultResponse(
@@ -24,7 +25,7 @@ fun Route.riwayatKesehatanRoute() {
         )
     }
 
-    get("$URL_RIWAYAT_KESEHATAN/get") { it ->
+    get("${EndPoint.URL_RIWAYAT_KESEHATAN.path}/get") { it ->
         val reqId = call.receive<RiwayatKesehatan>().id
         val obj = riwayatKesehatanRepository.getRiwayatKesehatan(reqId)
 
@@ -43,7 +44,7 @@ fun Route.riwayatKesehatanRoute() {
         )
     }
 
-    post("$URL_RIWAYAT_KESEHATAN/create-update") {
+    post("${EndPoint.URL_RIWAYAT_KESEHATAN.path}/create-update") {
         val request = try {
             call.receive<RiwayatKesehatan>()
         } catch (e: ContentTransformationException) {
@@ -73,7 +74,7 @@ fun Route.riwayatKesehatanRoute() {
         }
     }
 
-    delete("$URL_RIWAYAT_KESEHATAN/delete") post@{
+    delete("${EndPoint.URL_RIWAYAT_KESEHATAN.path}/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

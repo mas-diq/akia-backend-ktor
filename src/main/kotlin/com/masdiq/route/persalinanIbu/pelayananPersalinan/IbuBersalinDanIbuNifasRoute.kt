@@ -1,5 +1,6 @@
 package com.masdiq.route.persalinanIbu.pelayananPersalinan
 
+import com.masdiq.model.EndPoint
 import com.masdiq.model.persalinanIbu.pelayananPersalinan.IbuBersalinDanIbuNifas
 import com.masdiq.repository.persalinanIbu.pelayananPersalinan.IbuBersalinDanIbuNifasRepository
 import com.masdiq.template.*
@@ -14,7 +15,7 @@ import org.koin.ktor.ext.inject
 fun Route.ibuBersalinDanIbuNifasRoute() {
     val ibuBersalinDanIbuNifasRepository: IbuBersalinDanIbuNifasRepository by inject()
 
-    get("$URL_IBU_BERSALIN_DAN_IBU_NIFAS/get-all") {
+    get("${EndPoint.URL_IBU_BERSALIN_DAN_IBU_NIFAS.path}/get-all") {
         val dataList = ibuBersalinDanIbuNifasRepository.getAllIbuBersalinDanIbuNifas()
         call.respond(
             DefaultResponse(
@@ -24,7 +25,7 @@ fun Route.ibuBersalinDanIbuNifasRoute() {
         )
     }
 
-    get("$URL_IBU_BERSALIN_DAN_IBU_NIFAS/get") { it ->
+    get("${EndPoint.URL_IBU_BERSALIN_DAN_IBU_NIFAS.path}/get") { it ->
         val reqId = call.receive<IbuBersalinDanIbuNifas>().id
         val obj = ibuBersalinDanIbuNifasRepository.getIbuBersalinDanIbuNifas(reqId)
 
@@ -43,7 +44,7 @@ fun Route.ibuBersalinDanIbuNifasRoute() {
         )
     }
 
-    post("$URL_IBU_BERSALIN_DAN_IBU_NIFAS/create-update") {
+    post("${EndPoint.URL_IBU_BERSALIN_DAN_IBU_NIFAS.path}/create-update") {
         val request = try {
             call.receive<IbuBersalinDanIbuNifas>()
         } catch (e: ContentTransformationException) {
@@ -73,7 +74,7 @@ fun Route.ibuBersalinDanIbuNifasRoute() {
         }
     }
 
-    delete("$URL_IBU_BERSALIN_DAN_IBU_NIFAS/delete") post@{
+    delete("${EndPoint.URL_IBU_BERSALIN_DAN_IBU_NIFAS.path}/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

@@ -1,5 +1,6 @@
 package com.masdiq.route.pelayananDokter.trimester3
 
+import com.masdiq.model.EndPoint
 import com.masdiq.model.pelayananDokter.trimester3.RencanaKonsultasiLanjut
 import com.masdiq.repository.pelayananDokter.trimester3.RencanaKonsultasiLanjutRepository
 import com.masdiq.template.*
@@ -14,7 +15,7 @@ import org.koin.ktor.ext.inject
 fun Route.rencanaKonsultasiLanjutRoute() {
     val rencanaKonsultasiLanjutRepository: RencanaKonsultasiLanjutRepository by inject()
 
-    get("$URL_RENCANA_KONSULTASI_LANJUT/get-all") {
+    get("${EndPoint.URL_RENCANA_KONSULTASI_LANJUT.path}/get-all") {
         val dataList = rencanaKonsultasiLanjutRepository.getAllRencanaKonsultasiLanjut()
         call.respond(
             DefaultResponse(
@@ -24,7 +25,7 @@ fun Route.rencanaKonsultasiLanjutRoute() {
         )
     }
 
-    get("$URL_RENCANA_KONSULTASI_LANJUT/get") { it ->
+    get("${EndPoint.URL_RENCANA_KONSULTASI_LANJUT.path}/get") { it ->
         val reqId = call.receive<RencanaKonsultasiLanjut>().id
         val obj = rencanaKonsultasiLanjutRepository.getRencanaKonsultasiLanjut(reqId)
 
@@ -43,7 +44,7 @@ fun Route.rencanaKonsultasiLanjutRoute() {
         )
     }
 
-    post("$URL_RENCANA_KONSULTASI_LANJUT/create-update") {
+    post("${EndPoint.URL_RENCANA_KONSULTASI_LANJUT.path}/create-update") {
         val request = try {
             call.receive<RencanaKonsultasiLanjut>()
         } catch (e: ContentTransformationException) {
@@ -73,7 +74,7 @@ fun Route.rencanaKonsultasiLanjutRoute() {
         }
     }
 
-    delete("$URL_RENCANA_KONSULTASI_LANJUT/delete") post@{
+    delete("${EndPoint.URL_RENCANA_KONSULTASI_LANJUT.path}/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

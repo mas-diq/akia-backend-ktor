@@ -1,5 +1,6 @@
 package com.masdiq.route.pelayananDokter.evaluasi
 
+import com.masdiq.model.EndPoint
 import com.masdiq.model.pelayananDokter.evaluasi.StatusImunisasi
 import com.masdiq.repository.pelayananDokter.evaluasi.StatusImunisasiRepository
 import com.masdiq.template.*
@@ -14,7 +15,7 @@ import org.koin.ktor.ext.inject
 fun Route.statusImunisasiRoute() {
     val statusImunisasiRepository: StatusImunisasiRepository by inject()
 
-    get("$URL_STATUS_IMUNISASI/get-all") {
+    get("${EndPoint.URL_STATUS_IMUNISASI.path}/get-all") {
         val dataList = statusImunisasiRepository.getAllStatusImunisasi()
         call.respond(
             DefaultResponse(
@@ -24,7 +25,7 @@ fun Route.statusImunisasiRoute() {
         )
     }
 
-    get("$URL_STATUS_IMUNISASI/get") { it ->
+    get("${EndPoint.URL_STATUS_IMUNISASI.path}/get") { it ->
         val reqId = call.receive<StatusImunisasi>().id
         val obj = statusImunisasiRepository.getStatusImunisasi(reqId)
 
@@ -43,7 +44,7 @@ fun Route.statusImunisasiRoute() {
         )
     }
 
-    post("$URL_STATUS_IMUNISASI/create-update") {
+    post("${EndPoint.URL_STATUS_IMUNISASI.path}/create-update") {
         val request = try {
             call.receive<StatusImunisasi>()
         } catch (e: ContentTransformationException) {
@@ -73,7 +74,7 @@ fun Route.statusImunisasiRoute() {
         }
     }
 
-    delete("$URL_STATUS_IMUNISASI/delete") post@{
+    delete("${EndPoint.URL_STATUS_IMUNISASI.path}/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

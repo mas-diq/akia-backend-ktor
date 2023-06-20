@@ -1,5 +1,6 @@
 package com.masdiq.route.pelayananDokter.evaluasi
 
+import com.masdiq.model.EndPoint
 import com.masdiq.model.pelayananDokter.evaluasi.PerilakuBeresiko
 import com.masdiq.repository.pelayananDokter.evaluasi.PerilakuBeresikoRepository
 import com.masdiq.template.*
@@ -14,7 +15,7 @@ import org.koin.ktor.ext.inject
 fun Route.perilakuBeresikoRoute() {
     val perilakuBeresikoRepository: PerilakuBeresikoRepository by inject()
 
-    get("$URL_PERILAKU_BERESIKO/get-all") {
+    get("${EndPoint.URL_PERILAKU_BERESIKO.path}/get-all") {
         val dataList = perilakuBeresikoRepository.getAllPerilakuBeresiko()
         call.respond(
             DefaultResponse(
@@ -24,7 +25,7 @@ fun Route.perilakuBeresikoRoute() {
         )
     }
 
-    get("$URL_PERILAKU_BERESIKO/get") { it ->
+    get("${EndPoint.URL_PERILAKU_BERESIKO.path}/get") { it ->
         val reqId = call.receive<PerilakuBeresiko>().id
         val obj = perilakuBeresikoRepository.getPerilakuBeresiko(reqId)
 
@@ -43,7 +44,7 @@ fun Route.perilakuBeresikoRoute() {
         )
     }
 
-    post("$URL_PERILAKU_BERESIKO/create-update") {
+    post("${EndPoint.URL_PERILAKU_BERESIKO.path}/create-update") {
         val request = try {
             call.receive<PerilakuBeresiko>()
         } catch (e: ContentTransformationException) {
@@ -73,7 +74,7 @@ fun Route.perilakuBeresikoRoute() {
         }
     }
 
-    delete("$URL_PERILAKU_BERESIKO/delete") post@{
+    delete("${EndPoint.URL_PERILAKU_BERESIKO.path}/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {

@@ -1,5 +1,6 @@
 package com.masdiq.route.pelayananDokter.trimester3
 
+import com.masdiq.model.EndPoint
 import com.masdiq.model.pelayananDokter.trimester3.RencanaPersalinanDanKb
 import com.masdiq.repository.pelayananDokter.trimester3.RencanaPersalinanDanKbRepository
 import com.masdiq.template.*
@@ -14,7 +15,7 @@ import org.koin.ktor.ext.inject
 fun Route.rencanaPersalinanDanKbRoute() {
     val rencanaPersalinanDanKbRepository: RencanaPersalinanDanKbRepository by inject()
 
-    get("$URL_RENCANA_PERSALINAN_DAN_KB/get-all") {
+    get("${EndPoint.URL_RENCANA_PERSALINAN_DAN_KB.path}/get-all") {
         val dataList = rencanaPersalinanDanKbRepository.getAllRencanaPersalinanDanKb()
         call.respond(
             DefaultResponse(
@@ -24,7 +25,7 @@ fun Route.rencanaPersalinanDanKbRoute() {
         )
     }
 
-    get("$URL_RENCANA_PERSALINAN_DAN_KB/get") { it ->
+    get("${EndPoint.URL_RENCANA_PERSALINAN_DAN_KB.path}/get") { it ->
         val reqId = call.receive<RencanaPersalinanDanKb>().id
         val obj = rencanaPersalinanDanKbRepository.getRencanaPersalinanDanKb(reqId)
 
@@ -43,7 +44,7 @@ fun Route.rencanaPersalinanDanKbRoute() {
         )
     }
 
-    post("$URL_RENCANA_PERSALINAN_DAN_KB/create-update") {
+    post("${EndPoint.URL_RENCANA_PERSALINAN_DAN_KB.path}/create-update") {
         val request = try {
             call.receive<RencanaPersalinanDanKb>()
         } catch (e: ContentTransformationException) {
@@ -73,7 +74,7 @@ fun Route.rencanaPersalinanDanKbRoute() {
         }
     }
 
-    delete("$URL_RENCANA_PERSALINAN_DAN_KB/delete") post@{
+    delete("${EndPoint.URL_RENCANA_PERSALINAN_DAN_KB.path}/delete") post@{
         val request = try {
             call.receive<DefaultRequest>()
         } catch (e: ContentTransformationException) {
