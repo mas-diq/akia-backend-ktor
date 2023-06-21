@@ -1,5 +1,9 @@
 package com.masdiq.plugins
 
+import com.masdiq.repository.auth.UserDataInterface
+import com.masdiq.route.auth.authorizedRoute
+import com.masdiq.route.auth.tokenVerificationRoute
+import com.masdiq.route.auth.unauthorizedRoute
 import com.masdiq.route.pelayananDokter.evaluasi.*
 import com.masdiq.route.pelayananDokter.pemeriksaanFisikRoute
 import com.masdiq.route.pelayananDokter.trimester1.pemeriksaanLaboratorium1Route
@@ -21,10 +25,17 @@ import com.masdiq.route.persalinanIbu.pelayananPersalinan.ibuBersalinDanIbuNifas
 import com.masdiq.route.tabletTambahDarah.tambahDarahRoute
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
+import org.koin.ktor.ext.inject
 
 fun Application.configureRouting() {
-
     routing {
+        val userDataInterface: UserDataInterface by inject()
+        tokenVerificationRoute(application, userDataInterface)
+
+        // Authentication
+        authorizedRoute()
+        unauthorizedRoute()
+
         // Pelayanan Dokter
         pemeriksaanFisikRoute()
         // Pelayanan Dokter / Evaluasi

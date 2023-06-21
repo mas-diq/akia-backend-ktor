@@ -1,11 +1,8 @@
-package com.masdiq.template
-
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+package com.masdiq.util
 
 data class DefaultResponse<T>(
     val status: String? = "Kosong",
     val message: String? = "Kosong",
     val duration: String? = "Kosong",
-    val data: T
+    val data: T? = null
 )

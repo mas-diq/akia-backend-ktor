@@ -3,7 +3,7 @@ package com.masdiq.route.persalinanIbu.pelayananPersalinan
 import com.masdiq.model.EndPoint
 import com.masdiq.model.persalinanIbu.pelayananPersalinan.IbuBersalinDanIbuNifas
 import com.masdiq.repository.persalinanIbu.pelayananPersalinan.IbuBersalinDanIbuNifasRepository
-import com.masdiq.template.*
+import com.masdiq.util.*
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.callloging.*

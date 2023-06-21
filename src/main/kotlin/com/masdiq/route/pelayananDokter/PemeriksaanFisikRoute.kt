@@ -3,7 +3,7 @@ package com.masdiq.route.pelayananDokter
 import com.masdiq.model.EndPoint
 import com.masdiq.model.pelayananDokter.PemeriksaanFisik
 import com.masdiq.repository.pelayananDokter.PemeriksaanFisikRepository
-import com.masdiq.template.*
+import com.masdiq.util.*
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.callloging.*

@@ -3,7 +3,7 @@ package com.masdiq.route.pemantauanIbu.ibuNifas
 import com.masdiq.model.EndPoint
 import com.masdiq.model.pemantauanIbu.ibuNifas.PemantauanHarianIbuNifas
 import com.masdiq.repository.pemantauanIbu.ibuNifas.PemantauanHarianIbuNifasRepository
-import com.masdiq.template.*
+import com.masdiq.util.*
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.callloging.*

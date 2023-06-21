@@ -3,7 +3,7 @@ package com.masdiq.route.pelayananDokter.trimester1
 import com.masdiq.model.EndPoint
 import com.masdiq.model.pelayananDokter.trimester1.UsgTrimester1
 import com.masdiq.repository.pelayananDokter.trimester1.UsgTrimester1Repository
-import com.masdiq.template.*
+import com.masdiq.util.*
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.callloging.*

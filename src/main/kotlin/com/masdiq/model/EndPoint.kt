@@ -15,6 +15,11 @@ private const val BASE_PELAYANAN_PERSALINAN = "$BASE_PERSALINAN_IBU/pelayanan-pe
 
 sealed class EndPoint(val path: String) {
     // --------------
+    // Authentication
+    object Authorized : EndPoint(path = "$BASE_URL/authorized")
+    object Unauthorized : EndPoint(path = "$BASE_URL/unauthorized")
+    object TokenVerification : EndPoint(path = "$BASE_URL/token-verification")
+
     // Pelayanan Dokter
     object URL_PEMERIKSAAN_FISIK : EndPoint(path = "$BASE_PELAYANAN_DOKTER/pemeriksaan-fisik")
 

@@ -1,5 +1,7 @@
 package com.masdiq.di
 
+import com.masdiq.repository.auth.UserDataImplement
+import com.masdiq.repository.auth.UserDataInterface
 import com.masdiq.repository.pelayananDokter.PemeriksaanFisikImplement
 import com.masdiq.repository.pelayananDokter.PemeriksaanFisikRepository
 import com.masdiq.repository.pelayananDokter.evaluasi.*
@@ -34,6 +36,8 @@ import org.koin.dsl.module
 
 val koinModule = module {
 
+    // Auth
+    single<UserDataInterface> { UserDataImplement() }
     // Pelayanan Dokter
     single<PemeriksaanFisikRepository> { PemeriksaanFisikImplement() }
     // Pelayanan Dokter / Evaluasi
