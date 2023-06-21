@@ -1,117 +1,191 @@
 package com.masdiq.route.pelayananDokter.trimester3
 
 import com.masdiq.model.EndPoint
+import com.masdiq.model.auth.UserSession
 import com.masdiq.model.pelayananDokter.trimester3.RencanaKonsultasiLanjut
 import com.masdiq.repository.pelayananDokter.trimester3.RencanaKonsultasiLanjutRepository
 import com.masdiq.util.*
 import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.auth.*
 import io.ktor.server.plugins.callloging.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
 
-fun Route.rencanaKonsultasiLanjutRoute() {
+fun Route.rencanaKonsultasiLanjutRoute(app: Application) {
     val rencanaKonsultasiLanjutRepository: RencanaKonsultasiLanjutRepository by inject()
 
-    get("${EndPoint.URL_RENCANA_KONSULTASI_LANJUT.path}/get-user") {
-        val userId = call.receive<RencanaKonsultasiLanjut>().userId.toString()
-        val dataSearch = rencanaKonsultasiLanjutRepository.searchRencanaKonsultasiLanjut(reqId = userId)
-        call.respond(
-            DefaultResponse(
-                "${HttpStatusCode.OK}",
-                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
-            )
-        )
-    }
+    authenticate("auth-session") {
+        get("${EndPoint.URL_RENCANA_KONSULTASI_LANJUT.path}/get-user") {
+            val userSession = call.principal<UserSession>()
 
-    get("${EndPoint.URL_RENCANA_KONSULTASI_LANJUT.path}/get-all") {
-        val dataList = rencanaKonsultasiLanjutRepository.getAllRencanaKonsultasiLanjut()
-        call.respond(
-            DefaultResponse(
-                "${HttpStatusCode.OK}",
-                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
-            )
-        )
-    }
+            val userId = call.receive<RencanaKonsultasiLanjut>().userId.toString()
+            val dataSearch = rencanaKonsultasiLanjutRepository.searchRencanaKonsultasiLanjut(reqId = userId)
 
-    get("${EndPoint.URL_RENCANA_KONSULTASI_LANJUT.path}/get") { it ->
-        val reqId = call.receive<RencanaKonsultasiLanjut>().id
-        val obj = rencanaKonsultasiLanjutRepository.getRencanaKonsultasiLanjut(reqId)
-
-        obj?.let {
-            call.respond(
-                DefaultResponse(
-                    "${HttpStatusCode.OK}",
-                    dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", it
-                )
-            )
-        } ?: call.respond(
-            DefaultResponse(
-                "${HttpStatusCode.NotFound}",
-                dataNotFound, "${call.processingTimeMillis().times(0.001)} seconds", it
-            )
-        )
-    }
-
-    post("${EndPoint.URL_RENCANA_KONSULTASI_LANJUT.path}/create-update") {
-        val request = try {
-            call.receive<RencanaKonsultasiLanjut>()
-        } catch (e: ContentTransformationException) {
-            call.respond(
-                DefaultResponse(
-                    "${HttpStatusCode.BadRequest}",
-                    dataJsonError, "${call.processingTimeMillis().times(0.001)} seconds", it
-                )
-            )
-            return@post
-        }
-
-        if (rencanaKonsultasiLanjutRepository.createOrUpdateRencanaKonsultasiLanjut(request)) {
-            call.respond(
-                DefaultResponse(
-                    "${HttpStatusCode.OK}",
-                    dataSuccessCreated, "${call.processingTimeMillis().times(0.001)} seconds", request
-                )
-            )
-        } else {
-            call.respond(
-                DefaultResponse(
-                    "${HttpStatusCode.Conflict}",
-                    dataConflict, "${call.processingTimeMillis().times(0.001)} seconds", it
-                )
-            )
+            if (userSession == null) {
+                app.log.info(dataUauthorized)
+                call.respondRedirect(EndPoint.Unauthorized.path)
+            } else {
+                try {
+                    call.respond(
+                        DefaultResponse(
+                            "${HttpStatusCode.OK}",
+                            dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataSearch
+                        )
+                    )
+                } catch (e: Exception) {
+                    app.log.info("$dataUauthorized, because $e")
+                    call.respondRedirect(EndPoint.Unauthorized.path)
+                }
+            }
         }
     }
 
-    delete("${EndPoint.URL_RENCANA_KONSULTASI_LANJUT.path}/delete") post@{
-        val request = try {
-            call.receive<DefaultRequest>()
-        } catch (e: ContentTransformationException) {
-            call.respond(
-                DefaultResponse(
-                    "${HttpStatusCode.BadRequest}",
-                    dataJsonError, "${call.processingTimeMillis().times(0.001)} seconds", it
-                )
-            )
-            return@post
-        }
+    authenticate("auth-session") {
+        get("${EndPoint.URL_RENCANA_KONSULTASI_LANJUT.path}/get-all") {
+            val userSession = call.principal<UserSession>()
 
-        if (rencanaKonsultasiLanjutRepository.deleteRencanaKonsultasiLanjut(request.id)) {
-            call.respond(
-                DefaultResponse(
-                    "${HttpStatusCode.OK}",
-                    dataSuccessDeleted, "${call.processingTimeMillis().times(0.001)} seconds", request
-                )
-            )
-        } else {
-            call.respond(
-                DefaultResponse(
-                    "${HttpStatusCode.BadRequest}",
-                    dataNotFound, "${call.processingTimeMillis().times(0.001)} seconds", it
-                )
-            )
+            val dataList = rencanaKonsultasiLanjutRepository.getAllRencanaKonsultasiLanjut()
+
+            if (userSession == null) {
+                app.log.info(dataUauthorized)
+                call.respondRedirect(EndPoint.Unauthorized.path)
+            } else {
+                try {
+                    call.respond(
+                        DefaultResponse(
+                            "${HttpStatusCode.OK}",
+                            dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
+                        )
+                    )
+                } catch (e: Exception) {
+                    app.log.info("$dataUauthorized, because $e")
+                    call.respondRedirect(EndPoint.Unauthorized.path)
+                }
+            }
+        }
+    }
+
+    authenticate("auth-session") {
+        get("${EndPoint.URL_RENCANA_KONSULTASI_LANJUT.path}/get") { it ->
+            val userSession = call.principal<UserSession>()
+
+            val reqId = call.receive<RencanaKonsultasiLanjut>().id
+            val obj = rencanaKonsultasiLanjutRepository.getRencanaKonsultasiLanjut(reqId)
+
+            if (userSession == null) {
+                app.log.info(dataUauthorized)
+                call.respondRedirect(EndPoint.Unauthorized.path)
+            } else {
+                try {
+                    obj?.let {
+                        call.respond(
+                            DefaultResponse(
+                                "${HttpStatusCode.OK}",
+                                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", it
+                            )
+                        )
+                    } ?: call.respond(
+                        DefaultResponse(
+                            "${HttpStatusCode.NotFound}",
+                            dataNotFound, "${call.processingTimeMillis().times(0.001)} seconds", it
+                        )
+                    )
+                } catch (e: Exception) {
+                    app.log.info("$dataUauthorized, because $e")
+                    call.respondRedirect(EndPoint.Unauthorized.path)
+                }
+            }
+        }
+    }
+
+    authenticate("auth-session") {
+        post("${EndPoint.URL_RENCANA_KONSULTASI_LANJUT.path}/create-update") {
+            val userSession = call.principal<UserSession>()
+
+            if (userSession == null) {
+                app.log.info(dataUauthorized)
+                call.respondRedirect(EndPoint.Unauthorized.path)
+            } else {
+                try {
+                    val request = try {
+                        call.receive<RencanaKonsultasiLanjut>()
+                    } catch (e: ContentTransformationException) {
+                        call.respond(
+                            DefaultResponse(
+                                "${HttpStatusCode.BadRequest}",
+                                dataJsonError, "${call.processingTimeMillis().times(0.001)} seconds", it
+                            )
+                        )
+                        return@post
+                    }
+
+                    if (rencanaKonsultasiLanjutRepository.createOrUpdateRencanaKonsultasiLanjut(request)) {
+                        call.respond(
+                            DefaultResponse(
+                                "${HttpStatusCode.OK}",
+                                dataSuccessCreated, "${call.processingTimeMillis().times(0.001)} seconds", request
+                            )
+                        )
+                    } else {
+                        call.respond(
+                            DefaultResponse(
+                                "${HttpStatusCode.Conflict}",
+                                dataConflict, "${call.processingTimeMillis().times(0.001)} seconds", it
+                            )
+                        )
+                    }
+                } catch (e: Exception) {
+                    app.log.info("$dataUauthorized, because $e")
+                    call.respondRedirect(EndPoint.Unauthorized.path)
+                }
+            }
+        }
+    }
+
+    authenticate("auth-session") {
+        delete("${EndPoint.URL_RENCANA_KONSULTASI_LANJUT.path}/delete") post@{
+            val userSession = call.principal<UserSession>()
+
+            if (userSession == null) {
+                app.log.info(dataUauthorized)
+                call.respondRedirect(EndPoint.Unauthorized.path)
+            } else {
+                try {
+                    val request = try {
+                        call.receive<DefaultRequest>()
+                    } catch (e: ContentTransformationException) {
+                        call.respond(
+                            DefaultResponse(
+                                "${HttpStatusCode.BadRequest}",
+                                dataJsonError, "${call.processingTimeMillis().times(0.001)} seconds", it
+                            )
+                        )
+                        return@post
+                    }
+
+                    if (rencanaKonsultasiLanjutRepository.deleteRencanaKonsultasiLanjut(request.id)) {
+                        call.respond(
+                            DefaultResponse(
+                                "${HttpStatusCode.OK}",
+                                dataSuccessDeleted, "${call.processingTimeMillis().times(0.001)} seconds", request
+                            )
+                        )
+                    } else {
+                        call.respond(
+                            DefaultResponse(
+                                "${HttpStatusCode.BadRequest}",
+                                dataNotFound, "${call.processingTimeMillis().times(0.001)} seconds", it
+                            )
+                        )
+                    }
+                } catch (e: Exception) {
+                    app.log.info("$dataUauthorized, because $e")
+                    call.respondRedirect(EndPoint.Unauthorized.path)
+                }
+            }
         }
     }
 }

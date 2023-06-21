@@ -74,6 +74,6 @@ fun Application.configureRouting() {
         bayiSaatLahirRoute()
         ibuBersalinDanIbuNifasRoute()
         // Tablet Tambah Darah
-        tambahDarahRoute()
+        tambahDarahRoute(application)
     }
 }
