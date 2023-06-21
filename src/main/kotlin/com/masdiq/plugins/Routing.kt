@@ -37,42 +37,42 @@ fun Application.configureRouting() {
         unauthorizedRoute()
 
         // Pelayanan Dokter
-        pemeriksaanFisikRoute()
+        pemeriksaanFisikRoute(application)
         // Pelayanan Dokter / Evaluasi
-        kondisiKesehatanRoute()
-        pemeriksaanKhususRoute()
-        penyakitKeluargaRoute()
-        perilakuBeresikoRoute()
-        riwayatKesehatanRoute()
-        riwayatKehamilanRoute()
-        statusImunisasiRoute()
+        kondisiKesehatanRoute(application)
+        pemeriksaanKhususRoute(application)
+        penyakitKeluargaRoute(application)
+        perilakuBeresikoRoute(application)
+        riwayatKesehatanRoute(application)
+        riwayatKehamilanRoute(application)
+        statusImunisasiRoute(application)
         // Pelayanan Dokter / Trimester 1
-        pemeriksaanLaboratorium1Route()
-        usgTrimester1Route()
+        pemeriksaanLaboratorium1Route(application)
+        usgTrimester1Route(application)
         // Pelayanan Dokter / Trimester 2
-        skriningDiabetesRoute()
-        skriningPreeklampsiaRoute()
+        skriningDiabetesRoute(application)
+        skriningPreeklampsiaRoute(application)
         // Pelayanan Dokter / Trimester 3
-        pemeriksaanLaboratorium2Route()
-        rencanaKonsultasiLanjutRoute()
-        rencanaPersalinanDanKbRoute()
-        usgTrimester3Route()
+        pemeriksaanLaboratorium2Route(application)
+        rencanaKonsultasiLanjutRoute(application)
+        rencanaPersalinanDanKbRoute(application)
+        usgTrimester3Route(application)
 
         // Pemantauan Ibu
         // Pemantauan Ibu / Ibu Hamil
-        pemantauanHarianIbuHamilRoute()
-        pemantauanMingguanIbuHamilRoute()
+        pemantauanHarianIbuHamilRoute(application)
+        pemantauanMingguanIbuHamilRoute(application)
         // Pemantauan Ibu / Ibu Nifas
-        pemantauanHarianIbuNifasRoute()
-        pemantauanMingguanIbuNifasRoute()
+        pemantauanHarianIbuNifasRoute(application)
+        pemantauanMingguanIbuNifasRoute(application)
 
         // Persalinan Ibu
         // Persalinan Ibu / Pelayanan Nifas
-        kesimpulanAkhirNifasRoute()
-        kunjunganNifasRoute()
+        kesimpulanAkhirNifasRoute(application)
+        kunjunganNifasRoute(application)
         // Persalinan Ibu / Pelayanan Persalinan
-        bayiSaatLahirRoute()
-        ibuBersalinDanIbuNifasRoute()
+        bayiSaatLahirRoute(application)
+        ibuBersalinDanIbuNifasRoute(application)
         // Tablet Tambah Darah
         tambahDarahRoute(application)
     }

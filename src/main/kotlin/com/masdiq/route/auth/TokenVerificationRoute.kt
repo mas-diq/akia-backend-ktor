@@ -31,6 +31,7 @@ fun Route.tokenVerificationRoute(thisApp: Application, thisUserDataInterface: Us
 
             if (thisResult != null) {
                 saveUserToDatabase(
+                    reqUserType = req.userType,
                     app = thisApp,
                     result = thisResult,
                     userDataInterface = thisUserDataInterface
@@ -47,20 +48,22 @@ fun Route.tokenVerificationRoute(thisApp: Application, thisUserDataInterface: Us
 }
 
 private suspend fun PipelineContext<Unit, ApplicationCall>.saveUserToDatabase(
-    app: Application, result: GoogleIdToken, userDataInterface: UserDataInterface
+    app: Application, result: GoogleIdToken, userDataInterface: UserDataInterface, reqUserType: String
 ) {
-    val sub = result.payload["sub"].toString()
-    val name = result.payload["name"].toString()
-    val emailAddress = result.payload["email"].toString()
-    val profilePhoto = result.payload["picture"].toString()
+    val accountSub = result.payload["sub"].toString()
+    val accountName = result.payload["name"].toString()
     val user = User(
-        id = sub, name = name, emailAddress = emailAddress, profilePhoto = profilePhoto
+        userId = accountSub,
+        name = accountName,
+        emailAddress = result.payload["email"].toString(),
+        profilePhoto = result.payload["picture"].toString(),
+        userType = reqUserType
     )
     val response = userDataInterface.saveUserInfo(user = user)
 
     if (response) {
         app.log.info(dataSuccessCreated)
-        call.sessions.set(UserSession(id = sub, name = name))
+        call.sessions.set(UserSession(id = accountSub, name = accountName))
         call.respondRedirect(EndPoint.Authorized.path)
 
     } else {
