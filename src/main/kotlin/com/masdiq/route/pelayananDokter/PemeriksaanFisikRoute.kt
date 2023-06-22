@@ -27,7 +27,7 @@ fun Route.pemeriksaanFisikRoute(app: Application) {
 
             if (userSession == null) {
                 app.log.info(dataUauthorized)
-                call.respondRedirect(EndPoint.Unauthorized.path)
+                call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
                     call.respond(
@@ -38,7 +38,7 @@ fun Route.pemeriksaanFisikRoute(app: Application) {
                     )
                 } catch (e: Exception) {
                     app.log.info("$dataUauthorized, because $e")
-                    call.respondRedirect(EndPoint.Unauthorized.path)
+                    call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }
         }
@@ -52,7 +52,7 @@ fun Route.pemeriksaanFisikRoute(app: Application) {
 
             if (userSession == null) {
                 app.log.info(dataUauthorized)
-                call.respondRedirect(EndPoint.Unauthorized.path)
+                call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
                     call.respond(
@@ -63,7 +63,7 @@ fun Route.pemeriksaanFisikRoute(app: Application) {
                     )
                 } catch (e: Exception) {
                     app.log.info("$dataUauthorized, because $e")
-                    call.respondRedirect(EndPoint.Unauthorized.path)
+                    call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }
         }
@@ -78,7 +78,7 @@ fun Route.pemeriksaanFisikRoute(app: Application) {
 
             if (userSession == null) {
                 app.log.info(dataUauthorized)
-                call.respondRedirect(EndPoint.Unauthorized.path)
+                call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
                     obj?.let {
@@ -96,7 +96,7 @@ fun Route.pemeriksaanFisikRoute(app: Application) {
                     )
                 } catch (e: Exception) {
                     app.log.info("$dataUauthorized, because $e")
-                    call.respondRedirect(EndPoint.Unauthorized.path)
+                    call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }
         }
@@ -108,7 +108,7 @@ fun Route.pemeriksaanFisikRoute(app: Application) {
 
             if (userSession == null) {
                 app.log.info(dataUauthorized)
-                call.respondRedirect(EndPoint.Unauthorized.path)
+                call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
                     val request = try {
@@ -140,7 +140,7 @@ fun Route.pemeriksaanFisikRoute(app: Application) {
                     }
                 } catch (e: Exception) {
                     app.log.info("$dataUauthorized, because $e")
-                    call.respondRedirect(EndPoint.Unauthorized.path)
+                    call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }
         }
@@ -152,7 +152,7 @@ fun Route.pemeriksaanFisikRoute(app: Application) {
 
             if (userSession == null) {
                 app.log.info(dataUauthorized)
-                call.respondRedirect(EndPoint.Unauthorized.path)
+                call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
                     val request = try {
@@ -184,7 +184,7 @@ fun Route.pemeriksaanFisikRoute(app: Application) {
                     }
                 } catch (e: Exception) {
                     app.log.info("$dataUauthorized, because $e")
-                    call.respondRedirect(EndPoint.Unauthorized.path)
+                    call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }
         }

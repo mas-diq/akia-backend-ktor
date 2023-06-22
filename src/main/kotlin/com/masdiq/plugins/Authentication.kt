@@ -12,7 +12,7 @@ fun Application.configureAut() {
             name = "auth-session"
         ) {
             validate { session -> session }
-            challenge { call.respondRedirect(EndPoint.Unauthorized.path) }
+            challenge { call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path) }
         }
 
     }

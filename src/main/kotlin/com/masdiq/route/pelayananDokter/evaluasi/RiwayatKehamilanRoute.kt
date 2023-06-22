@@ -26,7 +26,7 @@ fun Route.riwayatKehamilanRoute(app: Application) {
 
             if (userSession == null) {
                 app.log.info(dataUauthorized)
-                call.respondRedirect(EndPoint.Unauthorized.path)
+                call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
                     call.respond(
@@ -37,7 +37,7 @@ fun Route.riwayatKehamilanRoute(app: Application) {
                     )
                 } catch (e: Exception) {
                     app.log.info("$dataUauthorized, because $e")
-                    call.respondRedirect(EndPoint.Unauthorized.path)
+                    call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }
         }
@@ -51,7 +51,7 @@ fun Route.riwayatKehamilanRoute(app: Application) {
 
             if (userSession == null) {
                 app.log.info(dataUauthorized)
-                call.respondRedirect(EndPoint.Unauthorized.path)
+                call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
                     call.respond(
@@ -62,7 +62,7 @@ fun Route.riwayatKehamilanRoute(app: Application) {
                     )
                 } catch (e: Exception) {
                     app.log.info("$dataUauthorized, because $e")
-                    call.respondRedirect(EndPoint.Unauthorized.path)
+                    call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }
         }
@@ -77,7 +77,7 @@ fun Route.riwayatKehamilanRoute(app: Application) {
 
             if (userSession == null) {
                 app.log.info(dataUauthorized)
-                call.respondRedirect(EndPoint.Unauthorized.path)
+                call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
                     obj?.let {
@@ -95,7 +95,7 @@ fun Route.riwayatKehamilanRoute(app: Application) {
                     )
                 } catch (e: Exception) {
                     app.log.info("$dataUauthorized, because $e")
-                    call.respondRedirect(EndPoint.Unauthorized.path)
+                    call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }
         }
@@ -107,7 +107,7 @@ fun Route.riwayatKehamilanRoute(app: Application) {
 
             if (userSession == null) {
                 app.log.info(dataUauthorized)
-                call.respondRedirect(EndPoint.Unauthorized.path)
+                call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
                     val request = try {
@@ -139,7 +139,7 @@ fun Route.riwayatKehamilanRoute(app: Application) {
                     }
                 } catch (e: Exception) {
                     app.log.info("$dataUauthorized, because $e")
-                    call.respondRedirect(EndPoint.Unauthorized.path)
+                    call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }
         }
@@ -151,7 +151,7 @@ fun Route.riwayatKehamilanRoute(app: Application) {
 
             if (userSession == null) {
                 app.log.info(dataUauthorized)
-                call.respondRedirect(EndPoint.Unauthorized.path)
+                call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
                     val request = try {
@@ -183,7 +183,7 @@ fun Route.riwayatKehamilanRoute(app: Application) {
                     }
                 } catch (e: Exception) {
                     app.log.info("$dataUauthorized, because $e")
-                    call.respondRedirect(EndPoint.Unauthorized.path)
+                    call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }
         }

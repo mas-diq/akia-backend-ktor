@@ -4,6 +4,7 @@ import com.masdiq.repository.auth.UserDataInterface
 import com.masdiq.route.auth.authorizedRoute
 import com.masdiq.route.auth.tokenVerificationRoute
 import com.masdiq.route.auth.unauthorizedRoute
+import com.masdiq.route.auth.userRoute
 import com.masdiq.route.pelayananDokter.evaluasi.*
 import com.masdiq.route.pelayananDokter.pemeriksaanFisikRoute
 import com.masdiq.route.pelayananDokter.trimester1.pemeriksaanLaboratorium1Route
@@ -35,6 +36,7 @@ fun Application.configureRouting() {
         // Authentication
         authorizedRoute()
         unauthorizedRoute()
+        userRoute(application, userDataInterface)
 
         // Pelayanan Dokter
         pemeriksaanFisikRoute(application)

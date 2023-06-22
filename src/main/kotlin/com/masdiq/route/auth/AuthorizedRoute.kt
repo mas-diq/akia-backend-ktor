@@ -12,7 +12,7 @@ import io.ktor.server.routing.*
 
 fun Route.authorizedRoute() {
     authenticate("auth-session") {
-        get(EndPoint.Authorized.path) {
+        get(EndPoint.URL_AUTHORIZED.path) {
             call.respond(
                 DefaultResponse(
                     status = "${HttpStatusCode.OK}",

@@ -23,7 +23,7 @@ import io.ktor.server.sessions.*
 import io.ktor.util.pipeline.*
 
 fun Route.tokenVerificationRoute(thisApp: Application, thisUserDataInterface: UserDataInterface) {
-    post(EndPoint.TokenVerification.path) {
+    post(EndPoint.URL_TOKEN_VERIFICATION.path) {
         val req = call.receive<TokenReq>()
 
         if (req.tokenId.isNotEmpty()) {
@@ -38,11 +38,11 @@ fun Route.tokenVerificationRoute(thisApp: Application, thisUserDataInterface: Us
                 )
             } else {
                 thisApp.log.info(tokenFailed)
-                call.respondRedirect(EndPoint.Unauthorized.path)
+                call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             }
         } else {
             thisApp.log.info(tokenEmpty)
-            call.respondRedirect(EndPoint.Unauthorized.path)
+            call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
         }
     }
 }
@@ -64,11 +64,11 @@ private suspend fun PipelineContext<Unit, ApplicationCall>.saveUserToDatabase(
     if (response) {
         app.log.info(dataSuccessCreated)
         call.sessions.set(UserSession(id = accountSub, name = accountName))
-        call.respondRedirect(EndPoint.Authorized.path)
+        call.respondRedirect(EndPoint.URL_AUTHORIZED.path)
 
     } else {
         app.log.info(dataConflict)
-        call.respondRedirect(EndPoint.Unauthorized.path)
+        call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
     }
 }
 

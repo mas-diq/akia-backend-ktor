@@ -1,6 +1,7 @@
 package com.masdiq.model
 
 private const val BASE_URL = "/akia"
+private const val BASE_USER = "$BASE_URL/user"
 private const val BASE_PELAYANAN_DOKTER = "$BASE_URL/pelayanan-dokter"
 private const val BASE_EVALUASI = "$BASE_PELAYANAN_DOKTER/evaluasi"
 private const val BASE_TRIMESTER_1 = "$BASE_PELAYANAN_DOKTER/trimester-1"
@@ -16,9 +17,14 @@ private const val BASE_PELAYANAN_PERSALINAN = "$BASE_PERSALINAN_IBU/pelayanan-pe
 sealed class EndPoint(val path: String) {
     // --------------
     // Authentication
-    object Authorized : EndPoint(path = "$BASE_URL/authorized")
-    object Unauthorized : EndPoint(path = "$BASE_URL/unauthorized")
-    object TokenVerification : EndPoint(path = "$BASE_URL/token-verification")
+    object URL_AUTHORIZED : EndPoint(path = "$BASE_USER/authorized")
+    object URL_UNAUTHORIZED : EndPoint(path = "$BASE_USER/unauthorized")
+    object URL_TOKEN_VERIFICATION : EndPoint(path = "$BASE_USER/token-verification")
+
+    // User
+    object URL_USER_GET_INFO : EndPoint(path = "$BASE_USER/info")
+    object URL_USER_SIGN_OUT : EndPoint(path = "$BASE_USER/sign-out")
+    object URL_USER_DELETE : EndPoint(path = "$BASE_USER/delete")
 
     // Pelayanan Dokter
     object URL_PEMERIKSAAN_FISIK : EndPoint(path = "$BASE_PELAYANAN_DOKTER/pemeriksaan-fisik")

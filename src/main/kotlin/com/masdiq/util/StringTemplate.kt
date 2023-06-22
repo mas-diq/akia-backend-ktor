@@ -1,5 +1,8 @@
 package com.masdiq.util
 
+const val userDeleted = "Successfully deleted account!"
+const val userUnDeleted = "Failed to delete account!"
+const val userSignOut = "Successfully sign out!"
 const val tokenFailed = "Token verification failed!"
 const val tokenEmpty = "Empty token id!"
 const val dataAuthorized = "Data successfully authorized!"

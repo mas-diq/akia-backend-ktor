@@ -10,7 +10,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
 fun Route.unauthorizedRoute() {
-    get(EndPoint.Unauthorized.path) {
+    get(EndPoint.URL_UNAUTHORIZED.path) {
         call.respond(
             DefaultResponse(
                 status = "${HttpStatusCode.Unauthorized}",
