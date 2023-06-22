@@ -1,5 +1,10 @@
 package com.masdiq.plugins
 
+import com.masdiq.repository.auth.UserDataInterface
+import com.masdiq.route.auth.authorizedRoute
+import com.masdiq.route.auth.tokenVerificationRoute
+import com.masdiq.route.auth.unauthorizedRoute
+import com.masdiq.route.auth.userRoute
 import com.masdiq.route.pelayananDokter.evaluasi.*
 import com.masdiq.route.pelayananDokter.pemeriksaanFisikRoute
 import com.masdiq.route.pelayananDokter.trimester1.pemeriksaanLaboratorium1Route
@@ -21,48 +26,56 @@ import com.masdiq.route.persalinanIbu.pelayananPersalinan.ibuBersalinDanIbuNifas
 import com.masdiq.route.tabletTambahDarah.tambahDarahRoute
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
+import org.koin.ktor.ext.inject
 
 fun Application.configureRouting() {
-
     routing {
+        val userDataInterface: UserDataInterface by inject()
+        tokenVerificationRoute(application, userDataInterface)
+
+        // Authentication
+        authorizedRoute()
+        unauthorizedRoute()
+        userRoute(application, userDataInterface)
+
         // Pelayanan Dokter
-        pemeriksaanFisikRoute()
+        pemeriksaanFisikRoute(application)
         // Pelayanan Dokter / Evaluasi
-        kondisiKesehatanRoute()
-        pemeriksaanKhususRoute()
-        penyakitKeluargaRoute()
-        perilakuBeresikoRoute()
-        riwayatKesehatanRoute()
-        riwayatKehamilanRoute()
-        statusImunisasiRoute()
+        kondisiKesehatanRoute(application)
+        pemeriksaanKhususRoute(application)
+        penyakitKeluargaRoute(application)
+        perilakuBeresikoRoute(application)
+        riwayatKesehatanRoute(application)
+        riwayatKehamilanRoute(application)
+        statusImunisasiRoute(application)
         // Pelayanan Dokter / Trimester 1
-        pemeriksaanLaboratorium1Route()
-        usgTrimester1Route()
+        pemeriksaanLaboratorium1Route(application)
+        usgTrimester1Route(application)
         // Pelayanan Dokter / Trimester 2
-        skriningDiabetesRoute()
-        skriningPreeklampsiaRoute()
+        skriningDiabetesRoute(application)
+        skriningPreeklampsiaRoute(application)
         // Pelayanan Dokter / Trimester 3
-        pemeriksaanLaboratorium2Route()
-        rencanaKonsultasiLanjutRoute()
-        rencanaPersalinanDanKbRoute()
-        usgTrimester3Route()
+        pemeriksaanLaboratorium2Route(application)
+        rencanaKonsultasiLanjutRoute(application)
+        rencanaPersalinanDanKbRoute(application)
+        usgTrimester3Route(application)
 
         // Pemantauan Ibu
         // Pemantauan Ibu / Ibu Hamil
-        pemantauanHarianIbuHamilRoute()
-        pemantauanMingguanIbuHamilRoute()
+        pemantauanHarianIbuHamilRoute(application)
+        pemantauanMingguanIbuHamilRoute(application)
         // Pemantauan Ibu / Ibu Nifas
-        pemantauanHarianIbuNifasRoute()
-        pemantauanMingguanIbuNifasRoute()
+        pemantauanHarianIbuNifasRoute(application)
+        pemantauanMingguanIbuNifasRoute(application)
 
         // Persalinan Ibu
         // Persalinan Ibu / Pelayanan Nifas
-        kesimpulanAkhirNifasRoute()
-        kunjunganNifasRoute()
+        kesimpulanAkhirNifasRoute(application)
+        kunjunganNifasRoute(application)
         // Persalinan Ibu / Pelayanan Persalinan
-        bayiSaatLahirRoute()
-        ibuBersalinDanIbuNifasRoute()
+        bayiSaatLahirRoute(application)
+        ibuBersalinDanIbuNifasRoute(application)
         // Tablet Tambah Darah
-        tambahDarahRoute()
+        tambahDarahRoute(application)
     }
 }

@@ -24,9 +24,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.ktor:ktor-server-content-negotiation-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
-    implementation("io.ktor:ktor-serialization-gson-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-call-logging-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-http-redirect-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-host-common-jvm:$ktor_version")
@@ -35,6 +33,10 @@ dependencies {
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 
+    // Content Negotiation
+    implementation("io.ktor:ktor-server-content-negotiation-jvm:$ktor_version")
+    implementation("io.ktor:ktor-serialization-gson-jvm:$ktor_version")
+
     // Kmonggo
     implementation("org.litote.kmongo:kmongo:$kmongo_version")
     implementation("org.litote.kmongo:kmongo-coroutine:$kmongo_version")
@@ -42,6 +44,16 @@ dependencies {
 
     // Koin for Ktor
     implementation("io.insert-koin:koin-ktor:$koinVersion")
+
     // SLF4J Logger
     implementation("io.insert-koin:koin-logger-slf4j:$koinVersion")
+
+    // Session
+    implementation("io.ktor:ktor-server-sessions-jvm:$ktor_version")
+
+    // Auth
+    implementation("io.ktor:ktor-server-auth-jvm:$ktor_version")
+
+    // Google Client API Library
+    implementation("com.google.api-client:google-api-client:1.33.2")
 }

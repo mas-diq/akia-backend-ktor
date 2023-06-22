@@ -1,9 +1,6 @@
 package com.masdiq
 
-import com.masdiq.plugins.configureKoin
-import com.masdiq.plugins.configureMonitoring
-import com.masdiq.plugins.configureRouting
-import com.masdiq.plugins.configureSerialization
+import com.masdiq.plugins.*
 import io.ktor.server.application.*
 
 fun main(args: Array<String>): Unit =
@@ -11,8 +8,10 @@ fun main(args: Array<String>): Unit =
 
 @Suppress("unused") // application.conf references the main function. This annotation prevents the IDE from marking it as unused.
 fun Application.module() {
-    configureSerialization()
-    configureMonitoring()
-    configureRouting()
     configureKoin()
+    configureAut()
+    configureRouting()
+    configureSerialization()
+    configureSession()
+    configureMonitoring()
 }
