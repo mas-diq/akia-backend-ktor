@@ -1,5 +1,5 @@
 # Use the official gradle image to create a build artifact.
-FROM gradle:6.8.3 as builder
+FROM gradle:7.1.1 as builder
 
 
 # Copy local code to the container image.
