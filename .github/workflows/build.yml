@@ -1,0 +1,44 @@
+# CI/CD Testing and Deployment Automation
+
+name: Test Build and Deploy to Server
+
+# Name of Event(s) that trigger(s) the workflow
+on:
+    push:
+      branches: [ "master" ]
+    # pull_request:
+    #   branches: [ "master" ]
+
+permissions:
+    contents: read
+    packages: write
+
+# Below is the part that is executed when an event happened
+jobs:
+    # Name of the Job (We can name it with anything)
+      build:
+    
+        runs-on: ubuntu-latest
+    
+        # Steps are sequence of tasks
+        steps:
+        # First, we checkout the code
+        - uses: actions/checkout@v2
+
+        - name: Test Build the Project
+          run: docker build .
+             
+# Deploy job
+    #   deploy:
+    #     runs-on: ubuntu-latest
+    #     needs: build
+    #     steps:
+    #         - name: SSH To Server and Deploy the Code
+    #           uses: appleboy/ssh-action@master
+    #           with:
+    #             host: ${{ secrets.HOST }}
+    #             username: ${{ secrets.USERNAME }}
+    #             password: ${{ secrets.PASSWORD }}
+    #             port: ${{ secrets.PORT }}
+    #             script: |
+    #                 # Specify Steps here...
