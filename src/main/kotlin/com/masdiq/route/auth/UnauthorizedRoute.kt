@@ -13,7 +13,7 @@ fun Route.unauthorizedRoute() {
     get(EndPoint.URL_UNAUTHORIZED.path) {
         call.respond(
             DefaultResponse(
-                status = "${HttpStatusCode.Unauthorized}",
+                status = "${HttpStatusCode.Unauthorized} TEST DEPLOY SUKSES!",
                 message = dataUauthorized,
                 duration = "${call.processingTimeMillis().times(0.001)} seconds",
                 data = null
