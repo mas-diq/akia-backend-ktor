@@ -42,4 +42,4 @@ jobs:
                 script: |
                     cd /home/eryanto/akia-backend-ktor-v1
                     git pull
-                    docker-compose down && docker-compose up -d
+                    sudo docker compose down && docker-compose up -d
