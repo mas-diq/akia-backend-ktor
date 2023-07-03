@@ -24,12 +24,19 @@ import com.masdiq.route.persalinanIbu.pelayananNifas.kunjunganNifasRoute
 import com.masdiq.route.persalinanIbu.pelayananPersalinan.bayiSaatLahirRoute
 import com.masdiq.route.persalinanIbu.pelayananPersalinan.ibuBersalinDanIbuNifasRoute
 import com.masdiq.route.tabletTambahDarah.tambahDarahRoute
+import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
 
 fun Application.configureRouting() {
     routing {
+        route("/akia-check", HttpMethod.Get){
+            handle {
+                call.respondText("Selamat, backend server Akia berhasil berjalan!")
+            }
+        }
         val userDataInterface: UserDataInterface by inject()
         tokenVerificationRoute(application, userDataInterface)
 
