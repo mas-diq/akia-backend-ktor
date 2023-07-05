@@ -1,6 +1,6 @@
 package com.masdiq.model
 
-private const val BASE_URL = "/akia"
+private const val BASE_URL = "/v1"
 private const val BASE_USER = "$BASE_URL/user"
 private const val BASE_PELAYANAN_DOKTER = "$BASE_URL/pelayanan-dokter"
 private const val BASE_EVALUASI = "$BASE_PELAYANAN_DOKTER/evaluasi"

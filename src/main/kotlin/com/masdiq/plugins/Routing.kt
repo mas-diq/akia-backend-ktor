@@ -32,7 +32,7 @@ import org.koin.ktor.ext.inject
 
 fun Application.configureRouting() {
     routing {
-        route("/akia-check", HttpMethod.Get){
+        route("/check", HttpMethod.Get){
             handle {
                 call.respondText("Selamat, backend server Akia berhasil berjalan!")
             }
