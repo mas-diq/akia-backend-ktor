@@ -3,6 +3,13 @@ package com.masdiq.repository
 import org.litote.kmongo.coroutine.coroutine
 import org.litote.kmongo.reactivestreams.KMongo
 
-val client = KMongo.createClient("mongodb+srv://masdiq:B76bnyQkRz2VJR0s@cluster0.qhwa22p.mongodb.net/?retryWrites=true&w=majority").coroutine
+const val userPasien = "akia-pasien"
+const val userDokter = "akia-dokter"
+const val passPasien = "UOWsc2MUOXx7bVhL"
+const val passDokter = "mQ5uS8pY3HAgtIev"
+
+var key = "mongodb+srv://${userPasien}:${passPasien}@cluster0.qhwa22p.mongodb.net/?retryWrites=true&w=majority"
+
+val client = KMongo.createClient(key).coroutine
 val DATABASE = client.getDatabase("akia_database")
 
