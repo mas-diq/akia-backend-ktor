@@ -25,7 +25,7 @@ fun Route.tambahDarahRoute(app: Application) {
             val dataSearch = tabletTambahDarahRepository.searchTabletTambahDarah(reqId = userId)
 
             if (userSession == null) {
-                app.log.info(dataUauthorized)
+                app.log.info(dataUnauthorized)
                 call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
@@ -36,7 +36,7 @@ fun Route.tambahDarahRoute(app: Application) {
                         )
                     )
                 } catch (e: Exception) {
-                    app.log.info("$dataUauthorized, because $e")
+                    app.log.info("$dataUnauthorized, because $e")
                     call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }
@@ -50,7 +50,7 @@ fun Route.tambahDarahRoute(app: Application) {
             val dataList = tabletTambahDarahRepository.getAllTabletTambahDarah()
 
             if (userSession == null) {
-                app.log.info(dataUauthorized)
+                app.log.info(dataUnauthorized)
                 call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
@@ -61,7 +61,7 @@ fun Route.tambahDarahRoute(app: Application) {
                         )
                     )
                 } catch (e: Exception) {
-                    app.log.info("$dataUauthorized, because $e")
+                    app.log.info("$dataUnauthorized, because $e")
                     call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }
@@ -76,7 +76,7 @@ fun Route.tambahDarahRoute(app: Application) {
             val obj = tabletTambahDarahRepository.getTabletTambahDarah(reqId)
 
             if (userSession == null) {
-                app.log.info(dataUauthorized)
+                app.log.info(dataUnauthorized)
                 call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
@@ -94,7 +94,7 @@ fun Route.tambahDarahRoute(app: Application) {
                         )
                     )
                 } catch (e: Exception) {
-                    app.log.info("$dataUauthorized, because $e")
+                    app.log.info("$dataUnauthorized, because $e")
                     call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }
@@ -106,7 +106,7 @@ fun Route.tambahDarahRoute(app: Application) {
             val userSession = call.principal<UserSession>()
 
             if (userSession == null) {
-                app.log.info(dataUauthorized)
+                app.log.info(dataUnauthorized)
                 call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
@@ -138,7 +138,7 @@ fun Route.tambahDarahRoute(app: Application) {
                         )
                     }
                 } catch (e: Exception) {
-                    app.log.info("$dataUauthorized, because $e")
+                    app.log.info("$dataUnauthorized, because $e")
                     call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }
@@ -150,7 +150,7 @@ fun Route.tambahDarahRoute(app: Application) {
             val userSession = call.principal<UserSession>()
 
             if (userSession == null) {
-                app.log.info(dataUauthorized)
+                app.log.info(dataUnauthorized)
                 call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
@@ -182,7 +182,7 @@ fun Route.tambahDarahRoute(app: Application) {
                         )
                     }
                 } catch (e: Exception) {
-                    app.log.info("$dataUauthorized, because $e")
+                    app.log.info("$dataUnauthorized, because $e")
                     call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }

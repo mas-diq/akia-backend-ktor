@@ -25,7 +25,7 @@ fun Route.usgTrimester1Route(app: Application) {
             val dataSearch = usgTrimester1Repository.searchUsgTrimester1(reqId = userId)
 
             if (userSession == null) {
-                app.log.info(dataUauthorized)
+                app.log.info(dataUnauthorized)
                 call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
@@ -36,7 +36,7 @@ fun Route.usgTrimester1Route(app: Application) {
                         )
                     )
                 } catch (e: Exception) {
-                    app.log.info("$dataUauthorized, because $e")
+                    app.log.info("$dataUnauthorized, because $e")
                     call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }
@@ -48,7 +48,7 @@ fun Route.usgTrimester1Route(app: Application) {
             val userSession = call.principal<UserSession>()
 
             if (userSession == null) {
-                app.log.info(dataUauthorized)
+                app.log.info(dataUnauthorized)
                 call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
@@ -60,7 +60,7 @@ fun Route.usgTrimester1Route(app: Application) {
                         )
                     )
                 } catch (e: Exception) {
-                    app.log.info("$dataUauthorized, because $e")
+                    app.log.info("$dataUnauthorized, because $e")
                     call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }
@@ -75,7 +75,7 @@ fun Route.usgTrimester1Route(app: Application) {
             val obj = usgTrimester1Repository.getUsgTrimester1(reqId)
 
             if (userSession == null) {
-                app.log.info(dataUauthorized)
+                app.log.info(dataUnauthorized)
                 call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
@@ -93,7 +93,7 @@ fun Route.usgTrimester1Route(app: Application) {
                         )
                     )
                 } catch (e: Exception) {
-                    app.log.info("$dataUauthorized, because $e")
+                    app.log.info("$dataUnauthorized, because $e")
                     call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }
@@ -105,7 +105,7 @@ fun Route.usgTrimester1Route(app: Application) {
             val userSession = call.principal<UserSession>()
 
             if (userSession == null) {
-                app.log.info(dataUauthorized)
+                app.log.info(dataUnauthorized)
                 call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
@@ -137,7 +137,7 @@ fun Route.usgTrimester1Route(app: Application) {
                         )
                     }
                 } catch (e: Exception) {
-                    app.log.info("$dataUauthorized, because $e")
+                    app.log.info("$dataUnauthorized, because $e")
                     call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }
@@ -149,7 +149,7 @@ fun Route.usgTrimester1Route(app: Application) {
             val userSession = call.principal<UserSession>()
 
             if (userSession == null) {
-                app.log.info(dataUauthorized)
+                app.log.info(dataUnauthorized)
                 call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
@@ -181,7 +181,7 @@ fun Route.usgTrimester1Route(app: Application) {
                         )
                     }
                 } catch (e: Exception) {
-                    app.log.info("$dataUauthorized, because $e")
+                    app.log.info("$dataUnauthorized, because $e")
                     call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
                 }
             }

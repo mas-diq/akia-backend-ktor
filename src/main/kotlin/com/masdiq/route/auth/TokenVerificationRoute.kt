@@ -52,11 +52,13 @@ private suspend fun PipelineContext<Unit, ApplicationCall>.saveUserToDatabase(
 ) {
     val accountSub = result.payload["sub"].toString()
     val accountName = result.payload["name"].toString()
+    val accountEmail = result.payload["email"].toString()
+    val accountPhoto = result.payload["picture"].toString()
     val user = User(
         userId = accountSub,
         name = accountName,
-        emailAddress = result.payload["email"].toString(),
-        profilePhoto = result.payload["picture"].toString(),
+        emailAddress = accountEmail,
+        profilePhoto = accountPhoto,
         userType = reqUserType
     )
     val response = userDataInterface.saveUserInfo(user = user)
@@ -66,6 +68,7 @@ private suspend fun PipelineContext<Unit, ApplicationCall>.saveUserToDatabase(
         call.sessions.set(UserSession(id = accountSub, name = accountName))
         call.respondRedirect(EndPoint.URL_AUTHORIZED.path)
 
+
     } else {
         app.log.info(dataConflict)
         call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
@@ -74,10 +77,8 @@ private suspend fun PipelineContext<Unit, ApplicationCall>.saveUserToDatabase(
 
 private fun verifyGoogleTokenId(tokenId: String): GoogleIdToken? {
     return try {
-        val verifier = GoogleIdTokenVerifier.Builder(NetHttpTransport(), GsonFactory())
-            .setAudience(listOf(AUDIENCE))
-            .setIssuer(ISSUER)
-            .build()
+        val verifier = GoogleIdTokenVerifier.Builder(NetHttpTransport(), GsonFactory()).setAudience(listOf(AUDIENCE))
+            .setIssuer(ISSUER).build()
         return verifier.verify(tokenId)
     } catch (e: Exception) {
         null

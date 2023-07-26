@@ -8,8 +8,7 @@ const val userDokter = "akia-dokter"
 const val passPasien = "UOWsc2MUOXx7bVhL"
 const val passDokter = "mQ5uS8pY3HAgtIev"
 
-var key = "mongodb+srv://${userPasien}:${passPasien}@cluster0.qhwa22p.mongodb.net/?retryWrites=true&w=majority"
+var key = "mongodb+srv://${userDokter}:${passDokter}@cluster0.qhwa22p.mongodb.net/?retryWrites=true&w=majority"
 
 val client = KMongo.createClient(key).coroutine
 val DATABASE = client.getDatabase("akia_database")
-
