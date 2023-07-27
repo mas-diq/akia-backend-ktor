@@ -32,6 +32,8 @@ import com.masdiq.repository.persalinanIbu.pelayananPersalinan.IbuBersalinDanIbu
 import com.masdiq.repository.persalinanIbu.pelayananPersalinan.IbuBersalinDanIbuNifasRepository
 import com.masdiq.repository.tabletTambahDarah.TabletTambahDarahImplement
 import com.masdiq.repository.tabletTambahDarah.TabletTambahDarahRepository
+import com.masdiq.repository.userPasien.UserPasienImplement
+import com.masdiq.repository.userPasien.UserPasienRepository
 import org.koin.dsl.module
 
 val koinModule = module {
@@ -78,4 +80,7 @@ val koinModule = module {
 
     // Tablet Tambah Darah
     single<TabletTambahDarahRepository> { TabletTambahDarahImplement() }
+
+    // User Pasien
+    single<UserPasienRepository> { UserPasienImplement() }
 }

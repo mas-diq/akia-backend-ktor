@@ -24,6 +24,7 @@ import com.masdiq.route.persalinanIbu.pelayananNifas.kunjunganNifasRoute
 import com.masdiq.route.persalinanIbu.pelayananPersalinan.bayiSaatLahirRoute
 import com.masdiq.route.persalinanIbu.pelayananPersalinan.ibuBersalinDanIbuNifasRoute
 import com.masdiq.route.tabletTambahDarah.tambahDarahRoute
+import com.masdiq.route.userPasien.userPasienRoute
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
@@ -32,7 +33,7 @@ import org.koin.ktor.ext.inject
 
 fun Application.configureRouting() {
     routing {
-        route("/check", HttpMethod.Get){
+        route("/check", HttpMethod.Get) {
             handle {
                 call.respondText("Selamat, backend server Akia berhasil berjalan!")
             }
@@ -84,5 +85,7 @@ fun Application.configureRouting() {
         ibuBersalinDanIbuNifasRoute(application)
         // Tablet Tambah Darah
         tambahDarahRoute(application)
+        // User Pasien
+        userPasienRoute(application)
     }
 }

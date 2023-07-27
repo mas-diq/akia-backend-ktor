@@ -77,4 +77,8 @@ sealed class EndPoint(val path: String) {
     // --------------
     // Tablet Tambah Darah
     object URL_TABLET_TAMBAH_DARAH : EndPoint(path = "$BASE_URL/tablet-tambah-darah")
+
+    // --------------
+    // User Pasien
+    object URL_USER_PASIEN : EndPoint(path = "$BASE_URL/user-pasien")
 }

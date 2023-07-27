@@ -6,7 +6,7 @@ import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.gson.GsonFactory
 import com.masdiq.model.EndPoint
 import com.masdiq.model.auth.TokenReq
-import com.masdiq.model.auth.User
+import com.masdiq.model.userPasien.UserPasien
 import com.masdiq.model.auth.UserSession
 import com.masdiq.repository.auth.UserDataInterface
 import com.masdiq.util.ConstantAuth.AUDIENCE
@@ -54,14 +54,14 @@ private suspend fun PipelineContext<Unit, ApplicationCall>.saveUserToDatabase(
     val accountName = result.payload["name"].toString()
     val accountEmail = result.payload["email"].toString()
     val accountPhoto = result.payload["picture"].toString()
-    val user = User(
+    val userPasien = UserPasien(
         userId = accountSub,
         name = accountName,
         emailAddress = accountEmail,
         profilePhoto = accountPhoto,
         userType = reqUserType
     )
-    val response = userDataInterface.saveUserInfo(user = user)
+    val response = userDataInterface.saveUserInfo(userPasien = userPasien)
 
     if (response) {
         app.log.info(dataSuccessCreated)
