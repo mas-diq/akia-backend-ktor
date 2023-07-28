@@ -3,7 +3,7 @@ package com.masdiq.model.userPasien
 import org.bson.codecs.pojo.annotations.BsonId
 import org.bson.types.ObjectId
 
-data class UserPasien(
+data class User(
     @BsonId
     var id: String = ObjectId().toString(),
     var userId: String? = "iu0001",

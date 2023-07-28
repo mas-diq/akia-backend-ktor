@@ -2,7 +2,7 @@ package com.masdiq.route.userPasien
 
 import com.masdiq.model.EndPoint
 import com.masdiq.model.auth.UserSession
-import com.masdiq.model.userPasien.UserPasien
+import com.masdiq.model.userPasien.User
 import com.masdiq.repository.userPasien.UserPasienRepository
 import com.masdiq.util.*
 import io.ktor.http.*
@@ -21,7 +21,7 @@ fun Route.userPasienRoute(app: Application) {
         get("${EndPoint.URL_USER_PASIEN.path}/get-user") {
             val userSession = call.principal<UserSession>()
 
-            val userId = call.receive<UserPasien>().userId.toString()
+            val userId = call.receive<User>().userId.toString()
             val dataSearch = userPasienRepository.searchUserPasien(reqId = userId)
 
             if (userSession == null) {
@@ -44,7 +44,7 @@ fun Route.userPasienRoute(app: Application) {
     }
 
     authenticate("auth-session") {
-        get("${EndPoint.URL_USER_PASIEN.path}/get-all") {
+        get("${EndPoint.URL_USER_PASIEN.path}/get-all-pasien") {
             val userSession = call.principal<UserSession>()
 
             val dataList = userPasienRepository.getAllUserPasien()
@@ -69,28 +69,20 @@ fun Route.userPasienRoute(app: Application) {
     }
 
     authenticate("auth-session") {
-        get("${EndPoint.URL_USER_PASIEN.path}/get") { it ->
+        get("${EndPoint.URL_USER_PASIEN.path}/get-all-dokter") {
             val userSession = call.principal<UserSession>()
 
-            val reqId = call.receive<UserPasien>().userId.toString()
-            val obj = userPasienRepository.getUserPasien(reqId)
+            val dataList = userPasienRepository.getAllUserDokter()
 
             if (userSession == null) {
                 app.log.info(dataUnauthorized)
                 call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
             } else {
                 try {
-                    obj?.let {
-                        call.respond(
-                            DefaultResponse(
-                                "${HttpStatusCode.OK}",
-                                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", it
-                            )
-                        )
-                    } ?: call.respond(
+                    call.respond(
                         DefaultResponse(
-                            "${HttpStatusCode.NotFound}",
-                            dataNotFound, "${call.processingTimeMillis().times(0.001)} seconds", it
+                            "${HttpStatusCode.OK}",
+                            dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", dataList
                         )
                     )
                 } catch (e: Exception) {
@@ -100,6 +92,39 @@ fun Route.userPasienRoute(app: Application) {
             }
         }
     }
+
+//    authenticate("auth-session") {
+//        get("${EndPoint.URL_USER_PASIEN.path}/get") { it ->
+//            val userSession = call.principal<UserSession>()
+//
+//            val reqId = call.receive<User>().userId.toString()
+//            val obj = userPasienRepository.getUserPasien(reqId)
+//
+//            if (userSession == null) {
+//                app.log.info(dataUnauthorized)
+//                call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
+//            } else {
+//                try {
+//                    obj?.let {
+//                        call.respond(
+//                            DefaultResponse(
+//                                "${HttpStatusCode.OK}",
+//                                dataSuccessRetrieved, "${call.processingTimeMillis().times(0.001)} seconds", it
+//                            )
+//                        )
+//                    } ?: call.respond(
+//                        DefaultResponse(
+//                            "${HttpStatusCode.NotFound}",
+//                            dataNotFound, "${call.processingTimeMillis().times(0.001)} seconds", it
+//                        )
+//                    )
+//                } catch (e: Exception) {
+//                    app.log.info("$dataUnauthorized, because $e")
+//                    call.respondRedirect(EndPoint.URL_UNAUTHORIZED.path)
+//                }
+//            }
+//        }
+//    }
 
     authenticate("auth-session") {
         post("${EndPoint.URL_USER_PASIEN.path}/create-update") {
@@ -111,7 +136,7 @@ fun Route.userPasienRoute(app: Application) {
             } else {
                 try {
                     val request = try {
-                        call.receive<UserPasien>()
+                        call.receive<User>()
                     } catch (e: ContentTransformationException) {
                         call.respond(
                             DefaultResponse(

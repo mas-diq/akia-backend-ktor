@@ -1,14 +1,14 @@
 package com.masdiq.repository.userPasien
 
-import com.masdiq.model.userPasien.UserPasien
+import com.masdiq.model.userPasien.User
 
 interface UserPasienRepository {
-    suspend fun getAllUserPasien(): List<UserPasien>
+    suspend fun getAllUserPasien(): List<User>
+    suspend fun getAllUserDokter(): List<User>
 
-    suspend fun getUserPasien(reqId: String): UserPasien?
-
-    suspend fun createOrUpdateUserPasien(userPasien: UserPasien): Boolean
+    //    suspend fun getUserPasien(reqId: String): User?
+    suspend fun createOrUpdateUserPasien(user: User): Boolean
 
     suspend fun deleteUserPasien(reqId: String): Boolean
-    suspend fun searchUserPasien(reqId: String): List<UserPasien>
+    suspend fun searchUserPasien(reqId: String): List<User>
 }

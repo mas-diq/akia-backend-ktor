@@ -1,44 +1,48 @@
 package com.masdiq.repository.userPasien
 
-import com.masdiq.model.userPasien.UserPasien
+import com.masdiq.model.userPasien.User
 import com.masdiq.repository.DATABASE
 import org.bson.types.ObjectId
 import org.litote.kmongo.eq
 
-private val colUserPasienPasien = DATABASE.getCollection<UserPasien>()
+private val colUserPasien = DATABASE.getCollection<User>()
 
 class UserPasienImplement : UserPasienRepository {
-    override suspend fun getAllUserPasien(): List<UserPasien> {
-        return colUserPasienPasien.find().toList()
+    override suspend fun getAllUserPasien(): List<User> {
+        return colUserPasien.find(User::userType eq "Pasien").toList()
     }
 
-    override suspend fun getUserPasien(reqId: String): UserPasien? {
-        return colUserPasienPasien.findOneById(reqId)
+    override suspend fun getAllUserDokter(): List<User> {
+        return colUserPasien.find(User::userType eq "Dokter").toList()
     }
 
-    override suspend fun createOrUpdateUserPasien(userPasien: UserPasien): Boolean {
-        val dataFound = colUserPasienPasien.findOneById(userPasien.id) != null
+//    override suspend fun getUserPasien(reqId: String): User? {
+//        return colUserPasien.findOneById(reqId)
+//    }
+
+    override suspend fun createOrUpdateUserPasien(user: User): Boolean {
+        val dataFound = colUserPasien.findOneById(user.id) != null
 
         return if (dataFound) {
-            colUserPasienPasien.updateOneById(userPasien.id, userPasien).wasAcknowledged()
+            colUserPasien.updateOneById(user.id, user).wasAcknowledged()
         } else {
-            userPasien.id = ObjectId().toString()
-            colUserPasienPasien.insertOne(userPasien).wasAcknowledged()
+            user.id = ObjectId().toString()
+            colUserPasien.insertOne(user).wasAcknowledged()
         }
     }
 
     override suspend fun deleteUserPasien(reqId: String): Boolean {
-        val dataDelete = colUserPasienPasien.findOne(UserPasien::id eq reqId)
+        val dataDelete = colUserPasien.findOne(User::id eq reqId)
         dataDelete?.let { data ->
-            return colUserPasienPasien.deleteOneById(data.id).wasAcknowledged()
+            return colUserPasien.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
     }
 
-    override suspend fun searchUserPasien(reqId: String): List<UserPasien> {
+    override suspend fun searchUserPasien(reqId: String): List<User> {
         return if (reqId.isEmpty()) {
             emptyList()
         } else {
-            return colUserPasienPasien.find(UserPasien::userId eq reqId).toList()
+            return colUserPasien.find(User::userId eq reqId).toList()
         }
     }
 }
