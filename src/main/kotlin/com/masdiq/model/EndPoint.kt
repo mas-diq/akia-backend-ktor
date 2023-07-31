@@ -25,6 +25,11 @@ sealed class EndPoint(val path: String) {
     object URL_USER_GET_INFO : EndPoint(path = "$BASE_USER/info")
     object URL_USER_SIGN_OUT : EndPoint(path = "$BASE_USER/sign-out")
     object URL_USER_DELETE : EndPoint(path = "$BASE_USER/delete")
+    object URL_GET_USER : EndPoint(path = "$BASE_USER/get-user")
+    object URL_GET_ALL_PASIEN : EndPoint(path = "$BASE_USER/get-all-pasien")
+    object URL_GET_ALL_DOKTER : EndPoint(path = "$BASE_USER/get-all-dokter")
+    object URL_DELETE_USER : EndPoint(path = "$BASE_USER/delete")
+
 
     // Pelayanan Dokter
     object URL_PEMERIKSAAN_FISIK : EndPoint(path = "$BASE_PELAYANAN_DOKTER/pemeriksaan-fisik")
@@ -79,6 +84,4 @@ sealed class EndPoint(val path: String) {
     object URL_TABLET_TAMBAH_DARAH : EndPoint(path = "$BASE_URL/tablet-tambah-darah")
 
     // --------------
-    // User Pasien
-    object URL_USER_PASIEN : EndPoint(path = "$BASE_URL/user-pasien")
 }

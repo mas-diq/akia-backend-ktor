@@ -16,9 +16,13 @@ class UserPasienImplement : UserPasienRepository {
         return colUserPasien.find(User::userType eq "Dokter").toList()
     }
 
-//    override suspend fun getUserPasien(reqId: String): User? {
-//        return colUserPasien.findOneById(reqId)
-//    }
+    override suspend fun getUserPasien(reqId: String): List<User> {
+        return if (reqId.isEmpty()) {
+            emptyList()
+        } else {
+            return colUserPasien.find(User::userId eq reqId).toList()
+        }
+    }
 
     override suspend fun createOrUpdateUserPasien(user: User): Boolean {
         val dataFound = colUserPasien.findOneById(user.id) != null
@@ -36,13 +40,5 @@ class UserPasienImplement : UserPasienRepository {
         dataDelete?.let { data ->
             return colUserPasien.deleteOneById(data.id).wasAcknowledged()
         } ?: return false
-    }
-
-    override suspend fun searchUserPasien(reqId: String): List<User> {
-        return if (reqId.isEmpty()) {
-            emptyList()
-        } else {
-            return colUserPasien.find(User::userId eq reqId).toList()
-        }
     }
 }
