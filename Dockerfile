@@ -1,7 +1,6 @@
 # Use the official gradle image to create a build artifact.
 FROM gradle:7.1.1 as builder
 
-
 # Copy local code to the container image.
 COPY build.gradle.kts .
 COPY gradle.properties .

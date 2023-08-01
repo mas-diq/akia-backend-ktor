@@ -1,6 +1,6 @@
 package com.masdiq.route.pelayananDokter.evaluasi
 
-import com.masdiq.model.EndPoint
+import com.masdiq.util.EndPoint
 import com.masdiq.model.auth.UserSession
 import com.masdiq.model.pelayananDokter.evaluasi.PenyakitKeluarga
 import com.masdiq.repository.pelayananDokter.evaluasi.PenyakitKeluargaRepository

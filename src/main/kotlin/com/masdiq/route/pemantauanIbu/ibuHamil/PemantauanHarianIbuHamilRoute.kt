@@ -1,6 +1,6 @@
 package com.masdiq.route.pemantauanIbu.ibuHamil
 
-import com.masdiq.model.EndPoint
+import com.masdiq.util.EndPoint
 import com.masdiq.model.auth.UserSession
 import com.masdiq.model.pemantauanIbu.ibuHamil.PemantauanHarianIbuHamil
 import com.masdiq.repository.pemantauanIbu.ibuHamil.PemantauanHarianIbuHamilRepository

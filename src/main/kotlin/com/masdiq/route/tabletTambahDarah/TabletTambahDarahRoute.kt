@@ -1,6 +1,6 @@
 package com.masdiq.route.tabletTambahDarah
 
-import com.masdiq.model.EndPoint
+import com.masdiq.util.EndPoint
 import com.masdiq.model.auth.UserSession
 import com.masdiq.model.tabletTambahDarah.TabletTambahDarah
 import com.masdiq.repository.tabletTambahDarah.TabletTambahDarahRepository

@@ -1,6 +1,6 @@
 package com.masdiq.route.persalinanIbu.pelayananNifas
 
-import com.masdiq.model.EndPoint
+import com.masdiq.util.EndPoint
 import com.masdiq.model.auth.UserSession
 import com.masdiq.model.persalinanIbu.pelayananNifas.KunjunganNifas
 import com.masdiq.repository.persalinanIbu.pelayananNifas.KunjunganNifasRepository

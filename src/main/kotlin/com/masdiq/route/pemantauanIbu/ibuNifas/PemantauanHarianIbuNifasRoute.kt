@@ -1,6 +1,6 @@
 package com.masdiq.route.pemantauanIbu.ibuNifas
 
-import com.masdiq.model.EndPoint
+import com.masdiq.util.EndPoint
 import com.masdiq.model.auth.UserSession
 import com.masdiq.model.pemantauanIbu.ibuNifas.PemantauanHarianIbuNifas
 import com.masdiq.repository.pemantauanIbu.ibuNifas.PemantauanHarianIbuNifasRepository

@@ -1,6 +1,6 @@
 package com.masdiq.route.pelayananDokter.trimester2
 
-import com.masdiq.model.EndPoint
+import com.masdiq.util.EndPoint
 import com.masdiq.model.auth.UserSession
 import com.masdiq.model.pelayananDokter.trimester2.SkriningPreeklampsia
 import com.masdiq.repository.pelayananDokter.trimester2.SkriningPreeklampsiaRepository

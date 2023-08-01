@@ -1,6 +1,6 @@
 package com.masdiq.route.auth
 
-import com.masdiq.model.EndPoint
+import com.masdiq.util.EndPoint
 import com.masdiq.model.auth.UserSession
 import com.masdiq.repository.auth.UserDataInterface
 import com.masdiq.util.*

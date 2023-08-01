@@ -1,6 +1,6 @@
 package com.masdiq.route.auth
 
-import com.masdiq.model.EndPoint
+import com.masdiq.util.EndPoint
 import com.masdiq.util.DefaultResponse
 import com.masdiq.util.dataUnauthorized
 import io.ktor.http.*

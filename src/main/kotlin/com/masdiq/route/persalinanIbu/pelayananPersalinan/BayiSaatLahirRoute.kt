@@ -1,6 +1,6 @@
 package com.masdiq.route.persalinanIbu.pelayananPersalinan
 
-import com.masdiq.model.EndPoint
+import com.masdiq.util.EndPoint
 import com.masdiq.model.auth.UserSession
 import com.masdiq.model.persalinanIbu.pelayananPersalinan.BayiSaatLahir
 import com.masdiq.repository.persalinanIbu.pelayananPersalinan.BayiSaatLahirRepository

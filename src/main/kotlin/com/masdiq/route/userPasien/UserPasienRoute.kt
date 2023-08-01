@@ -1,6 +1,6 @@
 package com.masdiq.route.userPasien
 
-import com.masdiq.model.EndPoint
+import com.masdiq.util.EndPoint
 import com.masdiq.model.auth.UserSession
 import com.masdiq.model.userPasien.User
 import com.masdiq.repository.userPasien.UserPasienRepository
