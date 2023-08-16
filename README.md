@@ -1,105 +1,35 @@
+# AKIA Backend Application
+
 <div align="center">
-
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ktorio/ktor/main/.github/images/ktor-logo-for-dark.svg">
-    <img alt="Ktor logo" src="https://raw.githubusercontent.com/ktorio/ktor/main/.github/images/ktor-logo-for-light.svg">
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/mas-diq/akia-backend-ktor-v1/blob/master/AKIA%20V4.png?raw=true">
+    <img alt="Ktor logo" src="https://github.com/mas-diq/akia-backend-ktor-v1/blob/master/AKIA%20V4.png?raw=true">
   </picture>
-
 </div>
 
-[![Official JetBrains project](http://jb.gg/badges/official.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
-[![Maven Central](https://img.shields.io/maven-central/v/io.ktor/ktor)](https://mvnrepository.com/artifact/io.ktor)
-[![Kotlin](https://img.shields.io/badge/kotlin-1.8.10-blue.svg?logo=kotlin)](http://kotlinlang.org)
-[![Slack channel](https://img.shields.io/badge/chat-slack-green.svg?logo=slack)](https://kotlinlang.slack.com/messages/ktor/)
-[![GitHub License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
-[![Contribute with Gitpod](https://img.shields.io/badge/Contribute%20with-Gitpod-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/ktorio/ktor)
+## Background
+AKIA Backend is a backend application developed to be submitted in partial fulfilment of requirements for the Master’s Degree of Management Information Systems, in the Postgraduate Program at Gunadarma University. This backend application is developing an Android application that has previously been developed. With the presence of this backend application, it is hoped that the frontend application that will implement its services can use several inspection programs even better.
 
-Ktor is an asynchronous framework for creating microservices, web applications and more. Written in Kotlin from the ground up.
+## Abstract
+Preventing maternal death, especially during childbirth, has become a global and national concern. One of the targets in the SDGs is to reduce the Maternal Mortality Rate (MMR) to 70 deaths per 100,000 live births by 2030 globally. About 96 out of 100 mothers who gave birth to live births in the last two years and their births were assisted by health personnel. These health workers are scattered in various health facilities throughout Indonesia, one of which is centred at the puskesmas. The government has facilitated several activities related to pregnant women by distributing guidebooks for pregnant women, namely maternal and child health (MCH) books. National Health Survey data from the 2016 National Health Survey showed that as many as 81.5% of pregnant women stated they had an MCH handbook, but only 60.5% of them could show an MCH handbook. The unfilled MCH handbook was caused by the indiscipline of pregnant women who forgot to bring their MCH handbook when they came to the Puskesmas. Coupled with recording using a manual model that still uses books to monitor pregnant women's development, it is considered less relevant in today's all-digital era. Several applications for pregnant women have been widely spread on various platforms. However, from some of these applications, no applications can connect with health workers at the Puskesmas. In fact, the government has made many efforts to reduce the MMR rate centred there. This connection is expected to make the efforts that have been made by the government increasingly supported and can be more sustainable. The developed application will use the Kotlin language for its programming language and Ktor as a framework for developing backend applications. Application testing will also be carried out on functionality, performance and security. Functionality and performance testing will use the Postman application, while security testing will use OWASP ZAP. Application development will use the prototype as a software development life cycle (SDLC) method. Furthermore, the application will be named "Maternal and Child Health Application" or AKIA.
 
+## Postman Collection
+Access this link to open the Postman Collection https://documenter.getpostman.com/view/15179422/2s93sgXWQF
 
-```kotlin
-import io.ktor.server.netty.*
-import io.ktor.server.routing.*
-import io.ktor.server.application.*
-import io.ktor.http.*
-import io.ktor.server.response.*
-import io.ktor.server.engine.*
+## Architectural Framework
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/mas-diq/akia-backend-ktor-v1/blob/master/Architecture%20Akia%204.0.png?raw=true">
+    <img alt="Ktor logo" src="https://github.com/mas-diq/akia-backend-ktor-v1/blob/master/Architecture%20Akia%204.0.png?raw=true">
+  </picture>
+</div>
 
-fun main(args: Array<String>) {
-    embeddedServer(Netty, 8080) {
-        routing {
-            get("/") {
-                call.respondText("Hello, world!", ContentType.Text.Html)
-            }
-        }
-    }.start(wait = true)
-}
-```
-
-* Runs embedded web server on `localhost:8080`
-* Installs routing and responds with `Hello, world!` when receiving a GET http request for the root path
-
-## Start using Ktor
-
-Build your first Kotlin HTTP or RESTful application using Ktor: [start.ktor.io](https://start.ktor.io)
-
-## Principles
-
-#### Unopinionated
-
-Ktor Framework doesn't impose a lot of constraints on what technology a project is going to use – logging,
-templating, messaging, persistence, serialization, dependency injection, etc.
-Sometimes it may be required to implement a simple interface, but usually it is a matter of writing a
-transforming or intercepting function. Features are installed into the application using a unified *interception* mechanism
-which allows building arbitrary pipelines.
-
-Ktor Applications can be hosted in any servlet container with Servlet 3.0+ API support such as Tomcat, or
-standalone using Netty or Jetty. Support for other hosts can be added through the unified hosting API.
-
-Ktor APIs are mostly functions calls with lambdas. Thanks to Kotlin DSL capabilities, the code looks declarative.
-Application composition is entirely up to the developer's choice – with functions or classes, using dependency injection
-framework or doing it all manually in the main function.
-
-#### Asynchronous
-
-The Ktor pipeline machinery and API are utilising Kotlin coroutines to provide easy-to-use asynchronous
-programming model without making it too cumbersome. All host implementations are using asynchronous I/O facilities
-to avoid thread blocking.
-
-#### Testable
-
-Ktor applications can be hosted in a special test environment, which emulates a web server to some
-extent without actually doing any networking. It provides easy way to test an application without mocking
-too much stuff, and still achieve good performance while validating application calls. Running integration tests with a real
-embedded web server are of course possible, too.
-
-## JetBrains Product
-
-Ktor is an official [JetBrains](https://jetbrains.com) product and is primarily developed by the team at JetBrains, with contributions
-from the community.
-
-## Documentation
-
-Please visit [ktor.io](http://ktor.io) for Quick Start and detailed explanations of features, usage and machinery.
-
-* Getting started with [Gradle](https://ktor.io/docs/gradle.html)
-* Getting started with [Maven](https://ktor.io/docs/maven.html)
-* Getting started with [IDEA](https://ktor.io/docs/intellij-idea.html)
-
-## Reporting Issues / Support
-
-Please use [our issue tracker](https://youtrack.jetbrains.com/issues/KTOR) for filing feature requests and bugs. If you'd like to ask a question, we recommend [StackOverflow](https://stackoverflow.com/questions/tagged/ktor) where members of the team monitor frequently.
-
-There is also community support on the [Kotlin Slack Ktor channel](https://app.slack.com/client/T09229ZC6/C0A974TJ9)
-
-## Reporting Security Vulnerabilities
-
-If you find a security vulnerability in Ktor, we kindly request that you reach out to the JetBrains security team via our [responsible disclosure process](https://www.jetbrains.com/legal/terms/responsible-disclosure.html).
-
-## Inspirations
-
-Kotlin web frameworks such as Wasabi and Kara, which are currently deprecated.
-
-## Contributing
-
-Please see [the contribution guide](CONTRIBUTING.md) and the [Code of conduct](CODE_OF_CONDUCT.md) before contributing.
+This research will not focus on developing front-end applications but will still implement a small part of the processes on the front end. This process is to get an access ID token sent from Google Oauth 2.0 to be used in backend applications as a cookie. The complete flow of the architectural framework above will be explained at several points below.
+1.	The user logs into a simple Android application configured via the open ID connect protocol and signs on the Google Oauth consent screen. Users will get an ID Token, which can be used to access multiple endpoints from backend applications.
+2.	In this case, users are health workers who will use the akia-app.site domain and mothers will use the akia-dev.site domain. The request process that occurs to the two users will first pass through a reversed proxy that the nginx proxy manager has provided.
+3.	The reversed proxy will point to a virtual machine that runs on the Google Compute Engine service on the Google Cloud Platform. The virtual machine runs using the Ubuntu operating system, in which a docker runs several docker images, one of which is the AKIA backend application.
+4.	Docker images that have run the AKIA backend application will send an ID Token previously obtained to a Google verification service to confirm whether the ID Token sent is valid.
+5.	If the Token ID is valid, the backend application will enter the session the Google Verification Service sent as a cookie in the backend application that sent the request. These cookies can later be used to access databases in MongoDB.
+6.	As long as the cookie is still embedded in a user's application, the user does not need to create a new ID Token. The ID Token will be forfeited within 1 hour, and if it is forfeited, it is necessary to create a new ID Token according to the previous procedure.
+7.	Access rights on the MongoDB database have different access. Virtual machines with the akia-app.site domain used by health workers can view and change data in the database. Whereas the virtual machine with the akia-dev.site domain used by mothers can only view without being able to change data in the database, except for the mother monitoring program collection.
+8.	The data transaction process between the user and the database will run via the HTTPS protocol because it has included an SSL Certificate in its proxy. So it is expected to increase the security of the AKIA backend application.
