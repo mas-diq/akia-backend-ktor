@@ -36,7 +36,10 @@ This research will not focus on developing front-end applications but will still
 8.	The data transaction process between the user and the database will run via the HTTPS protocol because it has included an SSL Certificate in its proxy. So it is expected to increase the security of the AKIA backend application.
 
 ## Diagram Class
-Twenty-six database collections have various variables ranging from strings, doubles, integers, booleans, and objects. Some of these variables are stored in a document in the form of JSON. The JSON file type allows backend applications to easily map or place a value from an object in the JSON files into a variable in the backend application. Below is an overview of the AKIA class diagram.
-
-## Diagram Activity
-There are 4 inspection menus that health workers and pregnant women can select in the AKIA backend application prototype. The four menus include blood supplement tablet inspection, mother monitoring inspection, doctor service inspection, and maternal delivery inspection. These menus have their respective endpoints pointing to different database collections. Some of the grooves in the AKIA backend application prototype system will be illustrated in the image below.
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/mas-diq/akia-backend-ktor-v1/blob/master/diagram%20class.png?raw=true">
+    <img alt="Ktor logo" src="https://github.com/mas-diq/akia-backend-ktor-v1/blob/master/diagram%20class.png?raw=true">
+  </picture>
+</div>
+Twenty-six database collections have various variables ranging from strings, doubles, integers, booleans, and objects. Some of these variables are stored in a document in the form of JSON. The JSON file type allows backend applications to easily map or place a value from an object in the JSON files into a variable in the backend application.
